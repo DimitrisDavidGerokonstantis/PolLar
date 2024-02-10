@@ -49,7 +49,7 @@ const HomeParticipant = () => {
       localStorage.setItem("PollarUser", JSON.stringify(name));
       localStorage.setItem("PollarUserId", JSON.stringify(info.uid));
       localStorage.setItem("PollarSugPerUser", JSON.stringify(info.sugperus));
-      const pollStatus = await axios.post("/participant/pollStatus", {
+      const pollStatus = await axios.post("https://pollar-api-rxlv.onrender.com/api/participant/pollStatus", {
         password,
         uid: info.uid,
         sugperus: info.sugperus,
