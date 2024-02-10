@@ -108,15 +108,17 @@ export const pollStatus = (req, res) => {
         });
       });
     }
-    const qq =
-      "SELECT v.`usid` as userId, max(u.`username`) as userName, count(*) as numOfVotes FROM votes as v INNER JOIN suggestions as s ON v.`sugid`=s.`id` \
-    INNER JOIN users as u ON u.`id`=v.`usid`\
-    WHERE s.`ppwd`=? GROUP BY v.`usid`";
-
-    db.query(qq, [req.body.password], (err, data) => {
-      if (err) return res.status(500).json(err);
-      return res.status(200).json({ numofusers, phase, votingStatus: data });
-    });
+    else {
+      const qq =
+        "SELECT v.`usid` as userId, max(u.`username`) as userName, count(*) as numOfVotes FROM votes as v INNER JOIN suggestions as s ON v.`sugid`=s.`id` \
+      INNER JOIN users as u ON u.`id`=v.`usid`\
+      WHERE s.`ppwd`=? GROUP BY v.`usid`";
+  
+      db.query(qq, [req.body.password], (err, data) => {
+        if (err) return res.status(500).json(err);
+        return res.status(200).json({ numofusers, phase, votingStatus: data });
+      });
+    }
   });
 };
 
