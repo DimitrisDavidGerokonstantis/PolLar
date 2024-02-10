@@ -38,7 +38,7 @@ const HomeParticipant = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/participant/login", {
+      const res = await axios.post("https://pollar-api-rxlv.onrender.com/api/participant/login", {
         name,
         password,
         nickname,
