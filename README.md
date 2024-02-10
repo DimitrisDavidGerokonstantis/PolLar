@@ -1,2 +1,2 @@
 # PolLar
-A web application for creating polls. Deployed here : https://pollar-app.onrender.com
+A web application for creating polls. Deployed here : https://pollar-app.onrender.com (not completed yet!!!)
