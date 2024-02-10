@@ -17,7 +17,7 @@ const ParticipantResults = () => {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          `/participant/getResults/${uid}/${password}`
+          `https://pollar-api-rxlv.onrender.com/api/participant/getResults/${uid}/${password}`
         );
         console.log(res.data);
         setTotal(res.data.analytics);
