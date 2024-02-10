@@ -1,0 +1,382 @@
+.app {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(218, 197, 226);
+
+  .container {
+    width: 99%;
+
+    // Home Page
+    .home {
+      display: flex;
+      justify-content: center;
+      gap: 10%;
+      padding: 345px;
+
+      button {
+        padding: 12px;
+        border: none;
+        background-color: rgb(56, 12, 73);
+        cursor: pointer;
+        color: white;
+      }
+    }
+
+    .results {
+      button {
+        padding: 12px;
+        border: none;
+        background-color: rgb(56, 12, 73);
+        cursor: pointer;
+        color: white;
+
+        &:hover {
+          padding: 11px;
+          border: 1px solid white;
+          background-color: rgb(198, 162, 202);
+          color: black;
+        }
+      }
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+
+      text-align: center;
+      background-color: #e4c4e1;
+      margin-top: 100px;
+      width: 100%;
+      color: #490e43;
+      table {
+        border-collapse: collapse;
+        width: 50%;
+      }
+
+      th,
+      td {
+        text-align: center;
+        padding: 8px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #c493b4;
+      }
+      tr:nth-child(odd) {
+        background-color: #b682a5;
+      }
+
+      th {
+        background-color: #520d3d;
+        color: white;
+      }
+    }
+
+    //Navbar
+    // Navbar
+    .navbar {
+      background-color: rgb(212, 159, 208);
+      .container {
+        padding: 10px 0px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .logo {
+          margin-left: 25px;
+          img {
+            width: 100px;
+          }
+        }
+      }
+    }
+
+    //FOOTER
+
+    footer {
+      margin-top: 100px;
+      padding: 20px;
+      background-color: rgb(212, 159, 208);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-style: 12px;
+      img {
+        height: 80px;
+      }
+    }
+    .adminhome {
+      .password {
+        display: flex;
+        margin-top: 60px;
+      }
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      align-items: center;
+      .error {
+        font-size: small;
+        color: rgb(209, 71, 71);
+      }
+      button {
+        padding: 12px;
+        border: none;
+        background-color: rgb(56, 12, 73);
+        cursor: pointer;
+        color: white;
+
+        &:hover {
+          padding: 11px;
+          border: 1px solid white;
+          background-color: rgb(198, 162, 202);
+          color: black;
+        }
+      }
+      .fields {
+        .fieldsBlock {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+
+          .error {
+            font-size: small;
+            color: rgb(209, 71, 71);
+          }
+        }
+
+        .field {
+          display: flex;
+          flex-direction: row;
+          gap: 20px;
+
+          p {
+            font-size: medium;
+            margin-top: 10px;
+            max-width: 40%;
+          }
+        }
+        gap: 20px;
+        padding: 80px;
+        display: flex;
+        flex-direction: row;
+        align-items: start;
+        p {
+          font-size: 20px;
+          font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+            sans-serif;
+        }
+
+        input {
+          padding: 10px;
+          border: 1px solid lightgray;
+          background-color: rgb(246, 245, 247);
+
+          &:hover {
+            border: 1px solid white;
+            background-color: rgb(247, 237, 247);
+            color: rgb(103, 57, 107);
+          }
+        }
+      }
+    }
+    .parthome {
+      label {
+        cursor: pointer;
+      }
+      .error {
+        font-size: small;
+        color: rgb(209, 71, 71);
+      }
+      gap: 20px;
+      padding: 210px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      p {
+        font-size: 20px;
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+      }
+      button {
+        padding: 12px;
+        border: none;
+        background-color: rgb(56, 12, 73);
+        cursor: pointer;
+        color: white;
+
+        &:hover {
+          padding: 11px;
+          border: 1px solid white;
+          background-color: rgb(198, 162, 202);
+          color: black;
+        }
+      }
+
+      input {
+        padding: 10px;
+        border: 1px solid lightgray;
+        background-color: rgb(246, 245, 247);
+
+        &:hover {
+          border: 1px solid white;
+          background-color: rgb(247, 237, 247);
+          color: rgb(103, 57, 107);
+        }
+      }
+
+      .movie {
+        display: flex;
+        gap: 10px;
+        flex-direction: column;
+        align-items: center;
+
+        .radiob {
+          display: flex;
+          gap: 10px;
+        }
+
+        input {
+          width: 15px;
+        }
+      }
+    }
+    .movie {
+      justify-content: space-between;
+    }
+    .suggestions {
+      .error {
+        font-size: small;
+        color: rgb(209, 71, 71);
+      }
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      button {
+        padding: 12px;
+        border: none;
+        background-color: rgb(56, 12, 73);
+        cursor: pointer;
+        color: white;
+
+        &:hover {
+          padding: 11px;
+          border: 1px solid white;
+          background-color: rgb(198, 162, 202);
+          color: black;
+        }
+      }
+
+      input {
+        padding: 10px;
+        border: 1px solid lightgray;
+        background-color: rgb(246, 245, 247);
+
+        &:hover {
+          border: 1px solid white;
+          background-color: rgb(247, 237, 247);
+          color: rgb(103, 57, 107);
+        }
+      }
+      gap: 20px;
+      padding: 280px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      p {
+        font-size: 20px;
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+      }
+
+      .suggestion {
+        display: flex;
+        gap: 15px;
+      }
+      .modifysug {
+        gap: 20px;
+        display: flex;
+        img {
+          width: 20px;
+          height: 20px;
+          cursor: pointer;
+
+          &:hover {
+            background-color: rgb(190, 175, 190);
+          }
+        }
+      }
+    }
+    .adminInfo {
+      button {
+        padding: 12px;
+        border: none;
+        background-color: rgb(56, 12, 73);
+        cursor: pointer;
+        color: white;
+
+        &:hover {
+          padding: 11px;
+          border: 1px solid white;
+          background-color: rgb(198, 162, 202);
+          color: black;
+        }
+      }
+      display: flex;
+      width: 90%;
+
+      .column {
+        table {
+          border-collapse: collapse;
+          width: 100%;
+        }
+
+        th,
+        td {
+          text-align: center;
+          padding: 8px;
+        }
+
+        tr:nth-child(even) {
+          background-color: #c493b4;
+        }
+        tr:nth-child(odd) {
+          background-color: #b682a5;
+        }
+
+        th {
+          background-color: #520d3d;
+          color: white;
+        }
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-left: 25%;
+        margin-top: 5%;
+
+        gap: 20px;
+        .phase {
+          h4 {
+            color: #581452;
+          }
+        }
+
+        .participantsState {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+
+          h4 {
+            color: #581452;
+          }
+          p {
+            color: #801851;
+          }
+        }
+      }
+    }
+  }
+}
