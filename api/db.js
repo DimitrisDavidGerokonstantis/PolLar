@@ -10,14 +10,14 @@ export const db = mysql.createConnection({
 
 
 function handleDisconnect() {
-  connection.connect((err) => {
+  db.connect((err) => {
     if (err) {
       console.error('Error connecting to MySQL:', err);
       setTimeout(handleDisconnect, 2000); // retry after 2 seconds
     }
   });
 
-  connection.on('error', (err) => {
+  db.on('error', (err) => {
     console.error('MySQL error:', err);
     if (err.code === 'PROTOCOL_CONNECTION_LOST') {
       handleDisconnect();
