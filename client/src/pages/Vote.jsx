@@ -28,7 +28,7 @@ const Vote = () => {
       try {
         //console.log(`/participant/getSuggestionsVote/${password}/${rank}`);
         const res = await axios.get(
-          `/participant/getSuggestionsVote/${uid}/${password}/${currentRank}/`
+          `https://pollar-api-rxlv.onrender.com/api/participant/getSuggestionsVote/${uid}/${password}/${currentRank}/`
         );
 
         setSuggestions(res.data.mydata);
@@ -84,7 +84,7 @@ const Vote = () => {
     try {
       var res = "";
       if (rank == 1) {
-        res = await axios.post("/participant/makeVote", {
+        res = await axios.post("https://pollar-api-rxlv.onrender.com/api/participant/makeVote", {
           vote: votes.vote1,
           voteduser: votes.voteduser1,
           uid: uid,
@@ -92,7 +92,7 @@ const Vote = () => {
         });
       }
       if (rank == 2) {
-        res = await axios.post("/participant/makeVote", {
+        res = await axios.post("https://pollar-api-rxlv.onrender.com/api/participant/makeVote", {
           vote: votes.vote2,
           voteduser: votes.voteduser2,
           uid: uid,
@@ -100,7 +100,7 @@ const Vote = () => {
         });
       }
       if (rank == 3) {
-        res = await axios.post("/participant/makeVote", {
+        res = await axios.post("https://pollar-api-rxlv.onrender.com/api/participant/makeVote", {
           vote: votes.vote3,
           voteduser: votes.voteduser3,
           uid: uid,
