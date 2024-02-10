@@ -1,6 +1,7 @@
 import { db } from "../db.js";
 
 export const login = (req, res) => {
+  console.log("HELLO",req,res);
   var mydata = {};
   const q = "SELECT * FROM polls WHERE `password`=?";
   const q2 = "INSERT INTO nicknames(`nickname`,`user_id`) VALUES(?,?)";
