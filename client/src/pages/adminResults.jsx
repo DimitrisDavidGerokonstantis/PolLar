@@ -16,7 +16,7 @@ const ParticipantResults = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`/admin/getResults/${password}`);
+        const res = await axios.get(`https://pollar-api-rxlv.onrender.com/api/admin/getResults/${password}`);
         console.log(res.data);
         setTotal(res.data.analytics);
         setTotPoints(res.data.totalRanks);
