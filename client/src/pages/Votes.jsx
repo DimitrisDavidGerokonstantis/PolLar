@@ -19,7 +19,7 @@ const Votes = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`/participant/getVotes/${id}/${password}`);
+        const res = await axios.get(`https://pollar-api-rxlv.onrender.com/api/participant/getVotes/${id}/${password}`);
 
         setSuggestions(res.data);
         console.log("suggestions", suggestions[0].phase);
@@ -43,7 +43,7 @@ const Votes = () => {
     e.preventDefault();
     try {
       for (var k = 0; k < suggestions.length; k++) {
-        const res = await axios.put("/participant/updateSuggestion", {
+        const res = await axios.put("https://pollar-api-rxlv.onrender.com/api/participant/updateSuggestion", {
           suggestion: suggestions[k].suggestion,
           sugid: suggestions[k].id,
           uid: id,
@@ -60,7 +60,7 @@ const Votes = () => {
   const deleteVotes = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.delete(`/participant/deleteVotes/${id}/`);
+      const res = await axios.delete(`https://pollar-api-rxlv.onrender.com/api/participant/deleteVotes/${id}/`);
       console.log(res);
       navigate(`/participant/votes/${password}?edit=1`);
     } catch (error) {
