@@ -18,14 +18,14 @@ const HomeAdminInfo = () => {
         const res = await axios.post("https://pollar-api-rxlv.onrender.com/api/admin/pollStatus", {
           password,
         });
-        console.log(
-          "Number of Suggesters",
-          res.data.suggestionsUserIds?.length,
-          "Current Suggestions",
-          res.data.suggestionsData,
-          "Number of total participants",
-          res.data.numofusers
-        );
+        // console.log(
+        //   "Number of Suggesters",
+        //   res.data.suggestionsUserIds?.length,
+        //   "Current Suggestions",
+        //   res.data.suggestionsData,
+        //   "Number of total participants",
+        //   res.data.numofusers
+        // );
         setSuggesters(res.data.suggestionsUserIds?.length);
         setTotParticipants(res.data.numofusers);
 
