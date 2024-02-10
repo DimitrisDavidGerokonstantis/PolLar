@@ -161,7 +161,7 @@ const HomeAdmin = () => {
       const p = Math.random().toString(36).substring(2, 10);
       for (var i = 0; i < numOfPart; i++) {
         try {
-          var res = await axios.post("/admin/createPoll", {
+          var res = await axios.post("https://pollar-api-rxlv.onrender.com/api/admin/createPoll", {
             password: p,
             username,
             numOfSug,
@@ -181,7 +181,7 @@ const HomeAdmin = () => {
       setPassword(p);
 
       try {
-        const res2 = await axios.post("/admin/addRanks", {
+        const res2 = await axios.post("https://pollar-api-rxlv.onrender.com/api/admin/addRanks", {
           password: p,
           rank1points,
           rank2points,
