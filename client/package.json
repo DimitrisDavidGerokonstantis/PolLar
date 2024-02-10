@@ -42,5 +42,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://pollar-api-rxlv.onrender.com/api/"
+  "proxy": "https://pollar-api-rxlv.onrender.com:5000/api/"
 }
