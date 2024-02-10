@@ -81,7 +81,7 @@ export const pollStatus = (req, res) => {
   db.query(q, [req.body.password], (err, data) => {
     if (err) return res.status(500).json(err);
     const phase = data[0].phase;
-    console.log(phase==1);
+    console.log("phase===1?",phase==1);
     numofusers = data[0].numofusers;
     if (phase === 1) {
       const q2 =
