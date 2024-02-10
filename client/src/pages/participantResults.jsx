@@ -88,8 +88,7 @@ const ParticipantResults = () => {
   const hideFun = () => {
     setHide(!hide);
   };
-  if (uid != `""` && uid) {
-    if (phase == 3) {
+
       return (
         <React.Fragment>
           <div className="results">
@@ -105,25 +104,6 @@ const ParticipantResults = () => {
           {!hide ? <div className="results">{tables}</div> : ""}
         </React.Fragment>
       );
-    } else
-      return (
-        <div className="parthome">
-          <p>
-            The poll has not ended yet. Wait for the suggestions and voting
-            phases to end!
-          </p>
-          <Link to={root}>
-            {" "}
-            <button>Go to Main Page</button>
-          </Link>
-        </div>
-      );
-  } else
-    return (
-      <div className="parthome">
-        <p>You are not authorized to be here</p>
-      </div>
-    );
 };
 
 export default ParticipantResults;
