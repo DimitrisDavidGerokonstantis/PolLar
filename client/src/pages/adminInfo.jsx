@@ -15,7 +15,7 @@ const HomeAdminInfo = () => {
   useEffect(() => {
     const fetchStatus = async () => {
       try {
-        const res = await axios.post("/admin/pollStatus", {
+        const res = await axios.post("https://pollar-api-rxlv.onrender.com/api/admin/pollStatus", {
           password,
         });
         console.log(
@@ -60,7 +60,7 @@ const HomeAdminInfo = () => {
 
   const upgradePhase = async () => {
     try {
-      const res = await axios.post("/admin/upgradePhase", {
+      const res = await axios.post("https://pollar-api-rxlv.onrender.com/api/admin/upgradePhase", {
         password,
         phase,
       });
