@@ -29,7 +29,7 @@ const HomeAdminCheck = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("https://pollar-api-rxlv.onrender.com/api/admin/check/login", {
+      const res = await axios.post("https://pollar-api-rxlv.onrender.com/api/admin/login", {
         name,
         password,
       });
