@@ -82,7 +82,7 @@ export const pollStatus = (req, res) => {
     if (err) return res.status(500).json(err);
     const phase = data[0].phase;
     numofusers = data[0].numofusers;
-    if (phase == 1) {
+    if (phase === 1) {
       const q2 =
         "SELECT u.`id` user_id ,u.`username` as username, s.`suggestion` as suggestion \
       FROM suggestions as s \
