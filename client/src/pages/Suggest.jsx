@@ -16,7 +16,7 @@ const Suggest = () => {
   useEffect(() => {
     const fetchStatus = async () => {
       try {
-        const res = await axios.get(`/participant/getPollPhase/${password}`);
+        const res = await axios.get(`https://pollar-api-rxlv.onrender.com/api/participant/getPollPhase/${password}`);
         //   console.log(res.data[0].phase);
         setPhase(res.data[0].phase);
       } catch (error) {
@@ -43,7 +43,7 @@ const Suggest = () => {
       setError("");
       try {
         for (var k = 0; k < suggestions.length; k++) {
-          const res = await axios.post("/participant/postSuggestion", {
+          const res = await axios.post("https://pollar-api-rxlv.onrender.com/api/participant/postSuggestion", {
             suggestion: suggestions[k],
             uid: uid,
             password: password,
