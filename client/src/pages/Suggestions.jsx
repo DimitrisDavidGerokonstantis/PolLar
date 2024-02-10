@@ -22,7 +22,7 @@ const Suggestions = () => {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          `/participant/getSuggestions/${id}/${password}`
+          `https://pollar-api-rxlv.onrender.com/api/participant/getSuggestions/${id}/${password}`
         );
 
         setSuggestions(res.data.data);
@@ -56,7 +56,7 @@ const Suggestions = () => {
       setError("");
       try {
         for (var k = 0; k < suggestions.length; k++) {
-          const res = await axios.put("/participant/updateSuggestion", {
+          const res = await axios.put("https://pollar-api-rxlv.onrender.com/api/participant/updateSuggestion", {
             suggestion: suggestions[k].suggestion,
             sugid: suggestions[k].id,
             uid: id,
