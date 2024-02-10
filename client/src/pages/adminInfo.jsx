@@ -28,6 +28,7 @@ const HomeAdminInfo = () => {
         // );
         setSuggesters(res.data.suggestionsUserIds?.length);
         setTotParticipants(res.data.numofusers);
+        console.log(res.data);
 
         var suggestions = {};
         if (res.data.phase == 1) {
