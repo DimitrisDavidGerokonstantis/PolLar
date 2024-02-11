@@ -8,5 +8,5 @@ export const db = mysql.createConnection({
 });
 
 
-34.213.214.55
+//34.213.214.55
 //user: "u22vludggvcqmbpx"
