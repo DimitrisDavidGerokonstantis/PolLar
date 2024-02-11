@@ -9,6 +9,7 @@ const HomeAdminInfo = () => {
   const [suggesters, setSuggesters] = useState(0);
   const [totParticipants, setTotParticipants] = useState(0);
   const [phase, setPhase] = useState(0);
+  const [IdToNameState, setIdToName] = useState(null);
   const [currentSuggestions, setCurrentSuggestions] = useState({});
   const [voters, setVoters] = useState(0);
   const navigate = useNavigate();
@@ -34,11 +35,13 @@ const HomeAdminInfo = () => {
         if (res.data.phase == 1) {
           res.data.suggestionsData.map((row) => {
             suggestions[row.user_id] = [];
+            idToName[row.user_id] = row.username;
           });
           res.data.suggestionsData.map((row) => {
             suggestions[row.user_id].push(row.suggestion);
           });
           setCurrentSuggestions(suggestions);
+          setIdToName(idToName);
         }
         if (res.data.phase == 2) {
           console.log("Voting status", res.data.votingStatus);
@@ -90,7 +93,7 @@ const HomeAdminInfo = () => {
 
               {Object.keys(currentSuggestions).map((key) => (
                 <React.Fragment key={key}>
-                  <p>User {key}</p>
+                  <p>User {IdToNameState[key]}</p>
                   <table className="table">
                     <tr>
                       <th>Suggestions</th>
