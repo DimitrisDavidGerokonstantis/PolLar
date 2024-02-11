@@ -7,7 +7,7 @@ export const db = mysql.createConnection({
   database: "boeebl6hmohkrw1kppr0",
 });
 
-db.query("CREATE USER 'u22vludggvcqmbpx'@'34.213.214.55' IDENTIFIED BY 'BDlgumlL1rqj3fH9K43Y'");
-db.query("GRANT ALL PRIVILEGES ON boeebl6hmohkrw1kppr0.* TO 'u22vludggvcqmbpx'@'34.213.214.55'");
+//db.query("CREATE USER 'u22vludggvcqmbpx'@'34.213.214.55' IDENTIFIED BY 'BDlgumlL1rqj3fH9K43Y'");
+//db.query("GRANT ALL PRIVILEGES ON boeebl6hmohkrw1kppr0.* TO 'u22vludggvcqmbpx'@'34.213.214.55'");
 //34.213.214.55
 //user: "u22vludggvcqmbpx"
