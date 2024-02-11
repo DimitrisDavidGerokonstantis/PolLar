@@ -14,6 +14,7 @@ const HomeAdminInfo = () => {
   const [voters, setVoters] = useState(0);
   const navigate = useNavigate();
   useEffect(() => {
+    var idToName = {};
     const fetchStatus = async () => {
       try {
         const res = await axios.post("https://pollar-api-rxlv.onrender.com/api/admin/pollStatus", {
