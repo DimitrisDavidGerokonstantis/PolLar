@@ -36,7 +36,7 @@ const HomeAdminInfo = () => {
         if (res.data.phase == 1) {
           res.data.suggestionsData.map((row) => {
             suggestions[row.user_id] = [];
-            idToName[row.user_id] = row.username;
+            idToName[row.user_id] = row.nickname;
           });
           res.data.suggestionsData.map((row) => {
             suggestions[row.user_id].push(row.suggestion);
