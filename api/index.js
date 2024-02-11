@@ -8,7 +8,12 @@ import multer from "multer";
 
 const app = express();
 
-app.use(cors({origin: '*'}));
+const corsOptions = {
+  origin: 'https://pollar-app.onrender.com',
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+
+app.use(cors(corsOptions));
 
 //app.use(cors({origin: ["http://localhost:3000","https://pollar-dzrh.onrender.com"]}));
 app.use(express.json());
