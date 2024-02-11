@@ -85,9 +85,10 @@ export const pollStatus = (req, res) => {
     numofusers = data[0].numofusers;
     if (phase === 1) {
       const q2 =
-        "SELECT u.`id` user_id ,u.`username` as username, s.`suggestion` as suggestion \
+        "SELECT n.`nickname` as nickname ,u.`id` user_id ,u.`username` as username, s.`suggestion` as suggestion \
       FROM suggestions as s \
       INNER JOIN users as u ON s.`userid`=u.`id`\
+      INNER JOIN nicknames as n ON u.`id`=n.`user_id`\
       WHERE s.`ppwd`=?";
 
       db.query(q2, [req.body.password], (err, data) => {
