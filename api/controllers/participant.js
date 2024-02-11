@@ -223,15 +223,15 @@ export const getResults = (req, res) => {
 
   const q2 =
     "SELECT max(third.`suggestionVoted`) as suggestionVoted,third.`suggestionVotedId`, sum(third.`totalRank`) totalRank FROM (SELECT *,second.`counter`*r.`value` as totalRank FROM (SELECT max(first.`suggestionVoted`) as suggestionVoted ,first.`suggestionVotedId`,first.`ranking`,count(*) as counter FROM (SELECT v.`id` as voteId, max(u.`username`) as voter,max(u.`id`) voterId, max(p.`password`) as pollPassword, max(p.`phase`) as pollPhase, max(s.`suggestion`) as suggestionVoted,max(s.`id`) as suggestionVotedId, max(v.`rank`) as ranking,max(uu.`username`) as userSuggested, max(uu.`id`) as userSuggestedId FROM pollar.votes as v INNER JOIN pollar.suggestions as s ON v.`sugid`=s.`id` INNER JOIN pollar.polls as p ON s.`ppwd`=p.`password` INNER JOIN pollar.users as u\
- ON u.`id`=v.`usid` INNER JOIN pollar.users as uu ON uu.`id`=s.`userid` WHERE p.`password`=? GROUP BY voteId) as first GROUP BY first.`suggestionVotedId`,first.`ranking`) as second\
- INNER JOIN pollar.ranks as r ON r.`rank`=second.`ranking` WHERE r.`paswd`=? ORDER BY second.`suggestionVotedId`,second.`ranking`) as third\
+ ON u.`id`=v.`usid` INNER JOIN users as uu ON uu.`id`=s.`userid` WHERE p.`password`=? GROUP BY voteId) as first GROUP BY first.`suggestionVotedId`,first.`ranking`) as second\
+ INNER JOIN ranks as r ON r.`rank`=second.`ranking` WHERE r.`paswd`=? ORDER BY second.`suggestionVotedId`,second.`ranking`) as third\
  GROUP BY third.`suggestionVotedId` ORDER BY totalRank DESC;";
 
   const q3 = "SELECT phase FROM polls WHERE password=?";
 
   db.query(q1, [req.params.pwd], (err, data) => {
     if (err) return res.status(500).json(err);
-    //console.log("data", data);
+    console.log("data", data);
     analytics = { ...data };
 
     db.query(q2, [req.params.pwd, req.params.pwd], (err, data) => {
