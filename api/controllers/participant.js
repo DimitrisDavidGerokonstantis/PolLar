@@ -212,14 +212,14 @@ export const getResults = (req, res) => {
   var totalRanks = {};
   var phase = 0;
   const q1 =
-    "SELECT * FROM (SELECT v.`id` as voteId, max(u.`username`) as voter,max(nn.`nickname`) as voterNickname,max(u.`id`) voterId, \
+    "SELECT v.`id` as voteId, max(u.`username`) as voter,max(nn.`nickname`) as voterNickname,max(u.`id`) voterId, \
   max(p.`password`) as pollPassword, max(p.`phase`) as pollPhase, max(s.`suggestion`) as suggestionVoted,max(s.`id`) as suggestionVotedId, \
   max(v.`rank`) as ranking,max(uu.`username`) as userSuggested, max(n.`nickname`) as userSuggestedNickname ,max(uu.`id`) as userSuggestedId \
   FROM votes as v INNER JOIN suggestions as s ON v.`sugid`=s.`id` \
   INNER JOIN polls as p ON s.`ppwd`=p.`password` INNER JOIN users as u ON u.`id`=v.`usid`\
    INNER JOIN users as uu ON uu.`id`=s.`userid` INNER JOIN nicknames as n ON n.`user_id`=s.`userid` INNER JOIN nicknames as nn ON nn.`user_id`=v.`usid` \
    WHERE p.`password`=?  \
-   GROUP BY voteId) as first ORDER BY voter ASC";
+   GROUP BY voteId ORDER BY voter ASC";
 
   const q2 =
     "SELECT * FROM(SELECT max(third.`suggestionVoted`) as suggestionVoted,third.`suggestionVotedId`, sum(third.`totalRank`) totalRank FROM (SELECT *,second.`counter`*r.`value` as totalRank FROM (SELECT max(first.`suggestionVoted`) as suggestionVoted ,first.`suggestionVotedId`,first.`ranking`,count(*) as counter FROM (SELECT v.`id` as voteId, max(u.`username`) as voter,max(u.`id`) voterId, max(p.`password`) as pollPassword, max(p.`phase`) as pollPhase, max(s.`suggestion`) as suggestionVoted,max(s.`id`) as suggestionVotedId, max(v.`rank`) as ranking,max(uu.`username`) as userSuggested, max(uu.`id`) as userSuggestedId FROM pollar.votes as v INNER JOIN pollar.suggestions as s ON v.`sugid`=s.`id` INNER JOIN pollar.polls as p ON s.`ppwd`=p.`password` INNER JOIN pollar.users as u\
