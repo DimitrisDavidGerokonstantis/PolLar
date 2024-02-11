@@ -9,6 +9,8 @@ const Vote = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [phase, setPhase] = useState("");
   const root = localStorage.getItem("PollarUserRoot");
+  const sugperus = JSON.parse(localStorage.getItem("PollarSugPerUser"));
+
 
   const [votes, setVotes] = useState({
     vote1: "",
@@ -120,7 +122,7 @@ const Vote = () => {
   var output = [];
   var header = "";
   for (var i = 0; i < suggestions.length; i++) {
-    if (i % 3 == 0) {
+    if (i % sugperus==0) {
       header = (
         <div>
           <br></br>
