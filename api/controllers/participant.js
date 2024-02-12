@@ -140,7 +140,7 @@ export const getSuggestionsVote = (req, res) => {
   const phaseq = "SELECT checkboxAllow, phase FROM polls WHERE `password`=?";
   db.query(phaseq, [req.params.password], (err, data) => {
     if (err) return res.status(500).json(err);
-    phase = data.phase;
+    phase = data[0].phase;
     console.log(data);
     const rank = req.params.rank;
     var mydata = {};
