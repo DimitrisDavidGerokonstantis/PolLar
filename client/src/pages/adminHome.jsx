@@ -19,6 +19,9 @@ const HomeAdmin = () => {
   const [rank1points, setRank1Points] = useState(0);
   const [rank2points, setRank2Points] = useState(0);
   const [rank3points, setRank3Points] = useState(0);
+  const [checkboxAllow, setCheckboxAllow] = useState(0);
+  const [checkboxError, setCheckboxError] = useState("");
+
   const [totalError, setTotalError] = useState("");
   const [users, setUsers] = useState("");
   //if(username=="" || numOfSug=="" || numOfPart=="" || rank1points=="" || rank2points=="" || rank3points=="" )
@@ -49,15 +52,57 @@ const HomeAdmin = () => {
     });
   };
 
+  const handleCheckbox = (e) => {
+    console.log("VALUE", e.target.checked);
+    setCheckboxAllow(checkboxAllow == 0 ? 1 : 0);
+    var regex = /^[0-9]+$/;
+    if (
+      !e.target.checked &&
+      numOfPart != "" &&
+      (numOfPart < 4 || !numOfPart.match(regex))
+    )
+      setParterror("Add a NUMBER>4");
+    else if (e.target.checked && numOfPart != "" && !numOfPart.match(regex))
+      setParterror("Add a NUMBER");
+    else {
+      setParterror("");
+      var users = [];
+      for (var i = 0; i < numOfPart; i++) {
+        users[i] = (
+          <div className="field">
+            {" "}
+            <input
+              required
+              type="text"
+              id={i}
+              // value={name}
+              placeholder={`username ${i + 1}`}
+              onChange={handleUsername}
+            />
+          </div>
+        );
+      }
+      setUsers(users);
+    }
+  };
+  console.log("CHECK", checkboxAllow);
+
   console.log(userNames);
   const handleParticipants = (e) => {
     setNumOfPart(e.target.value);
     var regex = /^[0-9]+$/;
     if (
+      checkboxAllow === 0 &&
       e.target.value != "" &&
       (e.target.value < 4 || !e.target.value.match(regex))
     )
       setParterror("Add a NUMBER>4");
+    else if (
+      checkboxAllow === 1 &&
+      e.target.value != "" &&
+      !e.target.value.match(regex)
+    )
+      setParterror("Add a NUMBER");
     else {
       setParterror("");
       var users = [];
@@ -135,6 +180,12 @@ const HomeAdmin = () => {
       userNames.length != numOfPart
     )
       setTotalError("Missing values!");
+    if (checkboxAllow && numOfPart * numOfSug < 3) {
+      setCheckboxError("# of participants x # of suggestions >= 3");
+    }
+    if (checkboxAllow && numOfPart * numOfSug >= 3) {
+      setCheckboxError("");
+    }
     e.preventDefault();
     if (
       (
@@ -153,7 +204,8 @@ const HomeAdmin = () => {
         rank1points == "" ||
         rank2points == "" ||
         rank3points == "" ||
-        userNames.length != numOfPart
+        userNames.length != numOfPart ||
+        (checkboxAllow && numOfPart * numOfSug < 3)
       )
     ) {
       console.log("NO ERROR");
@@ -161,16 +213,20 @@ const HomeAdmin = () => {
       const p = Math.random().toString(36).substring(2, 10);
       for (var i = 0; i < numOfPart; i++) {
         try {
-          var res = await axios.post("https://pollar-api-rxlv.onrender.com/api/admin/createPoll", {
-            password: p,
-            username,
-            numOfSug,
-            numOfPart,
-            rank1points,
-            rank2points,
-            rank3points,
-            userName: userNames[i],
-          });
+          var res = await axios.post(
+            "https://pollar-api-rxlv.onrender.com/api/admin/createPoll",
+            {
+              password: p,
+              username,
+              numOfSug,
+              numOfPart,
+              rank1points,
+              rank2points,
+              rank3points,
+              userName: userNames[i],
+              checkboxAllow,
+            }
+          );
 
           console.log(res.data);
           console.log(p);
@@ -181,12 +237,15 @@ const HomeAdmin = () => {
       setPassword(p);
 
       try {
-        const res2 = await axios.post("https://pollar-api-rxlv.onrender.com/api/admin/addRanks", {
-          password: p,
-          rank1points,
-          rank2points,
-          rank3points,
-        });
+        const res2 = await axios.post(
+          "https://pollar-api-rxlv.onrender.com/api/admin/addRanks",
+          {
+            password: p,
+            rank1points,
+            rank2points,
+            rank3points,
+          }
+        );
         console.log(res2.data);
         console.log(p);
         setPollCreated(true);
@@ -284,6 +343,21 @@ const HomeAdmin = () => {
               onChange={handle3Rank}
             />
           </div>
+          <br></br>
+          <div className="field">
+            {" "}
+            <p>
+              Allow participants to vote again for the same participant in
+              different rank
+            </p>{" "}
+            <input
+              required
+              type="checkbox"
+              checked={checkboxAllow}
+              onChange={handleCheckbox}
+              // value={name}
+            />
+          </div>
           <div className="error">
             {rank1Error || rank2Error || rank3Error
               ? `Error : Must be a NUMBER`
@@ -298,6 +372,7 @@ const HomeAdmin = () => {
           {Usernameserror ? `${Usernameserror}` : ""}{" "}
         </div>
       </div>
+      <div className="error">{checkboxError}</div>
       <div className="error">{totalError}</div>
       {!password ? <button onClick={handleSubmit}>Create Poll</button> : ""}
       <Link to="/">

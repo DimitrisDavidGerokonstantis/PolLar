@@ -19,7 +19,7 @@ export const addRanks = (req, res) => {
 export const createPoll = (req, res) => {
   // var UsersIds = [];
   const q2 =
-    "INSERT INTO polls(`password`,`uid`,`sugperus`,`numofusers`,`phase`,`adminName`) VALUES (?, ?, ?, ?, 1, ?)";
+    "INSERT INTO polls(`password`,`uid`,`sugperus`,`numofusers`,`phase`,`adminName`,`checkboxAllow`) VALUES (?, ?, ?, ?, 1, ?, ?)";
   const q1 = "INSERT INTO users(`username`) VALUES (?)";
 
   console.log("userName to insert", req.body.userName);
@@ -37,6 +37,7 @@ export const createPoll = (req, res) => {
         req.body.numOfSug,
         req.body.numOfPart,
         req.body.username,
+        req.body.checkboxAllow,
       ],
       (err, data) => {
         console.log(req.body);
@@ -81,7 +82,7 @@ export const pollStatus = (req, res) => {
   db.query(q, [req.body.password], (err, data) => {
     if (err) return res.status(500).json(err);
     const phase = data[0].phase;
-    console.log("phase===1?",phase==1);
+    console.log("phase===1?", phase == 1);
     numofusers = data[0].numofusers;
     if (phase === 1) {
       const q2 =
@@ -108,13 +109,12 @@ export const pollStatus = (req, res) => {
             .json({ suggestionsUserIds, suggestionsData, numofusers, phase });
         });
       });
-    }
-    else {
+    } else {
       const qq =
         "SELECT v.`usid` as userId, max(u.`username`) as userName, count(*) as numOfVotes FROM votes as v INNER JOIN suggestions as s ON v.`sugid`=s.`id` \
       INNER JOIN users as u ON u.`id`=v.`usid`\
       WHERE s.`ppwd`=? GROUP BY v.`usid`";
-  
+
       db.query(qq, [req.body.password], (err, data) => {
         if (err) return res.status(500).json(err);
         return res.status(200).json({ numofusers, phase, votingStatus: data });

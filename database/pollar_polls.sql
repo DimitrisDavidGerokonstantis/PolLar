@@ -29,6 +29,7 @@ CREATE TABLE `polls` (
   `numofusers` int NOT NULL,
   `phase` int NOT NULL,
   `adminName` varchar(45) NOT NULL,
+  `checkboxAllow` int NOT NULL,
   PRIMARY KEY (`password`,`uid`),
   KEY `uid_idx` (`uid`),
   CONSTRAINT `uid` FOREIGN KEY (`uid`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -44,4 +45,4 @@ CREATE TABLE `polls` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-10 19:00:34
+-- Dump completed on 2024-02-12 11:40:37
