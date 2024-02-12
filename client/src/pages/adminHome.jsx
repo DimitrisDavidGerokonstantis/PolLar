@@ -61,7 +61,9 @@ const HomeAdmin = () => {
       numOfPart != "" &&
       (numOfPart < 4 || !numOfPart.match(regex))
     )
-      setParterror("Add a NUMBER>4");
+      setParterror(
+        "Add a NUMBER>4 if you don't allow for participants to vote again the same participant in different rank!"
+      );
     else if (e.target.checked && numOfPart != "" && !numOfPart.match(regex))
       setParterror("Add a NUMBER");
     else {
@@ -96,7 +98,9 @@ const HomeAdmin = () => {
       e.target.value != "" &&
       (e.target.value < 4 || !e.target.value.match(regex))
     )
-      setParterror("Add a NUMBER>4");
+      setParterror(
+        "Add a NUMBER>4 if you don't allow for participants to vote again the same parti"
+      );
     else if (
       checkboxAllow === 1 &&
       e.target.value != "" &&
