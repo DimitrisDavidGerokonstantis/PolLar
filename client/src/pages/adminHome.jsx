@@ -99,7 +99,7 @@ const HomeAdmin = () => {
       (e.target.value < 4 || !e.target.value.match(regex))
     )
       setParterror(
-        "Add a NUMBER>4 if you don't allow for participants to vote again the same parti"
+        "Add a NUMBER>4 if you don't allow for participants to vote again the same participant in different rank!"
       );
     else if (
       checkboxAllow === 1 &&
