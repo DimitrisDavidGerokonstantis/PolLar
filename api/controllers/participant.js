@@ -1,7 +1,7 @@
 import { db } from "../db.js";
 
 export const login = (req, res) => {
-  console.log("HELLO",req,res);
+  console.log("HELLO", req, res);
   var mydata = {};
   const q = "SELECT * FROM polls WHERE `password`=?";
   const q2 = "INSERT INTO nicknames(`nickname`,`user_id`) VALUES(?,?)";
@@ -137,10 +137,11 @@ export const getSuggestionsVote = (req, res) => {
   });
 
   var phase = "";
-  const phaseq = "SELECT phase FROM polls WHERE `password`=?";
+  const phaseq = "SELECT checkboxAllow, phase FROM polls WHERE `password`=?";
   db.query(phaseq, [req.params.password], (err, data) => {
     if (err) return res.status(500).json(err);
-    phase = data;
+    phase = data.phase;
+    console.log(data);
     const rank = req.params.rank;
     var mydata = {};
     const q =
