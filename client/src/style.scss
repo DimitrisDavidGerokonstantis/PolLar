@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  background-color: rgb(218, 197, 226);
+  background-color: rgb(216, 233, 233);
 
   height: auto;
   overflow: auto;
@@ -14,7 +14,7 @@
 
     // Home Page
     .home {
-      height: 100vh;
+      height: 90vh;
       display: flex;
       justify-content: center;
       gap: 10%;
@@ -25,9 +25,15 @@
 
         padding: 10%;
         border: none;
-        background-color: rgb(56, 12, 73);
+        background-color: rgb(23, 59, 26);
         cursor: pointer;
         color: white;
+        &:hover {
+          padding: 10%;
+          border: 1px solid white;
+          background-color: rgb(132, 175, 143);
+          color: black;
+        }
       }
     }
     .totresults {
@@ -41,14 +47,14 @@
         button {
           padding: 12px;
           border: none;
-          background-color: rgb(56, 12, 73);
+          background-color: rgb(23, 59, 26);
           cursor: pointer;
           color: white;
 
           &:hover {
             padding: 11px;
             border: 1px solid white;
-            background-color: rgb(198, 162, 202);
+            background-color: rgb(132, 175, 143);
             color: black;
           }
         }
@@ -59,10 +65,10 @@
         justify-content: center;
 
         text-align: center;
-        background-color: #e4c4e1;
+        background-color: #ebf5e7;
 
         width: 100%;
-        color: #490e43;
+        color: #0a2b05;
         table {
           border-collapse: collapse;
           width: 50%;
@@ -75,14 +81,14 @@
         }
 
         tr:nth-child(even) {
-          background-color: #c493b4;
+          background-color: #b1d4b8;
         }
         tr:nth-child(odd) {
-          background-color: #b682a5;
+          background-color: #7ca77a;
         }
 
         th {
-          background-color: #520d3d;
+          background-color: #2e6129;
           color: white;
         }
       }
@@ -98,7 +104,7 @@
       background-color: #333; // Add your preferred background color
       padding: 10px; // Add padding or any other styling as needed
       z-index: 1000;
-      background-color: rgb(212, 159, 208);
+      background-color: rgb(166, 187, 166);
       .container {
         padding: 10px 0px;
         display: flex;
@@ -124,10 +130,10 @@
       padding: 10px; // Add padding or any other styling as needed
       z-index: 1000;
 
-      background-color: rgb(212, 159, 208);
+      background-color: rgb(166, 187, 166);
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: space-around;
       font-style: 12px;
       img {
         height: 80px;
@@ -170,14 +176,14 @@
           padding: 12px;
           border: none;
 
-          background-color: rgb(56, 12, 73);
+          background-color: rgb(23, 59, 26);
           cursor: pointer;
           color: white;
 
           &:hover {
             padding: 11px;
             border: 1px solid white;
-            background-color: rgb(198, 162, 202);
+            background-color: rgb(132, 175, 143);
             color: black;
           }
         }
@@ -226,8 +232,8 @@
 
             &:hover {
               border: 1px solid white;
-              background-color: rgb(247, 237, 247);
-              color: rgb(103, 57, 107);
+              background-color: rgb(212, 230, 214);
+              color: rgb(20, 54, 17);
             }
           }
         }
@@ -258,14 +264,14 @@
       button {
         padding: 12px;
         border: none;
-        background-color: rgb(56, 12, 73);
+        background-color: rgb(23, 59, 26);
         cursor: pointer;
         color: white;
 
         &:hover {
           padding: 11px;
           border: 1px solid white;
-          background-color: rgb(198, 162, 202);
+          background-color: rgb(132, 175, 143);
           color: black;
         }
       }
@@ -277,8 +283,8 @@
 
         &:hover {
           border: 1px solid white;
-          background-color: rgb(247, 237, 247);
-          color: rgb(103, 57, 107);
+          background-color: rgb(212, 230, 214);
+          color: rgb(20, 54, 17);
         }
       }
 
@@ -290,7 +296,7 @@
         align-items: center;
         //https://gist.github.com/adbutterfield/260249153051827d2dda78c39fba3259
         $radio-border-color: #8b8c89;
-        $radio-checked-color: #274c77;
+        $radio-checked-color: #1c5a30;
         $radio-hover-color: #a3cef1;
         $radio-disabled-bg-color: #d9d9d9;
 
@@ -370,14 +376,14 @@
       button {
         padding: 12px;
         border: none;
-        background-color: rgb(56, 12, 73);
+        background-color: rgb(23, 59, 26);
         cursor: pointer;
         color: white;
 
         &:hover {
           padding: 11px;
           border: 1px solid white;
-          background-color: rgb(198, 162, 202);
+          background-color: rgb(132, 175, 143);
           color: black;
         }
       }
@@ -389,8 +395,8 @@
 
         &:hover {
           border: 1px solid white;
-          background-color: rgb(247, 237, 247);
-          color: rgb(103, 57, 107);
+          background-color: rgb(212, 230, 214);
+          color: rgb(20, 54, 17);
         }
       }
       gap: 20px;
@@ -427,14 +433,14 @@
       button {
         padding: 12px;
         border: none;
-        background-color: rgb(56, 12, 73);
+        background-color: rgb(23, 59, 26);
         cursor: pointer;
         color: white;
 
         &:hover {
           padding: 11px;
           border: 1px solid white;
-          background-color: rgb(198, 162, 202);
+          background-color: rgb(132, 175, 143);
           color: black;
         }
       }
@@ -444,7 +450,7 @@
       .column {
         table {
           border-collapse: collapse;
-          width: 100%;
+          width: 50%;
         }
 
         th,
@@ -454,14 +460,14 @@
         }
 
         tr:nth-child(even) {
-          background-color: #c493b4;
+          background-color: #b1d4b8;
         }
         tr:nth-child(odd) {
-          background-color: #b682a5;
+          background-color: #7ca77a;
         }
 
         th {
-          background-color: #520d3d;
+          background-color: #2e6129;
           color: white;
         }
         display: flex;
@@ -473,7 +479,7 @@
         gap: 8%;
         .phase {
           h4 {
-            color: #581452;
+            color: #0a2507;
           }
         }
 
@@ -485,10 +491,10 @@
           gap: 20px;
 
           h4 {
-            color: #581452;
+            color: #0a2507;
           }
           p {
-            color: #801851;
+            color: #0a2507;
           }
         }
       }
