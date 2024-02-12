@@ -180,10 +180,10 @@ const HomeAdmin = () => {
       userNames.length != numOfPart
     )
       setTotalError("Missing values!");
-    if (checkboxAllow && numOfPart * numOfSug < 3) {
-      setCheckboxError("# of participants x # of suggestions >= 3");
+    if (checkboxAllow && (numOfPart - 1) * numOfSug < 3) {
+      setCheckboxError("(# of participants -1) x # of suggestions >= 3");
     }
-    if (checkboxAllow && numOfPart * numOfSug >= 3) {
+    if (checkboxAllow && (numOfPart - 1) * numOfSug >= 3) {
       setCheckboxError("");
     }
     e.preventDefault();
@@ -205,7 +205,7 @@ const HomeAdmin = () => {
         rank2points == "" ||
         rank3points == "" ||
         userNames.length != numOfPart ||
-        (checkboxAllow && numOfPart * numOfSug < 3)
+        (checkboxAllow && (numOfPart - 1) * numOfSug < 3)
       )
     ) {
       console.log("NO ERROR");

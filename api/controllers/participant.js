@@ -165,7 +165,7 @@ export const getSuggestionsVote = (req, res) => {
         } else {
           if (checkboxAllow === 0)
             mydata = data.filter((obj) => !IDs.includes(obj.userid));
-          else if (checkboxAllow === 0)
+          else if (checkboxAllow === 1)
             mydata = data.filter((obj) => !sugIDs.includes(obj.id));
         }
 

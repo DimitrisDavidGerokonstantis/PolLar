@@ -11,7 +11,6 @@ const Vote = () => {
   const root = localStorage.getItem("PollarUserRoot");
   const sugperus = JSON.parse(localStorage.getItem("PollarSugPerUser"));
 
-
   const [votes, setVotes] = useState({
     vote1: "",
     voteduser1: "",
@@ -32,12 +31,13 @@ const Vote = () => {
         const res = await axios.get(
           `https://pollar-api-rxlv.onrender.com/api/participant/getSuggestionsVote/${uid}/${password}/${currentRank}/`
         );
-
+        console.log("DATA", res.data);
         setSuggestions(res.data.mydata);
         const mydata = res.data.mydata.filter((obj) => obj.userid === 7);
         console.log("mydata", mydata);
-        console.log("phase", res.data.phase[0].phase);
-        setPhase(res.data.phase[0].phase);
+        console.log("phase", res.data.phase);
+
+        setPhase(res.data.phase);
       } catch (err) {
         console.log(err);
       }
@@ -86,28 +86,37 @@ const Vote = () => {
     try {
       var res = "";
       if (rank == 1) {
-        res = await axios.post("https://pollar-api-rxlv.onrender.com/api/participant/makeVote", {
-          vote: votes.vote1,
-          voteduser: votes.voteduser1,
-          uid: uid,
-          rank: rank,
-        });
+        res = await axios.post(
+          "https://pollar-api-rxlv.onrender.com/api/participant/makeVote",
+          {
+            vote: votes.vote1,
+            voteduser: votes.voteduser1,
+            uid: uid,
+            rank: rank,
+          }
+        );
       }
       if (rank == 2) {
-        res = await axios.post("https://pollar-api-rxlv.onrender.com/api/participant/makeVote", {
-          vote: votes.vote2,
-          voteduser: votes.voteduser2,
-          uid: uid,
-          rank: rank,
-        });
+        res = await axios.post(
+          "https://pollar-api-rxlv.onrender.com/api/participant/makeVote",
+          {
+            vote: votes.vote2,
+            voteduser: votes.voteduser2,
+            uid: uid,
+            rank: rank,
+          }
+        );
       }
       if (rank == 3) {
-        res = await axios.post("https://pollar-api-rxlv.onrender.com/api/participant/makeVote", {
-          vote: votes.vote3,
-          voteduser: votes.voteduser3,
-          uid: uid,
-          rank: rank,
-        });
+        res = await axios.post(
+          "https://pollar-api-rxlv.onrender.com/api/participant/makeVote",
+          {
+            vote: votes.vote3,
+            voteduser: votes.voteduser3,
+            uid: uid,
+            rank: rank,
+          }
+        );
       }
       console.log(res.data);
       setCurrentRank(currentRank + 1);
@@ -122,7 +131,7 @@ const Vote = () => {
   var output = [];
   var header = "";
   for (var i = 0; i < suggestions.length; i++) {
-    if (i % sugperus==0) {
+    if (i % sugperus == 0) {
       header = (
         <div>
           <br></br>
