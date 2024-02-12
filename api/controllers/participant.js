@@ -129,7 +129,7 @@ export const getSuggestionsVote = (req, res) => {
     if (err) return res.status(500).json(err);
     var ids = [];
     var sugIds = [];
-    data[0].map((row) => {
+    data.map((row) => {
       ids = [...ids, row.userid];
       sugIds = [...sugIds, row.sugId];
     });
@@ -160,7 +160,7 @@ export const getSuggestionsVote = (req, res) => {
       [req.params.password, req.params.uid, req.params.uid],
       (err, data) => {
         if (err) return res.status(500).json(err);
-        console.log(data);
+        console.log("DATAAA", data);
         if (rank == 1) {
           mydata = data;
         } else {
