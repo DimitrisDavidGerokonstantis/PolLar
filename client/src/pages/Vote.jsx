@@ -130,8 +130,12 @@ const Vote = () => {
 
   var output = [];
   var header = "";
+  var usid = "";
   for (var i = 0; i < suggestions.length; i++) {
-    if (i % sugperus == 0) {
+    console.log("EDW", suggestions[i].userid === usid);
+
+    if (suggestions[i].userid !== usid) {
+      usid = suggestions[i].userid;
       header = (
         <div>
           <br></br>
