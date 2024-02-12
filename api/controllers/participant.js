@@ -204,7 +204,7 @@ export const getVotes = (req, res) => {
   console.log(req.params);
   //v.`usid` as user, v.`sugid` as sugid,v.`rank` as rank, s.`suggestion` as suggestion, p.`password` as password, p.`phase` as phase, s.`userid` as sugUser
   const q =
-    "SELECT u.`username` as username, v.`usid` as `user`, v.`sugid` as `sugid`,v.`rank` as `rank`, s.`suggestion` as `suggestion`, p.`password` as `password`, p.`phase` as `phase`, s.`userid` as `sugUser` FROM votes as v INNER JOIN suggestions as s ON s.`id`=v.`sugid` INNER JOIN polls as p ON p.`password`=s.`ppwd` INNER JOIN users as u ON u.`id`=s.`userid` WHERE v.`usid`=? AND p.`password`=?";
+    "SELECT max(u.`username`) as username, max(v.`usid`) as `user`, max(v.`sugid`) as `sugid`,v.`rank` as `rank`, max(s.`suggestion`) as `suggestion`, max(p.`password`) as `password`, max(p.`phase`) as `phase`, max(s.`userid`) as `sugUser` FROM votes as v INNER JOIN suggestions as s ON s.`id`=v.`sugid` INNER JOIN polls as p ON p.`password`=s.`ppwd` INNER JOIN users as u ON u.`id`=s.`userid` WHERE v.`usid`=? AND p.`password`=? GROUP BY v.`rank`";
 
   db.query(q, [req.params.uid, req.params.pwd], (err, data) => {
     if (err) return res.status(500).json(err);
