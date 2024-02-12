@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-
+// kati
 const Home = () => {
   useEffect(() => {
     localStorage.setItem("PollarUser", JSON.stringify(""));
