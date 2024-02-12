@@ -138,9 +138,8 @@ export const getSuggestionsVote = (req, res) => {
       IDs[i] = ids[(0, i)];
       sugIDs[i] = sugIds[(0, i)];
     }
+    console.log("SUGIDS", sugIDs);
   });
-
-  console.log("SUGIDS", sugIDs);
 
   var phase = "";
   var checkboxAllow = 0;
@@ -164,7 +163,10 @@ export const getSuggestionsVote = (req, res) => {
         if (rank == 1) {
           mydata = data;
         } else {
-          mydata = data.filter((obj) => !IDs.includes(obj.userid));
+          if (checkboxAllow === 0)
+            mydata = data.filter((obj) => !IDs.includes(obj.userid));
+          else if (checkboxAllow === 0)
+            mydata = data.filter((obj) => !sugIDs.includes(obj.id));
         }
 
         return res.status(200).json({ mydata, phase });
