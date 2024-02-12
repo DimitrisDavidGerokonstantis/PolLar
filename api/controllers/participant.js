@@ -122,25 +122,33 @@ export const updateSuggestion = (req, res) => {
 
 export const getSuggestionsVote = (req, res) => {
   var IDs = [];
+  var sugIDs = [];
   const takeVotes =
-    "SELECT s.`userid` FROM votes as v INNER JOIN suggestions as s ON s.`id`=v.`sugid` WHERE v.`usid`=?";
+    "SELECT s.`userid`,s.`id` as sugId FROM votes as v INNER JOIN suggestions as s ON s.`id`=v.`sugid` WHERE v.`usid`=?";
   db.query(takeVotes, [req.params.uid], (err, data) => {
     if (err) return res.status(500).json(err);
     var ids = [];
-    data.map((row) => {
+    var sugIds = [];
+    data[0].map((row) => {
       ids = [...ids, row.userid];
+      sugIds = [...sugIds, row.sugId];
     });
     for (var i = 0; i < ids.length; i++) {
       console.log(ids[(0, i)]);
       IDs[i] = ids[(0, i)];
+      sugIDs[i] = sugIds[(0, i)];
     }
   });
 
+  console.log("SUGIDS", sugIDs);
+
   var phase = "";
+  var checkboxAllow = 0;
   const phaseq = "SELECT checkboxAllow, phase FROM polls WHERE `password`=?";
   db.query(phaseq, [req.params.password], (err, data) => {
     if (err) return res.status(500).json(err);
     phase = data[0].phase;
+    checkboxAllow = data[0].checkboxAllow;
     console.log(data);
     const rank = req.params.rank;
     var mydata = {};
