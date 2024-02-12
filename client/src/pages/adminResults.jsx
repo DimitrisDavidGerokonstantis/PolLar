@@ -16,7 +16,9 @@ const ParticipantResults = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(`https://pollar-api-rxlv.onrender.com/api/admin/getResults/${password}`);
+        const res = await axios.get(
+          `https://pollar-api-rxlv.onrender.com/api/admin/getResults/${password}`
+        );
         console.log(res.data);
         setTotal(res.data.analytics);
         setTotPoints(res.data.totalRanks);
@@ -89,19 +91,17 @@ const ParticipantResults = () => {
   if (localPassword == `"` + password + `"`) {
     if (phase == 3) {
       return (
-        <React.Fragment>
+        <div className="totresults">
           <div className="results">
             <p>Total Results</p>
             <table className="table">{totalRes}</table>
-            <br></br>
 
             <button onClick={hideFun}>
               {hide ? "Show Details" : "Hide Details"}
             </button>
           </div>
-
           {!hide ? <div className="results">{tables}</div> : ""}
-        </React.Fragment>
+        </div>
       );
     } else
       return (

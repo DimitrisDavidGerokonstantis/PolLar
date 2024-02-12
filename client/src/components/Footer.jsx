@@ -6,7 +6,7 @@ const Footer = () => {
     <footer>
       <img src={Logo}></img>
       <span>
-        <b>Movie Nights</b>
+        <b>Deployed using render.com</b>
       </span>
     </footer>
   );

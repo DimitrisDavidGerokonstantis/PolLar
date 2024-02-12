@@ -1,81 +1,103 @@
 .app {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   background-color: rgb(218, 197, 226);
 
+  height: auto;
+  overflow: auto;
+
   .container {
-    width: 99%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
     // Home Page
     .home {
+      height: 100vh;
       display: flex;
       justify-content: center;
       gap: 10%;
-      padding: 345px;
+      align-items: center;
 
       button {
-        padding: 12px;
+        margin-top: 100px;
+
+        padding: 10%;
         border: none;
         background-color: rgb(56, 12, 73);
         cursor: pointer;
         color: white;
       }
     }
-
-    .results {
-      button {
-        padding: 12px;
-        border: none;
-        background-color: rgb(56, 12, 73);
-        cursor: pointer;
-        color: white;
-
-        &:hover {
-          padding: 11px;
-          border: 1px solid white;
-          background-color: rgb(198, 162, 202);
-          color: black;
-        }
-      }
+    .totresults {
       display: flex;
       flex-direction: column;
-      gap: 30px;
-      align-items: center;
       justify-content: center;
-      padding: 20px;
+      margin-top: 15%;
+      margin-bottom: 35%;
+      gap: 30px;
+      .results {
+        button {
+          padding: 12px;
+          border: none;
+          background-color: rgb(56, 12, 73);
+          cursor: pointer;
+          color: white;
 
-      text-align: center;
-      background-color: #e4c4e1;
-      margin-top: 100px;
-      width: 100%;
-      color: #490e43;
-      table {
-        border-collapse: collapse;
-        width: 50%;
-      }
+          &:hover {
+            padding: 11px;
+            border: 1px solid white;
+            background-color: rgb(198, 162, 202);
+            color: black;
+          }
+        }
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        align-items: center;
+        justify-content: center;
 
-      th,
-      td {
         text-align: center;
-        padding: 8px;
-      }
+        background-color: #e4c4e1;
 
-      tr:nth-child(even) {
-        background-color: #c493b4;
-      }
-      tr:nth-child(odd) {
-        background-color: #b682a5;
-      }
+        width: 100%;
+        color: #490e43;
+        table {
+          border-collapse: collapse;
+          width: 50%;
+        }
 
-      th {
-        background-color: #520d3d;
-        color: white;
+        th,
+        td {
+          text-align: center;
+          padding: 8px;
+        }
+
+        tr:nth-child(even) {
+          background-color: #c493b4;
+        }
+        tr:nth-child(odd) {
+          background-color: #b682a5;
+        }
+
+        th {
+          background-color: #520d3d;
+          color: white;
+        }
       }
     }
 
     //Navbar
     // Navbar
     .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #333; // Add your preferred background color
+      padding: 10px; // Add padding or any other styling as needed
+      z-index: 1000;
       background-color: rgb(212, 159, 208);
       .container {
         padding: 10px 0px;
@@ -94,8 +116,14 @@
     //FOOTER
 
     footer {
-      margin-top: 100px;
-      padding: 20px;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+
+      padding: 10px; // Add padding or any other styling as needed
+      z-index: 1000;
+
       background-color: rgb(212, 159, 208);
       display: flex;
       align-items: center;
@@ -105,81 +133,111 @@
         height: 80px;
       }
     }
-    .adminhome {
-      .password {
-        display: flex;
-        margin-top: 60px;
-      }
+    .adminhomeAll {
       display: flex;
-      flex-direction: column;
-      gap: 30px;
-      align-items: center;
-      .error {
-        font-size: small;
-        color: rgb(209, 71, 71);
-      }
-      button {
-        padding: 12px;
-        border: none;
-        background-color: rgb(56, 12, 73);
-        cursor: pointer;
-        color: white;
 
-        &:hover {
-          padding: 11px;
-          border: 1px solid white;
-          background-color: rgb(198, 162, 202);
-          color: black;
-        }
-      }
-      .fields {
-        .fieldsBlock {
+      flex-direction: column;
+      height: auto;
+
+      .adminhome {
+        margin-top: 10%;
+        margin-bottom: 30%;
+        .adminhome2 {
           display: flex;
           flex-direction: column;
-          gap: 20px;
+          align-items: center;
+          justify-content: center;
 
-          .error {
-            font-size: small;
-            color: rgb(209, 71, 71);
+          .field {
+            display: flex;
+            padding: 1%;
           }
         }
-
-        .field {
+        .password {
           display: flex;
-          flex-direction: row;
-          gap: 20px;
-
-          p {
-            font-size: medium;
-            margin-top: 10px;
-            max-width: 40%;
-          }
+          margin-top: 60px;
         }
-        gap: 20px;
-        padding: 80px;
         display: flex;
-        flex-direction: row;
-        align-items: start;
-        p {
-          font-size: 20px;
-          font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-            sans-serif;
+        flex-direction: column;
+        gap: 30px;
+        align-items: center;
+        justify-content: center;
+        .error {
+          font-size: small;
+          color: rgb(209, 71, 71);
         }
+        button {
+          padding: 12px;
+          border: none;
 
-        input {
-          padding: 10px;
-          border: 1px solid lightgray;
-          background-color: rgb(246, 245, 247);
+          background-color: rgb(56, 12, 73);
+          cursor: pointer;
+          color: white;
 
           &:hover {
+            padding: 11px;
             border: 1px solid white;
-            background-color: rgb(247, 237, 247);
-            color: rgb(103, 57, 107);
+            background-color: rgb(198, 162, 202);
+            color: black;
+          }
+        }
+        .fields {
+          margin-bottom: 0px;
+          display: flex;
+          width: 100%;
+
+          .fieldsBlock {
+            gap: 10px;
+            flex: 1;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            .error {
+              font-size: small;
+              color: rgb(209, 71, 71);
+            }
+          }
+
+          .field {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            justify-content: center;
+
+            p {
+              font-size: medium;
+              margin-top: 10px;
+              max-width: 40%;
+            }
+          }
+
+          p {
+            font-size: 20px;
+            font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+              sans-serif;
+          }
+
+          input {
+            padding: 10px;
+            border: 1px solid lightgray;
+            background-color: rgb(246, 245, 247);
+
+            &:hover {
+              border: 1px solid white;
+              background-color: rgb(247, 237, 247);
+              color: rgb(103, 57, 107);
+            }
           }
         }
       }
     }
     .parthome {
+      margin-top: 0;
+      margin-bottom: 28%;
+
+      align-items: center;
       label {
         cursor: pointer;
       }
@@ -226,13 +284,68 @@
 
       .movie {
         display: flex;
+
         gap: 10px;
         flex-direction: column;
         align-items: center;
+        //https://gist.github.com/adbutterfield/260249153051827d2dda78c39fba3259
+        $radio-border-color: #8b8c89;
+        $radio-checked-color: #274c77;
+        $radio-hover-color: #a3cef1;
+        $radio-disabled-bg-color: #d9d9d9;
 
-        .radiob {
-          display: flex;
-          gap: 10px;
+        position: relative;
+        display: inline-block;
+        font-size: 16px; /* Adjust as needed */
+
+        input[type="radio"] {
+          transform: translateY(50%);
+          position: relative;
+          box-sizing: border-box;
+          width: 20px;
+          height: 20px;
+          margin: 6px;
+          padding: 0;
+          border: 2px solid $radio-border-color;
+          border-radius: 50%;
+          appearance: none;
+          background-color: transparent;
+          outline: none;
+          transition: outline 0.1s;
+
+          &:not(:disabled):checked {
+            border-color: $radio-checked-color;
+            background-color: $radio-checked-color;
+            background-clip: content-box;
+            padding: 2px;
+            background-image: radial-gradient(
+              circle,
+              $radio-checked-color 0%,
+              $radio-checked-color 50%,
+              transparent 60%,
+              transparent 100%
+            );
+          }
+
+          &:disabled {
+            background-color: $radio-disabled-bg-color;
+          }
+
+          &:disabled:checked {
+            background-image: radial-gradient(
+              circle,
+              $radio-border-color 0%,
+              $radio-border-color 50%,
+              transparent 50%,
+              transparent 100%
+            );
+          }
+
+          &:focus-visible {
+            background-color: $radio-hover-color;
+            outline: 6px solid $radio-hover-color;
+            transform: scale(1.05);
+          }
         }
 
         input {
@@ -244,6 +357,8 @@
       justify-content: space-between;
     }
     .suggestions {
+      margin-top: 1%;
+      margin-bottom: 10%;
       .error {
         font-size: small;
         color: rgb(209, 71, 71);
@@ -308,6 +423,7 @@
       }
     }
     .adminInfo {
+      height: 100vh;
       button {
         padding: 12px;
         border: none;
@@ -353,9 +469,8 @@
         justify-content: center;
         align-items: center;
         margin-left: 25%;
-        margin-top: 5%;
 
-        gap: 20px;
+        gap: 8%;
         .phase {
           h4 {
             color: #581452;
@@ -367,7 +482,7 @@
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          gap: 10px;
+          gap: 20px;
 
           h4 {
             color: #581452;

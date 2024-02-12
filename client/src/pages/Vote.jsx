@@ -10,7 +10,7 @@ const Vote = () => {
   const [phase, setPhase] = useState("");
   const root = localStorage.getItem("PollarUserRoot");
   const sugperus = JSON.parse(localStorage.getItem("PollarSugPerUser"));
-
+  const [radio, setRadio] = useState(false);
   const [votes, setVotes] = useState({
     vote1: "",
     voteduser1: "",
@@ -55,6 +55,7 @@ const Vote = () => {
   const id = localStorage.getItem("PollarUserId");
 
   const handleVote = (e) => {
+    if (suggestions.length === 1) setRadio(!radio);
     if (rank == 1) {
       setVotes((prev) => {
         const newState = { ...prev };
@@ -145,24 +146,44 @@ const Vote = () => {
         </div>
       );
     } else header = "";
-
-    output[i] = (
-      <div className="movie">
-        {header}
-        <div className="radiob">
-          <input
-            type="radio"
-            id={suggestions[i]?.id}
-            name="mov"
-            onChange={handleVote}
-            value={suggestions[i]?.userid}
-          />
-          <label htmlFor={suggestions[i]?.id}>
-            {suggestions[i]?.suggestion}
-          </label>
+    if (suggestions.length === 1) {
+      output[i] = (
+        <div className="movie">
+          {header}
+          <div className="radiob">
+            <input
+              type="radio"
+              id={suggestions[i]?.id}
+              checked={radio}
+              name="mov"
+              onChange={handleVote}
+              value={suggestions[i]?.userid}
+            />
+            <label htmlFor={suggestions[i]?.id}>
+              {suggestions[i]?.suggestion}
+            </label>
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      output[i] = (
+        <div className="movie">
+          {header}
+          <div className="radiob">
+            <input
+              type="radio"
+              id={suggestions[i]?.id}
+              name="mov"
+              onChange={handleVote}
+              value={suggestions[i]?.userid}
+            />
+            <label htmlFor={suggestions[i]?.id}>
+              {suggestions[i]?.suggestion}
+            </label>
+          </div>
+        </div>
+      );
+    }
   }
 
   if (uid != `""`) {

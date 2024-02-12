@@ -260,128 +260,134 @@ const HomeAdmin = () => {
   };
 
   return (
-    <div className="adminhome">
-      <div className="password">
-        <p>
-          {password ? `The password of the created poll is : ${password}` : ""}
-        </p>
-      </div>
-      <div className="fields">
-        <div className="fieldsBlock">
-          <div className="field">
-            {" "}
-            <p>Choose a username with which you will login : </p>{" "}
-            <input
-              required
-              type="text"
-              // value={name}
-              placeholder="username"
-              onChange={handleName}
-            />
-          </div>
-          <div className="error">
-            {Userror ? `Username Error : ${Userror}` : ""}{" "}
-          </div>
-          <div className="field">
-            {" "}
-            <p>Define the number of the poll's participants : </p>{" "}
-            <input
-              required
-              type="text"
-              // value={name}
-              placeholder="# of participants"
-              onChange={handleParticipants}
-            />
-          </div>
-          <div className="error">
-            {" "}
-            {Parterror ? `Error : ${Parterror}` : ""}{" "}
-          </div>
-          <div className="field">
-            {" "}
-            <p>
-              How many suggestions will each participant be allowed to add ?{" "}
-            </p>{" "}
-            <input
-              required
-              type="text"
-              // value={name}
-              placeholder="# of suggestions"
-              onChange={handleSuggestions}
-            />
-          </div>
-          <div className="error">{sugError ? `Error : ${sugError}` : ""} </div>
-        </div>
-        <div className="fieldsBlock">
-          <p> Points-ranking matching </p>{" "}
-          <div className="field">
-            {" "}
-            <p> # 1 ranking </p>{" "}
-            <input
-              required
-              type="text"
-              // value={name}
-              placeholder="points"
-              onChange={handle1Rank}
-            />
-          </div>
-          <div className="field">
-            {" "}
-            <p> # 2 ranking </p>{" "}
-            <input
-              required
-              type="text"
-              // value={name}
-              placeholder="points"
-              onChange={handle2Rank}
-            />
-          </div>
-          <div className="field">
-            {" "}
-            <p> # 3 ranking </p>{" "}
-            <input
-              required
-              type="text"
-              // value={name}
-              placeholder="points"
-              onChange={handle3Rank}
-            />
-          </div>
-          <br></br>
-          <div className="field">
-            {" "}
-            <p>
-              Allow participants to vote again for the same participant in
-              different rank
-            </p>{" "}
-            <input
-              required
-              type="checkbox"
-              checked={checkboxAllow}
-              onChange={handleCheckbox}
-              // value={name}
-            />
-          </div>
-          <div className="error">
-            {rank1Error || rank2Error || rank3Error
-              ? `Error : Must be a NUMBER`
-              : ""}{" "}
-          </div>
-        </div>
-      </div>
+    <div className="adminhomeAll">
       <div className="adminhome">
-        <p>{users != "" && "Define the usernames of the participants"}</p>
-        {users}
-        <div className="error">
-          {Usernameserror ? `${Usernameserror}` : ""}{" "}
+        <div className="password">
+          <p>
+            {password
+              ? `The password of the created poll is : ${password}`
+              : ""}
+          </p>
         </div>
+        <div className="fields">
+          <div className="fieldsBlock">
+            <div className="field">
+              {" "}
+              <p>Choose a username with which you will login : </p>{" "}
+              <input
+                required
+                type="text"
+                // value={name}
+                placeholder="username"
+                onChange={handleName}
+              />
+            </div>
+            <div className="error">
+              {Userror ? `Username Error : ${Userror}` : ""}{" "}
+            </div>
+            <div className="field">
+              {" "}
+              <p>Define the number of the poll's participants : </p>{" "}
+              <input
+                required
+                type="text"
+                // value={name}
+                placeholder="# of participants"
+                onChange={handleParticipants}
+              />
+            </div>
+            <div className="error">
+              {" "}
+              {Parterror ? `Error : ${Parterror}` : ""}{" "}
+            </div>
+            <div className="field">
+              {" "}
+              <p>
+                How many suggestions will each participant be allowed to add ?{" "}
+              </p>{" "}
+              <input
+                required
+                type="text"
+                // value={name}
+                placeholder="# of suggestions"
+                onChange={handleSuggestions}
+              />
+            </div>
+            <div className="error">
+              {sugError ? `Error : ${sugError}` : ""}{" "}
+            </div>
+          </div>
+          <div className="fieldsBlock">
+            <p> Points-ranking matching </p>{" "}
+            <div className="field">
+              {" "}
+              <p> # 1 ranking </p>{" "}
+              <input
+                required
+                type="text"
+                // value={name}
+                placeholder="points"
+                onChange={handle1Rank}
+              />
+            </div>
+            <div className="field">
+              {" "}
+              <p> # 2 ranking </p>{" "}
+              <input
+                required
+                type="text"
+                // value={name}
+                placeholder="points"
+                onChange={handle2Rank}
+              />
+            </div>
+            <div className="field">
+              {" "}
+              <p> # 3 ranking </p>{" "}
+              <input
+                required
+                type="text"
+                // value={name}
+                placeholder="points"
+                onChange={handle3Rank}
+              />
+            </div>
+            <br></br>
+            <div className="field">
+              {" "}
+              <p>
+                Allow participants to vote again for the same participant in
+                different rank
+              </p>{" "}
+              <input
+                required
+                type="checkbox"
+                checked={checkboxAllow}
+                onChange={handleCheckbox}
+                // value={name}
+              />
+            </div>
+            <div className="error">
+              {rank1Error || rank2Error || rank3Error
+                ? `Error : Must be a NUMBER`
+                : ""}{" "}
+            </div>
+          </div>
+        </div>
+        <div className="adminhome2">
+          <p>{users != "" && "Define the usernames of the participants"}</p>
+          {users}
+          <div className="error">
+            {Usernameserror ? `${Usernameserror}` : ""}{" "}
+          </div>
+        </div>
+        <div className="error">{checkboxError}</div>
+        <div className="error">{totalError}</div>
+        {!password ? <button onClick={handleSubmit}>Create Poll</button> : ""}
+        <Link to="/">
+          <button>Go to Main Page</button>
+        </Link>
       </div>
-      <div className="error">{checkboxError}</div>
-      <div className="error">{totalError}</div>
-      {!password ? <button onClick={handleSubmit}>Create Poll</button> : ""}
-      <Link to="/">
-        <button>Go to Main Page</button>
-      </Link>
     </div>
   );
 };
