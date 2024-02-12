@@ -148,7 +148,7 @@ export const getSuggestionsVote = (req, res) => {
     if (err) return res.status(500).json(err);
     phase = data[0].phase;
     checkboxAllow = data[0].checkboxAllow;
-    console.log(data);
+    console.log(data[0].phase);
     const rank = req.params.rank;
     var mydata = {};
     const q =
@@ -168,6 +168,8 @@ export const getSuggestionsVote = (req, res) => {
           else if (checkboxAllow === 0)
             mydata = data.filter((obj) => !sugIDs.includes(obj.id));
         }
+
+        console.log("MYDATA", mydata);
 
         return res.status(200).json({ mydata, phase });
       }
