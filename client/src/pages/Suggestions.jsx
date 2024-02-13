@@ -47,21 +47,30 @@ const Suggestions = () => {
   const handleSubmitUpdate = async (e) => {
     var nullValue = false;
     console.log(suggestions);
+    var overflowErr = false;
     for (var i = 0; i < suggestions.length; i++) {
       if (suggestions[i].suggestion == "") nullValue = true;
+      if (suggestions[i].suggestion.length > 40) overflowErr = true;
     }
     console.log("null", nullValue);
     e.preventDefault();
-    if (!nullValue) {
+    if (overflowErr)
+      setError(
+        "Check for long suggestions (must contain up to 40 characters)!"
+      );
+    else if (!nullValue && !overflowErr) {
       setError("");
       try {
         for (var k = 0; k < suggestions.length; k++) {
-          const res = await axios.put("https://pollar-api-rxlv.onrender.com/api/participant/updateSuggestion", {
-            suggestion: suggestions[k].suggestion,
-            sugid: suggestions[k].id,
-            uid: id,
-            password: password,
-          });
+          const res = await axios.put(
+            "https://pollar-api-rxlv.onrender.com/api/participant/updateSuggestion",
+            {
+              suggestion: suggestions[k].suggestion,
+              sugid: suggestions[k].id,
+              uid: id,
+              password: password,
+            }
+          );
           console.log(res.data);
         }
         navigate(`/participant/suggestions/${password}`);

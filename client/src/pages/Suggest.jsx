@@ -16,7 +16,9 @@ const Suggest = () => {
   useEffect(() => {
     const fetchStatus = async () => {
       try {
-        const res = await axios.get(`https://pollar-api-rxlv.onrender.com/api/participant/getPollPhase/${password}`);
+        const res = await axios.get(
+          `https://pollar-api-rxlv.onrender.com/api/participant/getPollPhase/${password}`
+        );
         //   console.log(res.data[0].phase);
         setPhase(res.data[0].phase);
       } catch (error) {
@@ -39,15 +41,28 @@ const Suggest = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(suggestions);
-    if (suggestions.length == sugperus) {
+    var overflowEr = false;
+    {
+      suggestions.map((sug) => {
+        if (sug.length > 40) overflowEr = true;
+      });
+    }
+    if (overflowEr)
+      setError(
+        "Check for long suggestions (must contain up to 40 characters)!"
+      );
+    else if (suggestions.length == sugperus && overflowEr === false) {
       setError("");
       try {
         for (var k = 0; k < suggestions.length; k++) {
-          const res = await axios.post("https://pollar-api-rxlv.onrender.com/api/participant/postSuggestion", {
-            suggestion: suggestions[k],
-            uid: uid,
-            password: password,
-          });
+          const res = await axios.post(
+            "https://pollar-api-rxlv.onrender.com/api/participant/postSuggestion",
+            {
+              suggestion: suggestions[k],
+              uid: uid,
+              password: password,
+            }
+          );
           console.log(res.data);
         }
         navigate(`/participant/suggestions/${password}`, {
@@ -56,7 +71,7 @@ const Suggest = () => {
       } catch (error) {
         console.log(error);
       }
-    } else setError("Null values!");
+    } else setError("Check for null values!");
   };
 
   console.log(nullEr);
