@@ -109,7 +109,7 @@
         padding: 10px 0px;
         display: flex;
         flex-direction: row;
-        gap: 50%;
+
         align-items: center;
         justify-content: space-around;
         p {
@@ -265,6 +265,12 @@
       }
     }
     .parthome {
+      img {
+        width: 20px;
+        position: fixed;
+        top: 10%;
+        left: 2%;
+      }
       margin-top: 0;
       margin-bottom: 28%;
 
@@ -454,6 +460,12 @@
       }
     }
     .adminInfo {
+      img {
+        width: 20px;
+        position: fixed;
+        top: 10%;
+        left: 2%;
+      }
       margin-top: 15%;
       margin-bottom: 40%;
       button {

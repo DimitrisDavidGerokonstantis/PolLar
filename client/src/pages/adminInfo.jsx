@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import Reload from "../img/reload.png";
 
 const HomeAdminInfo = () => {
   const password = useLocation().pathname.split("/")[4];
@@ -13,13 +14,22 @@ const HomeAdminInfo = () => {
   const [currentSuggestions, setCurrentSuggestions] = useState({});
   const [voters, setVoters] = useState(0);
   const navigate = useNavigate();
+  const [key, setKey] = useState(0);
+
+  const handleReload = () => {
+    setKey(key + 1);
+  };
+
   useEffect(() => {
     var idToName = {};
     const fetchStatus = async () => {
       try {
-        const res = await axios.post("https://pollar-api-rxlv.onrender.com/api/admin/pollStatus", {
-          password,
-        });
+        const res = await axios.post(
+          "https://pollar-api-rxlv.onrender.com/api/admin/pollStatus",
+          {
+            password,
+          }
+        );
         // console.log(
         //   "Number of Suggesters",
         //   res.data.suggestionsUserIds?.length,
@@ -61,14 +71,17 @@ const HomeAdminInfo = () => {
       }
     };
     fetchStatus();
-  }, []);
+  }, [key]);
 
   const upgradePhase = async () => {
     try {
-      const res = await axios.post("https://pollar-api-rxlv.onrender.com/api/admin/upgradePhase", {
-        password,
-        phase,
-      });
+      const res = await axios.post(
+        "https://pollar-api-rxlv.onrender.com/api/admin/upgradePhase",
+        {
+          password,
+          phase,
+        }
+      );
       setPhase(phase + 1);
       console.log(res.data);
     } catch (error) {
@@ -82,6 +95,7 @@ const HomeAdminInfo = () => {
       console.log("Sug", currentSuggestions);
       return (
         <div className="adminInfo">
+          <img onClick={handleReload} src={Reload}></img>
           <div className="column">
             <div className="phase">
               <h4>Phase of the poll : Suggestions</h4>
@@ -126,6 +140,7 @@ const HomeAdminInfo = () => {
     } else if (phase == 2) {
       return (
         <div className="adminInfo">
+          <img onClick={handleReload} src={Reload}></img>
           <div className="column">
             <div className="phase">
               <h4>Phase of the poll : Voting</h4>

@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import Reload from "../img/reload.png";
 const HomeParticipant = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [nickname, setNickname] = useState("");
   const [error, setError] = useState("");
+  const [key, setKey] = useState(0);
 
   useEffect(() => {
     localStorage.setItem("PollarUser", JSON.stringify(""));
@@ -20,6 +21,11 @@ const HomeParticipant = () => {
   const handleName = (e) => {
     setName(e.target.value);
   };
+  // const link = useLocation().pathname;
+  // const handleReload = () => {
+  //   console.log(link);
+  //   navigate(link);
+  // };
 
   const handlePassword = (e) => {
     setPassword(e.target.value);
@@ -38,23 +44,29 @@ const HomeParticipant = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("https://pollar-api-rxlv.onrender.com/api/participant/login", {
-        name,
-        password,
-        nickname,
-      });
+      const res = await axios.post(
+        "https://pollar-api-rxlv.onrender.com/api/participant/login",
+        {
+          name,
+          password,
+          nickname,
+        }
+      );
       //console.log(res.data[0]); res.data
       const info = res.data[0];
       console.log(info);
       localStorage.setItem("PollarUser", JSON.stringify(name));
       localStorage.setItem("PollarUserId", JSON.stringify(info.uid));
       localStorage.setItem("PollarSugPerUser", JSON.stringify(info.sugperus));
-      const pollStatus = await axios.post("https://pollar-api-rxlv.onrender.com/api/participant/pollStatus", {
-        password,
-        uid: info.uid,
-        sugperus: info.sugperus,
-        numofusers: info.numofusers,
-      });
+      const pollStatus = await axios.post(
+        "https://pollar-api-rxlv.onrender.com/api/participant/pollStatus",
+        {
+          password,
+          uid: info.uid,
+          sugperus: info.sugperus,
+          numofusers: info.numofusers,
+        }
+      );
 
       console.log(pollStatus.data);
       if (
@@ -127,7 +139,7 @@ const HomeParticipant = () => {
   };
 
   //console.log(name, password.length === 2);
-
+  // <img onClick={handleReload} src={Reload}></img>
   return (
     <div className="parthome">
       <p>Enter your name and the poll's password</p>
