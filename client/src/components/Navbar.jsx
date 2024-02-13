@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Logo from "../img/logo3.png";
+
+import Reload from "../img/reload.png";
 import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
@@ -14,6 +16,10 @@ const Navbar = () => {
 
   //useEffect(window.location.reload(false), [localStorage.setItem("PollarUser", JSON.stringify(""))]);
   useEffect(() => {}, [localStorage.getItem("PollarUser")]);
+
+  const handleReload = () => {
+    window.location.reload(true);
+  };
   return (
     <div className="navbar">
       <div className="container">
@@ -23,6 +29,8 @@ const Navbar = () => {
           </Link>
         </div>
         <p>
+          <img onClick={handleReload} src={Reload}></img>
+
           {JSON.parse(localStorage.getItem("PollarUser"))
             ? JSON.parse(localStorage.getItem("PollarUser"))
             : ""}

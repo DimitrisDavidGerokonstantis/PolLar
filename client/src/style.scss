@@ -14,7 +14,7 @@
 
     // Home Page
     .home {
-      height: 90vh;
+      height: 95vh;
       display: flex;
       justify-content: center;
       gap: 10%;
@@ -108,12 +108,23 @@
       .container {
         padding: 10px 0px;
         display: flex;
+        flex-direction: row;
+        gap: 50%;
         align-items: center;
-        justify-content: space-between;
+        justify-content: space-around;
+        p {
+          font-size: small;
+          display: flex;
+          gap: 25%;
+          img {
+            width: 20px;
+            height: 20px;
+          }
+        }
         .logo {
           margin-left: 25px;
           img {
-            width: 100px;
+            width: 30%;
           }
         }
       }
@@ -136,7 +147,7 @@
       justify-content: space-around;
       font-style: 12px;
       img {
-        height: 80px;
+        height: 50px;
       }
     }
     .adminhomeAll {
