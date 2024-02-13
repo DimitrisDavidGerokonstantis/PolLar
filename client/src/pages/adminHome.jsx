@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const HomeAdmin = () => {
@@ -26,9 +26,13 @@ const HomeAdmin = () => {
   const [users, setUsers] = useState("");
   //if(username=="" || numOfSug=="" || numOfPart=="" || rank1points=="" || rank2points=="" || rank3points=="" )
   console.log("gg", numOfSug + numOfPart == "");
-  const [userNames, setUserNames] = useState(
-    useState(Array(numOfPart).fill(""))
-  );
+
+  let ar = new Array();
+
+  const [userNames, setUserNames] = useState([...ar]);
+
+  console.log("UU", userNames);
+
   let findDuplicates = (arr) =>
     arr.filter((item, index) => arr.indexOf(item) !== index);
 
@@ -60,13 +64,19 @@ const HomeAdmin = () => {
       !e.target.checked &&
       numOfPart != "" &&
       (numOfPart < 4 || !numOfPart.match(regex))
-    )
+    ) {
       setParterror(
         "Add a NUMBER>4 if you don't allow for participants to vote again the same participant in different rank!"
       );
-    else if (e.target.checked && numOfPart != "" && !numOfPart.match(regex))
+      setUsers([]);
+      setUserNames([]);
+    } else if (e.target.checked && numOfPart != "" && !numOfPart.match(regex))
       setParterror("Add a NUMBER");
-    else {
+    else if (e.target.checked) {
+      for (var i = 0; i < numOfPart; i++) {
+        ar.push("user" + Math.floor(Math.random() * numOfPart * 1000));
+      }
+      setUserNames([...ar]);
       setParterror("");
       var users = [];
       for (var i = 0; i < numOfPart; i++) {
@@ -77,7 +87,7 @@ const HomeAdmin = () => {
               required
               type="text"
               id={i}
-              // value={name}
+              value={ar[i]}
               placeholder={`username ${i + 1}`}
               onChange={handleUsername}
             />
@@ -89,7 +99,7 @@ const HomeAdmin = () => {
   };
   console.log("CHECK", checkboxAllow);
 
-  console.log(userNames);
+  console.log("USERNMAMES", userNames);
   const handleParticipants = (e) => {
     setNumOfPart(e.target.value);
     var regex = /^[0-9]+$/;
@@ -97,17 +107,23 @@ const HomeAdmin = () => {
       checkboxAllow === 0 &&
       e.target.value != "" &&
       (e.target.value < 4 || !e.target.value.match(regex))
-    )
+    ) {
       setParterror(
         "Add a NUMBER>4 if you don't allow for participants to vote again the same participant in different rank!"
       );
-    else if (
+      setUsers([]);
+      setUserNames([]);
+    } else if (
       checkboxAllow === 1 &&
       e.target.value != "" &&
       !e.target.value.match(regex)
     )
       setParterror("Add a NUMBER");
     else {
+      for (var i = 0; i < e.target.value; i++) {
+        ar.push("user" + Math.floor(Math.random() * e.target.value * 1000));
+      }
+      setUserNames([...ar]);
       setParterror("");
       var users = [];
       for (var i = 0; i < e.target.value; i++) {
@@ -118,7 +134,7 @@ const HomeAdmin = () => {
               required
               type="text"
               id={i}
-              // value={name}
+              value={ar[i]}
               placeholder={`username ${i + 1}`}
               onChange={handleUsername}
             />
@@ -131,6 +147,20 @@ const HomeAdmin = () => {
       setUsernamesError("");
       setUserNames("");
     }
+  };
+  //https://stackoverflow.com/questions/44656610/download-a-string-as-txt-file-in-react
+  const handleDownloadInfo = () => {
+    var usernamesString = "";
+    const usernames = userNames.map((user) => {
+      usernamesString += `${user}\n`;
+    });
+    const contents = `Password: ${password}\nAdmin's Username: ${username}\nRank1 Points: ${rank1points}\nRank2 Points: ${rank2points}\nRank3 Points: ${rank3points}\nSuggestions per user: ${numOfSug}\nNumber of participants: ${numOfPart}\n\nParticipants' usernames:\n${usernamesString}\n`;
+    const element = document.createElement("a");
+    const file = new Blob([contents], { type: "text/plain" });
+    element.href = URL.createObjectURL(file);
+    element.download = `poll-${password}-info.txt`;
+    document.body.appendChild(element); // Required for this to work in FireFox
+    element.click();
   };
 
   const handleSuggestions = (e) => {
@@ -262,13 +292,16 @@ const HomeAdmin = () => {
   return (
     <div className="adminhomeAll">
       <div className="adminhome">
-        <div className="password">
-          <p>
-            {password
-              ? `The password of the created poll is : ${password}`
-              : ""}
-          </p>
-        </div>
+        {password ? (
+          <div className="password">
+            <p>
+              The password of the created poll is <p>{password}</p>
+            </p>
+            <button onClick={handleDownloadInfo}>Download Poll's Info</button>
+          </div>
+        ) : (
+          ""
+        )}
         <div className="fields">
           <div className="fieldsBlock">
             <div className="field">

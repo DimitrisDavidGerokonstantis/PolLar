@@ -144,9 +144,11 @@
 
       flex-direction: column;
       height: auto;
+      align-items: center;
+      justify-content: center;
 
       .adminhome {
-        margin-top: 10%;
+        margin-top: 13%;
         margin-bottom: 30%;
         .adminhome2 {
           display: flex;
@@ -161,7 +163,19 @@
         }
         .password {
           display: flex;
-          margin-top: 60px;
+          margin-top: 0%;
+          gap: 1%;
+
+          p {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 120%;
+            p {
+              color: #336663;
+            }
+          }
         }
         display: flex;
         flex-direction: column;
@@ -429,8 +443,8 @@
       }
     }
     .adminInfo {
-      margin-top: 20%;
-      margin-bottom: 20%;
+      margin-top: 15%;
+      margin-bottom: 40%;
       button {
         padding: 12px;
         border: none;
@@ -477,9 +491,10 @@
         align-items: center;
         margin-left: 25%;
 
-        gap: 8%;
+        gap: 45px;
         .phase {
           h4 {
+            margin-top: 5%;
             color: #0a2507;
           }
         }
