@@ -1,3 +1,6 @@
+//Loading Spinner from : https://contactmentor.com/how-to-add-loading-spinner-react-js/
+import LoadingSpinner from "../components/LoadingSpinner.js";
+
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -11,6 +14,8 @@ const Vote = () => {
   const root = localStorage.getItem("PollarUserRoot");
   const sugperus = JSON.parse(localStorage.getItem("PollarSugPerUser"));
   const [radio, setRadio] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   const [votes, setVotes] = useState({
     vote1: "",
     voteduser1: "",
@@ -24,6 +29,7 @@ const Vote = () => {
     parseInt(useLocation().pathname.split("/")[4])
   );
   useEffect(() => {
+    setIsLoading(true);
     console.log("rank", rank);
     const fetchData = async () => {
       try {
@@ -43,6 +49,7 @@ const Vote = () => {
       }
     };
     fetchData();
+    setIsLoading(false);
   }, [currentRank, password, uid]);
   const navigate = useNavigate();
 
@@ -83,6 +90,7 @@ const Vote = () => {
   };
 
   const handleVoteSubmit = async (e) => {
+    setIsLoading(true);
     e.preventDefault();
     try {
       var res = "";
@@ -127,6 +135,7 @@ const Vote = () => {
     } catch (error) {
       console.log(error);
     }
+    setIsLoading(false);
   };
 
   var output = [];
@@ -138,12 +147,10 @@ const Vote = () => {
     if (suggestions[i].userid !== usid) {
       usid = suggestions[i].userid;
       header = (
-        <div>
+        <p>
           <br></br>
-          <p>
-            <u>{suggestions[i]?.userNickname}</u>
-          </p>
-        </div>
+          <h3>{suggestions[i]?.userNickname}</h3>
+        </p>
       );
     } else header = "";
     if (suggestions.length === 1) {
@@ -210,18 +217,23 @@ const Vote = () => {
     console.log(suggestions, votes);
     return (
       <div className="parthome">
-        <p>Vote for your {ranking[nextRank]} movie</p>
+        <p>Vote for your {ranking[nextRank]} suggestion</p>
         {output}
         <br></br>
         {nextRank < 3 ? (
-          <Link>
-            <button onClick={handleVoteSubmit}>OK</button>
-          </Link>
+          <React.Fragment>
+            <Link>
+              <button onClick={handleVoteSubmit}>OK</button>
+            </Link>
+          </React.Fragment>
         ) : (
-          <Link>
-            <button onClick={handleVoteSubmit}>Finish</button>
-          </Link>
+          <React.Fragment>
+            <Link>
+              <button onClick={handleVoteSubmit}>Finish</button>
+            </Link>
+          </React.Fragment>
         )}
+        {isLoading ? <LoadingSpinner state={"Please wait ..."} /> : ""}
       </div>
     );
   } else {

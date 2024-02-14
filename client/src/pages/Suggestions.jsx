@@ -118,7 +118,7 @@ const Suggestions = () => {
             <Link to={`/participant/suggestions/${password}?edit=1`}>
               <img src={Edit} />
             </Link>
-            {isLoading ? <LoadingSpinner /> : ""}
+            {isLoading ? <LoadingSpinner state={"Please wait ..."} /> : ""}
           </div>
         </div>
       );
@@ -144,8 +144,12 @@ const Suggestions = () => {
           <div className="error">{nullEr}</div>
           <Link to="/participant/suggestions/${password}">
             <button onClick={handleSubmitUpdate}>Finish</button>
-            {isLoading ? <LoadingSpinner /> : ""}
           </Link>
+          {isLoading ? (
+            <LoadingSpinner state={"Updating suggestions ..."} />
+          ) : (
+            ""
+          )}
         </div>
       );
     }

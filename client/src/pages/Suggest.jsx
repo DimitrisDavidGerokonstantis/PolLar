@@ -89,7 +89,7 @@ const Suggest = () => {
         onChange={handleSuggestion}
         required
         type="text"
-        placeholder="movie name"
+        placeholder={`suggestion ${i + 1}`}
       />
     );
   }
@@ -110,11 +110,11 @@ const Suggest = () => {
     }
     return (
       <div className="parthome">
-        <p>Suggest {sugperus} Movies</p>
+        <p>Make {sugperus} suggestions</p>
         {inputs}
         <div className="error">{nullEr}</div>
         <button onClick={handleSubmit}>OK</button>
-        {isLoading ? <LoadingSpinner /> : ""}
+        {isLoading ? <LoadingSpinner state={"Saving suggestions ..."} /> : ""}
       </div>
     );
   } else {

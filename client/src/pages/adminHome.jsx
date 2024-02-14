@@ -312,7 +312,9 @@ const HomeAdmin = () => {
           <div className="fieldsBlock">
             <div className="field">
               {" "}
-              <p>Choose a username with which you will login : </p>{" "}
+              <p>
+                Choose the admin's username with which you will login :{" "}
+              </p>{" "}
               <input
                 required
                 type="text"
@@ -358,6 +360,7 @@ const HomeAdmin = () => {
           </div>
           <div className="fieldsBlock">
             <p> Points-ranking matching </p>{" "}
+            <p> (ranking 1 refers to the best suggestion) </p>{" "}
             <div className="field">
               {" "}
               <p> # 1 ranking </p>{" "}
@@ -396,7 +399,7 @@ const HomeAdmin = () => {
               {" "}
               <p>
                 Allow participants to vote again for the same participant in
-                different rank
+                different rank.
               </p>{" "}
               <input
                 required
@@ -428,7 +431,11 @@ const HomeAdmin = () => {
         ) : (
           ""
         )}
-        {isLoading ? <LoadingSpinner /> : ""}
+        {isLoading ? (
+          <LoadingSpinner state={"The poll is being created ..."} />
+        ) : (
+          ""
+        )}
 
         <Link to="/">
           <button>Go to Main Page</button>

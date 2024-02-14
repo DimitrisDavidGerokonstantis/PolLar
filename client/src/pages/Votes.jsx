@@ -1,3 +1,6 @@
+//Loading Spinner from : https://contactmentor.com/how-to-add-loading-spinner-react-js/
+import LoadingSpinner from "../components/LoadingSpinner.js";
+
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Edit from "../img/edit.png";
@@ -8,6 +11,7 @@ const Votes = () => {
   const edit = useLocation().search;
   const [phase, setPhase] = useState("");
   const root = localStorage.getItem("PollarUserRoot");
+  const [isLoading, setIsLoading] = useState(false);
 
   console.log(edit);
   const id = localStorage.getItem("PollarUserId");
@@ -17,6 +21,7 @@ const Votes = () => {
 
   const navigate = useNavigate();
   useEffect(() => {
+    setIsLoading(true);
     const fetchData = async () => {
       try {
         const res = await axios.get(
@@ -31,6 +36,7 @@ const Votes = () => {
       }
     };
     fetchData();
+    setIsLoading(false);
   }, [edit]);
 
   const handleUpdate = (e) => {
@@ -44,6 +50,7 @@ const Votes = () => {
   const handleSubmitUpdate = async (e) => {
     e.preventDefault();
     try {
+      setIsLoading(true);
       for (var k = 0; k < suggestions.length; k++) {
         const res = await axios.put(
           "https://pollar-api-rxlv.onrender.com/api/participant/updateSuggestion",
@@ -60,9 +67,11 @@ const Votes = () => {
     } catch (error) {
       console.log(error);
     }
+    setIsLoading(false);
   };
 
   const deleteVotes = async (e) => {
+    setIsLoading(true);
     e.preventDefault();
     try {
       const res = await axios.delete(
@@ -73,6 +82,7 @@ const Votes = () => {
     } catch (error) {
       console.log(error);
     }
+    setIsLoading(false);
   };
 
   if (id != `""` && id) {
@@ -114,6 +124,7 @@ const Votes = () => {
               <img onClick={deleteVotes} src={Edit} />
             </Link>
           </div>
+          {isLoading ? <LoadingSpinner state={"Please wait ..."} /> : ""}
         </div>
       );
     } else {

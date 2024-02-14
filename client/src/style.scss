@@ -287,6 +287,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
       p {
         font-size: 20px;
         font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
@@ -320,11 +321,15 @@
       }
 
       .movie {
+        p {
+          color: #13381f;
+        }
         display: flex;
-
+        justify-content: center;
         gap: 10px;
         flex-direction: column;
         align-items: center;
+
         //https://gist.github.com/adbutterfield/260249153051827d2dda78c39fba3259
         $radio-border-color: #8b8c89;
         $radio-checked-color: #1c5a30;
@@ -332,7 +337,7 @@
         $radio-disabled-bg-color: #d9d9d9;
 
         position: relative;
-        display: inline-block;
+
         font-size: 16px; /* Adjust as needed */
 
         input[type="radio"] {
@@ -465,9 +470,11 @@
         position: fixed;
         top: 10%;
         left: 2%;
+        cursor: pointer;
       }
       margin-top: 15%;
-      margin-bottom: 40%;
+      margin-bottom: 80%;
+
       button {
         padding: 12px;
         border: none;
@@ -486,6 +493,11 @@
       width: 90%;
 
       .column {
+        .spinner {
+          position: fixed;
+          left: 30px;
+          top: 15%;
+        }
         table {
           border-collapse: collapse;
           width: 50%;

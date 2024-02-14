@@ -109,7 +109,14 @@ const HomeAdminInfo = () => {
           <img onClick={handleReload} src={Reload}></img>
 
           <div className="column">
-            {isLoading2 ? <LoadingSpinner /> : ""}
+            <div className="spinner">
+              {" "}
+              {isLoading2 ? (
+                <LoadingSpinner state={"Updating status ..."} />
+              ) : (
+                ""
+              )}
+            </div>
             <div className="phase">
               <h4>Phase of the poll : Suggestions</h4>
             </div>
@@ -147,7 +154,11 @@ const HomeAdminInfo = () => {
             ) : (
               ""
             )}
-            {isLoading ? <LoadingSpinner /> : ""}
+            {isLoading ? (
+              <LoadingSpinner state={"Loading next phase ..."} />
+            ) : (
+              ""
+            )}
           </div>
         </div>
       );
@@ -157,7 +168,14 @@ const HomeAdminInfo = () => {
           <img onClick={handleReload} src={Reload}></img>
 
           <div className="column">
-            {isLoading2 ? <LoadingSpinner /> : ""}
+            <div className="spinner">
+              {" "}
+              {isLoading2 ? (
+                <LoadingSpinner state={"Updating status ..."} />
+              ) : (
+                ""
+              )}
+            </div>
             <div className="phase">
               <h4>Phase of the poll : Voting</h4>
             </div>
@@ -178,7 +196,11 @@ const HomeAdminInfo = () => {
             ) : (
               ""
             )}
-            {isLoading ? <LoadingSpinner /> : ""}
+            {isLoading ? (
+              <LoadingSpinner state={"Poll is finished! Loading results ..."} />
+            ) : (
+              ""
+            )}
           </div>
         </div>
       );

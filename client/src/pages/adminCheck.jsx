@@ -149,7 +149,7 @@ const HomeAdminCheck = () => {
 
       <div className="error">{error}</div>
       <button onClick={handleSubmit}>OK</button>
-      {isLoading ? <LoadingSpinner /> : ""}
+      {isLoading ? <LoadingSpinner state={"Please wait ..."} /> : ""}
     </div>
   );
 };
