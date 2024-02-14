@@ -1,7 +1,10 @@
+//Loading Spinner from : https://contactmentor.com/how-to-add-loading-spinner-react-js/
+
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Reload from "../img/reload.png";
+import LoadingSpinner from "../components/LoadingSpinner.js";
 
 const HomeAdminInfo = () => {
   const password = useLocation().pathname.split("/")[4];
@@ -15,12 +18,17 @@ const HomeAdminInfo = () => {
   const [voters, setVoters] = useState(0);
   const navigate = useNavigate();
   const [key, setKey] = useState(0);
-
-  const handleReload = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading2, setIsLoading2] = useState(false);
+  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+  const handleReload = async () => {
+    setIsLoading2(true);
+    await delay(500);
     setKey(key + 1);
   };
 
   useEffect(() => {
+    setIsLoading2(true);
     var idToName = {};
     const fetchStatus = async () => {
       try {
@@ -71,9 +79,11 @@ const HomeAdminInfo = () => {
       }
     };
     fetchStatus();
+    setIsLoading2(false);
   }, [key]);
 
   const upgradePhase = async () => {
+    setIsLoading(true);
     try {
       const res = await axios.post(
         "https://pollar-api-rxlv.onrender.com/api/admin/upgradePhase",
@@ -87,6 +97,7 @@ const HomeAdminInfo = () => {
     } catch (error) {
       console.log(error);
     }
+    setIsLoading(false);
   };
 
   console.log(localPassword, password);
@@ -96,7 +107,9 @@ const HomeAdminInfo = () => {
       return (
         <div className="adminInfo">
           <img onClick={handleReload} src={Reload}></img>
+
           <div className="column">
+            {isLoading2 ? <LoadingSpinner /> : ""}
             <div className="phase">
               <h4>Phase of the poll : Suggestions</h4>
             </div>
@@ -134,6 +147,7 @@ const HomeAdminInfo = () => {
             ) : (
               ""
             )}
+            {isLoading ? <LoadingSpinner /> : ""}
           </div>
         </div>
       );
@@ -141,7 +155,9 @@ const HomeAdminInfo = () => {
       return (
         <div className="adminInfo">
           <img onClick={handleReload} src={Reload}></img>
+
           <div className="column">
+            {isLoading2 ? <LoadingSpinner /> : ""}
             <div className="phase">
               <h4>Phase of the poll : Voting</h4>
             </div>
@@ -162,6 +178,7 @@ const HomeAdminInfo = () => {
             ) : (
               ""
             )}
+            {isLoading ? <LoadingSpinner /> : ""}
           </div>
         </div>
       );

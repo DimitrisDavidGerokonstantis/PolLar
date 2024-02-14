@@ -1,11 +1,15 @@
+//Loading Spinner from : https://contactmentor.com/how-to-add-loading-spinner-react-js/
+
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import LoadingSpinner from "../components/LoadingSpinner.js";
 
 const HomeAdminCheck = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     localStorage.setItem("PollarUser", JSON.stringify(""));
@@ -27,12 +31,16 @@ const HomeAdminCheck = () => {
   };
 
   const handleSubmit = async (e) => {
+    setIsLoading(true);
     e.preventDefault();
     try {
-      const res = await axios.post("https://pollar-api-rxlv.onrender.com/api/admin/login", {
-        name,
-        password,
-      });
+      const res = await axios.post(
+        "https://pollar-api-rxlv.onrender.com/api/admin/login",
+        {
+          name,
+          password,
+        }
+      );
       //console.log(res.data[0]); res.data
       const info = res.data[0];
       console.log(info);
@@ -115,6 +123,7 @@ const HomeAdminCheck = () => {
       console.log(error.response.data);
       setError(error.response.data);
     }
+    setIsLoading(false);
   };
 
   //console.log(name, password.length === 2);
@@ -140,6 +149,7 @@ const HomeAdminCheck = () => {
 
       <div className="error">{error}</div>
       <button onClick={handleSubmit}>OK</button>
+      {isLoading ? <LoadingSpinner /> : ""}
     </div>
   );
 };
