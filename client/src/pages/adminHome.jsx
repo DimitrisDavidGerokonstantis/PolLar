@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import LoadingSpinner from "../components/LoadingSpinner.js";
 import { generateName } from "./RandomNames.js";
-
+import emailjs from "emailjs-com";
 const HomeAdmin = () => {
   const [pollCreated, setPollCreated] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -26,8 +26,9 @@ const HomeAdmin = () => {
   const [rank3points, setRank3Points] = useState(0);
   const [checkboxAllow, setCheckboxAllow] = useState(0);
   const [checkboxError, setCheckboxError] = useState("");
-
+  const [invited, setInvited] = useState(Array(numOfPart).fill(false));
   const [totalError, setTotalError] = useState("");
+
   const [users, setUsers] = useState("");
   //if(username=="" || numOfSug=="" || numOfPart=="" || rank1points=="" || rank2points=="" || rank3points=="" )
   console.log("gg", numOfSug + numOfPart == "");
@@ -38,8 +39,80 @@ const HomeAdmin = () => {
 
   console.log("UU", userNames);
 
-  //console.log(generateName());
+  useEffect(() => {
+    const buttonStyle = {
+      backgroundColor: "orange",
+      // Add more styles as needed
+    };
+    var myUsers = [];
+    if (pollCreated) {
+      console.log(pollCreated);
+      for (var i = 0; i < numOfPart; i++) {
+        myUsers[i] = (
+          <form className="field" id={i} onSubmit={sendEmail}>
+            {" "}
+            <input
+              required
+              readOnly
+              type="text"
+              name="username"
+              id={i}
+              value={userNames[i]}
+              placeholder={`username ${i + 1}`}
+              onChange={handleUsername}
+            />
+            <input
+              required
+              type="text"
+              name="to_email"
+              id={i + numOfPart}
+              placeholder={`email ${i + 1}`}
+            />
+            <input
+              hidden
+              type="text"
+              id={i + 2 * numOfPart}
+              value={password}
+              name="password"
+            />
+            {!invited[i] ? (
+              <button type="submit">Send Invitation</button>
+            ) : (
+              <button type="submit" style={buttonStyle}>
+                Resend Invitation
+              </button>
+            )}
+          </form>
+        );
+      }
+      setUsers(myUsers);
+    }
+  }, [pollCreated, users]);
 
+  //console.log(generateName());
+  const sendEmail = (e) => {
+    e.preventDefault();
+    console.log("to email", e.target.elements.to_email);
+    console.log("ID FORM", e.target.id);
+    setInvited((prevState) => {
+      var newState = [...prevState];
+      newState[e.target.id] = true;
+      return newState;
+    });
+
+    console.log("EMAIL", e.target.elements.username.value);
+
+    emailjs
+      .sendForm(
+        "service_vk8oja3",
+        "template_6x668um",
+        e.target,
+        "C156t80TNGGNMhUqM"
+      )
+      .then((error) => {
+        console.log(error.text);
+      });
+  };
   let findDuplicates = (arr) =>
     arr.filter((item, index) => arr.indexOf(item) !== index);
 
@@ -88,17 +161,18 @@ const HomeAdmin = () => {
       var users = [];
       for (var i = 0; i < numOfPart; i++) {
         users[i] = (
-          <div className="field">
+          <form className="field" id={i} onSubmit={sendEmail}>
             {" "}
             <input
               required
               type="text"
+              name="username"
               id={i}
               value={ar[i]}
               placeholder={`username ${i + 1}`}
               onChange={handleUsername}
             />
-          </div>
+          </form>
         );
       }
       setUsers(users);
@@ -141,17 +215,18 @@ const HomeAdmin = () => {
       var users = [];
       for (var i = 0; i < e.target.value; i++) {
         users[i] = (
-          <div className="field">
+          <form className="field" id={i} onSubmit={sendEmail}>
             {" "}
             <input
               required
               type="text"
               id={i}
+              name="username"
               value={ar[i]}
               placeholder={`username ${i + 1}`}
               onChange={handleUsername}
             />
-          </div>
+          </form>
         );
       }
       setUsers(users);
@@ -218,6 +293,7 @@ const HomeAdmin = () => {
   );
   const handleSubmit = async (e) => {
     setIsLoading(true);
+
     if (
       username == "" ||
       numOfSug == "" ||
@@ -426,7 +502,13 @@ const HomeAdmin = () => {
           </div>
         </div>
         <div className="adminhome2">
-          <p>{users != "" && "Define the usernames of the participants"}</p>
+          <p>
+            {users != "" &&
+              !pollCreated &&
+              "Below you can change the default usernames of the participants"}
+            {pollCreated &&
+              "Define the email addresses of the participants that you want to be notified and send them an invitation"}
+          </p>
           {users}
           <div className="error">
             {Usernameserror ? `${Usernameserror}` : ""}{" "}
