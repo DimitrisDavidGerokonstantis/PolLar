@@ -4,6 +4,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import LoadingSpinner from "../components/LoadingSpinner.js";
+import { generateName } from "./RandomNames.js";
 
 const HomeAdmin = () => {
   const [pollCreated, setPollCreated] = useState(false);
@@ -36,6 +37,8 @@ const HomeAdmin = () => {
   const [userNames, setUserNames] = useState([...ar]);
 
   console.log("UU", userNames);
+
+  //console.log(generateName());
 
   let findDuplicates = (arr) =>
     arr.filter((item, index) => arr.indexOf(item) !== index);
@@ -78,7 +81,7 @@ const HomeAdmin = () => {
       setParterror("Add a NUMBER");
     else if (e.target.checked) {
       for (var i = 0; i < numOfPart; i++) {
-        ar.push("user" + Math.floor(Math.random() * numOfPart * 1000));
+        ar.push(generateName() + Math.floor(Math.random() * numOfPart * 10));
       }
       setUserNames([...ar]);
       setParterror("");
@@ -125,7 +128,13 @@ const HomeAdmin = () => {
       setParterror("Add a NUMBER");
     else {
       for (var i = 0; i < e.target.value; i++) {
-        ar.push("user" + Math.floor(Math.random() * e.target.value * 1000));
+        ar.push(
+          generateName() + Math.floor(Math.random() * e.target.value * 10)
+        );
+
+        // ar.push(
+        //   generateName() + Math.floor(Math.random() * e.target.value * 1000)
+        // );
       }
       setUserNames([...ar]);
       setParterror("");

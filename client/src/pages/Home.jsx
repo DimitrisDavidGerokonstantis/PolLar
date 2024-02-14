@@ -17,7 +17,7 @@ const Home = () => {
         <button>Create a poll</button>
       </Link>
       <Link to="/admin/check/login">
-        <button>Check your poll</button>
+        <button>Check your poll's status</button>
       </Link>
     </div>
   );

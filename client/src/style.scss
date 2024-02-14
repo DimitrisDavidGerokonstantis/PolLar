@@ -23,13 +23,13 @@
       button {
         margin-top: 100px;
 
-        padding: 10%;
+        padding: 20px;
         border: none;
         background-color: rgb(23, 59, 26);
         cursor: pointer;
         color: white;
         &:hover {
-          padding: 10%;
+          padding: 19px;
           border: 1px solid white;
           background-color: rgb(132, 175, 143);
           color: black;
@@ -166,7 +166,19 @@
           flex-direction: column;
           align-items: center;
           justify-content: center;
+          input {
+            width: 300px;
+            padding: 10px;
+            border: 1px solid lightgray;
+            background-color: rgb(246, 245, 247);
 
+            &:hover {
+              width: 300px;
+              border: 1px solid white;
+              background-color: rgb(212, 230, 214);
+              color: rgb(20, 54, 17);
+            }
+          }
           .field {
             display: flex;
             padding: 1%;
