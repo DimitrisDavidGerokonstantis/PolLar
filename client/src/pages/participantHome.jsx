@@ -1,14 +1,17 @@
+//Loading Spinner from : https://contactmentor.com/how-to-add-loading-spinner-react-js/
+
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Reload from "../img/reload.png";
+import LoadingSpinner from "../components/LoadingSpinner.js";
 const HomeParticipant = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [nickname, setNickname] = useState("");
   const [error, setError] = useState("");
   const [key, setKey] = useState(0);
-
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     localStorage.setItem("PollarUser", JSON.stringify(""));
     localStorage.setItem("PollarUserId", JSON.stringify(""));
@@ -42,6 +45,7 @@ const HomeParticipant = () => {
   };
 
   const handleSubmit = async (e) => {
+    setIsLoading(true);
     e.preventDefault();
     try {
       const res = await axios.post(
@@ -81,6 +85,7 @@ const HomeParticipant = () => {
             "PollarUserRoot",
             `/participant/suggest/${password}`
           );
+          setIsLoading(false);
           navigate(`/participant/suggest/${password}`, {
             state: { sugperus: info.sugperus, uid: info.uid, password },
           });
@@ -93,6 +98,7 @@ const HomeParticipant = () => {
             "PollarUserRoot",
             `/participant/suggestions/${password}`
           );
+          setIsLoading(false);
           navigate(`/participant/suggestions/${password}`, {
             state: { sugperus: info.sugperus, uid: info.uid, password },
           });
@@ -105,6 +111,7 @@ const HomeParticipant = () => {
             "PollarUserRoot",
             `/participant/vote/${password}/1`
           );
+          setIsLoading(false);
           navigate(`/participant/vote/${password}/1`);
         }
         if (
@@ -115,6 +122,7 @@ const HomeParticipant = () => {
             "PollarUserRoot",
             `/participant/votes/${password}`
           );
+          setIsLoading(false);
           navigate(`/participant/votes/${password}`);
         }
         if (
@@ -125,16 +133,18 @@ const HomeParticipant = () => {
             "PollarUserRoot",
             `/participant/results/${password}`
           );
+          setIsLoading(false);
           navigate(`/participant/results/${password}`);
         }
       } else
         setError(
           "Nickname must be a not null value with up to 15 characters! Try Again!"
         );
-      // navigate("/participant/suggestions/1");
+      setIsLoading(false);
     } catch (error) {
       console.log(error.response.data);
       setError(error.response.data);
+      setIsLoading(false);
     }
   };
 
@@ -167,6 +177,7 @@ const HomeParticipant = () => {
       />
       <div className="error">{error}</div>
       <button onClick={handleSubmit}>OK</button>
+      {isLoading ? <LoadingSpinner /> : ""}
     </div>
   );
 };

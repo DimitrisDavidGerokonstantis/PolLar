@@ -1,9 +1,13 @@
+//Loading Spinner from : https://contactmentor.com/how-to-add-loading-spinner-react-js/
+
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import LoadingSpinner from "../components/LoadingSpinner.js";
 
 const HomeAdmin = () => {
   const [pollCreated, setPollCreated] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [Userror, setUsError] = useState("");
   const [Usernameserror, setUsernamesError] = useState("");
@@ -204,6 +208,7 @@ const HomeAdmin = () => {
     ).length == 0
   );
   const handleSubmit = async (e) => {
+    setIsLoading(true);
     if (
       username == "" ||
       numOfSug == "" ||
@@ -287,6 +292,7 @@ const HomeAdmin = () => {
         console.log(error);
       }
     } else setTotalError("Check for errors or missing values and try again!");
+    setIsLoading(false);
   };
 
   return (
@@ -416,7 +422,14 @@ const HomeAdmin = () => {
         </div>
         <div className="error">{checkboxError}</div>
         <div className="error">{totalError}</div>
-        {!password ? <button onClick={handleSubmit}>Create Poll</button> : ""}
+
+        {!password && !isLoading ? (
+          <button onClick={handleSubmit}>Create Poll</button>
+        ) : (
+          ""
+        )}
+        {isLoading ? <LoadingSpinner /> : ""}
+
         <Link to="/">
           <button>Go to Main Page</button>
         </Link>

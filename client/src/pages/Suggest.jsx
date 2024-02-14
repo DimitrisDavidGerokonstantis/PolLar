@@ -1,6 +1,9 @@
+//Loading Spinner from : https://contactmentor.com/how-to-add-loading-spinner-react-js/
+
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import LoadingSpinner from "../components/LoadingSpinner.js";
 
 const Suggest = () => {
   const sugperus = localStorage.getItem("PollarSugPerUser");
@@ -9,6 +12,7 @@ const Suggest = () => {
   const password = useLocation().pathname.split("/")[3];
   const root = localStorage.getItem("PollarUserRoot");
   const [phase, setPhase] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const [suggestions, setSuggestions] = useState(Array(sugperus).fill(null));
   const [nullEr, setError] = useState("");
@@ -39,8 +43,9 @@ const Suggest = () => {
   const navigate = useNavigate();
   //console.log(uid, password);
   const handleSubmit = async (e) => {
+    setIsLoading(true);
     e.preventDefault();
-    console.log(suggestions);
+    console.log("SUG", suggestions);
     var overflowEr = false;
     {
       suggestions.map((sug) => {
@@ -72,6 +77,7 @@ const Suggest = () => {
         console.log(error);
       }
     } else setError("Check for null values!");
+    setIsLoading(false);
   };
 
   console.log(nullEr);
@@ -108,6 +114,7 @@ const Suggest = () => {
         {inputs}
         <div className="error">{nullEr}</div>
         <button onClick={handleSubmit}>OK</button>
+        {isLoading ? <LoadingSpinner /> : ""}
       </div>
     );
   } else {

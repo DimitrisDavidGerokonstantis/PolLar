@@ -1,11 +1,15 @@
+//Loading Spinner from : https://contactmentor.com/how-to-add-loading-spinner-react-js/
+
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Edit from "../img/edit.png";
 import Delete from "../img/delete.png";
 import axios from "axios";
+import LoadingSpinner from "../components/LoadingSpinner.js";
 
 const Suggestions = () => {
   const root = localStorage.getItem("PollarUserRoot");
+  const [isLoading, setIsLoading] = useState(false);
 
   const sugperus = localStorage.getItem("PollarSugPerUser");
   const edit = useLocation().search;
@@ -19,6 +23,7 @@ const Suggestions = () => {
 
   const navigate = useNavigate();
   useEffect(() => {
+    setIsLoading(true);
     const fetchData = async () => {
       try {
         const res = await axios.get(
@@ -34,6 +39,7 @@ const Suggestions = () => {
       }
     };
     fetchData();
+    setIsLoading(false);
   }, [edit]);
 
   const handleUpdate = (e) => {
@@ -45,6 +51,7 @@ const Suggestions = () => {
   };
 
   const handleSubmitUpdate = async (e) => {
+    setIsLoading(true);
     var nullValue = false;
     console.log(suggestions);
     var overflowErr = false;
@@ -78,6 +85,7 @@ const Suggestions = () => {
         console.log(error);
       }
     } else setError("Null values!");
+    setIsLoading(false);
   };
   console.log("ID", id != `""` && id);
   if (id != `""` && id) {
@@ -110,6 +118,7 @@ const Suggestions = () => {
             <Link to={`/participant/suggestions/${password}?edit=1`}>
               <img src={Edit} />
             </Link>
+            {isLoading ? <LoadingSpinner /> : ""}
           </div>
         </div>
       );
@@ -135,6 +144,7 @@ const Suggestions = () => {
           <div className="error">{nullEr}</div>
           <Link to="/participant/suggestions/${password}">
             <button onClick={handleSubmitUpdate}>Finish</button>
+            {isLoading ? <LoadingSpinner /> : ""}
           </Link>
         </div>
       );
