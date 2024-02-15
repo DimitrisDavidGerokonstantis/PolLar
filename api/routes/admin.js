@@ -12,7 +12,7 @@ const router = express.Router();
 router.post("/createPoll", createPoll);
 router.post("/addRanks", addRanks);
 router.post("/login", login);
-router.post("/pollStatus", pollStatus);
+
 router.post("/upgradePhase", upgradePhase);
 router.get("/getResults/:pwd/", getResults);
 
