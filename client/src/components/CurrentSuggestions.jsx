@@ -9,6 +9,7 @@ const CurrentSuggestions = ({ password, uid }) => {
   const [voters, setVoters] = useState(0);
   const [phase, setPhase] = useState(0);
   const [buttonState, setButtonState] = useState(false);
+  const [checkboxAllow, setCheckboxAllow] = useState(0);
 
   useEffect(() => {
     var idToName = {};
@@ -24,7 +25,7 @@ const CurrentSuggestions = ({ password, uid }) => {
         setSuggesters(res.data.suggestionsUserIds?.length);
         setTotParticipants(res.data.numofusers);
         console.log(res.data);
-
+        setCheckboxAllow(res.data.checkbox);
         var suggestions = {};
         if (res.data.phase == 1) {
           res.data.suggestionsData.map((row) => {
@@ -71,11 +72,15 @@ const CurrentSuggestions = ({ password, uid }) => {
   return (
     <div className="generalInfo">
       <div className="column">
-        <button onClick={handleButton}>
-          {!buttonState
-            ? "See Current Suggestions"
-            : "Hide Current Suggestions"}
-        </button>
+        {checkboxAllow ? (
+          <button onClick={handleButton}>
+            {!buttonState
+              ? "See Current Suggestions"
+              : "Hide Current Suggestions"}
+          </button>
+        ) : (
+          ""
+        )}
         {buttonState ? (
           <div className="participantsState">
             <h4>

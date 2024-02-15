@@ -4,10 +4,13 @@ export const pollStatusGeneral = (req, res) => {
   var numofusers;
   var suggestionsData;
   var suggestionsUserIds;
-  const q = "SELECT phase, numofusers FROM polls WHERE `password`=?";
+
+  const q =
+    "SELECT phase, numofusers,checkboxAllow2 FROM polls WHERE `password`=?";
   db.query(q, [req.body.password], (err, data) => {
     if (err) return res.status(500).json(err);
     const phase = data[0].phase;
+    const checkbox = data[0].checkboxAllow2;
     console.log("phase===1?", phase == 1);
     numofusers = data[0].numofusers;
     if (phase === 1) {
@@ -32,7 +35,13 @@ export const pollStatusGeneral = (req, res) => {
           suggestionsUserIds = [...data];
           return res
             .status(200)
-            .json({ suggestionsUserIds, suggestionsData, numofusers, phase });
+            .json({
+              suggestionsUserIds,
+              suggestionsData,
+              numofusers,
+              phase,
+              checkbox,
+            });
         });
       });
     } else {
