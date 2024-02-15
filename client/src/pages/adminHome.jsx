@@ -26,6 +26,8 @@ const HomeAdmin = () => {
   const [rank3points, setRank3Points] = useState(0);
   const [title, setTitle] = useState("");
   const [checkboxAllow, setCheckboxAllow] = useState(0);
+  const [checkboxAllow2, setCheckboxAllow2] = useState(0);
+
   const [checkboxError, setCheckboxError] = useState("");
   const [invited, setInvited] = useState(Array(numOfPart).fill(false));
   const [totalError, setTotalError] = useState("");
@@ -152,6 +154,48 @@ const HomeAdmin = () => {
   const handleCheckbox = (e) => {
     console.log("VALUE", e.target.checked);
     setCheckboxAllow(checkboxAllow == 0 ? 1 : 0);
+    var regex = /^[0-9]+$/;
+    if (
+      !e.target.checked &&
+      numOfPart != "" &&
+      (numOfPart < 4 || !numOfPart.match(regex))
+    ) {
+      setParterror(
+        "Add a NUMBER>4 if you don't allow for participants to vote again the same participant in different rank!"
+      );
+      setUsers([]);
+      setUserNames([]);
+    } else if (e.target.checked && numOfPart != "" && !numOfPart.match(regex))
+      setParterror("Add a NUMBER");
+    else if (e.target.checked) {
+      for (var i = 0; i < numOfPart; i++) {
+        ar.push(generateName() + Math.floor(Math.random() * numOfPart * 10));
+      }
+      setUserNames([...ar]);
+      setParterror("");
+      var users = [];
+      for (var i = 0; i < numOfPart; i++) {
+        users[i] = (
+          <form className="field" id={i} onSubmit={sendEmail}>
+            {" "}
+            <input
+              required
+              type="text"
+              name="username"
+              id={i}
+              value={ar[i]}
+              placeholder={`username ${i + 1}`}
+              onChange={handleUsername}
+            />
+          </form>
+        );
+      }
+      setUsers(users);
+    }
+  };
+  const handleCheckbox2 = (e) => {
+    console.log("VALUE", e.target.checked);
+    setCheckboxAllow2(checkboxAllow2 == 0 ? 1 : 0);
     var regex = /^[0-9]+$/;
     if (
       !e.target.checked &&
@@ -366,6 +410,7 @@ const HomeAdmin = () => {
               userName: userNames[i],
               checkboxAllow,
               title,
+              checkboxAllow2,
             }
           );
 
@@ -522,6 +567,20 @@ const HomeAdmin = () => {
                 type="checkbox"
                 checked={checkboxAllow}
                 onChange={handleCheckbox}
+                // value={name}
+              />
+            </div>
+            <div className="field">
+              {" "}
+              <p>
+                Allow participants to see other participant's suggestions during
+                the suggestions' phase
+              </p>{" "}
+              <input
+                required
+                type="checkbox"
+                checked={checkboxAllow2}
+                onChange={handleCheckbox2}
                 // value={name}
               />
             </div>

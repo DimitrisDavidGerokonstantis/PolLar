@@ -477,41 +477,16 @@
         }
       }
     }
-
+    justify-content: center;
+    align-items: center;
     .generalInfo {
-      img {
-        width: 20px;
-        position: fixed;
-        top: 10%;
-        left: 2%;
-        cursor: pointer;
-      }
-      margin-top: 15%;
-      margin-bottom: 80%;
-
-      button {
-        padding: 12px;
-        border: none;
-        background-color: rgb(23, 59, 26);
-        cursor: pointer;
-        color: white;
-
-        &:hover {
-          padding: 11px;
-          border: 1px solid white;
-          background-color: rgb(132, 175, 143);
-          color: black;
-        }
-      }
+      margin-top: 50px;
+      margin-bottom: 0%;
       display: flex;
-      width: 90%;
+      justify-content: center;
+      align-items: center;
 
       .column {
-        .spinner {
-          position: fixed;
-          left: 30px;
-          top: 15%;
-        }
         table {
           border-collapse: collapse;
           width: 50%;
@@ -538,22 +513,21 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin-left: 25%;
-
+        flex-wrap: wrap;
         gap: 45px;
-        .phase {
-          h4 {
-            margin-top: 5%;
-            color: #0a2507;
-          }
-        }
 
         .participantsState {
           display: flex;
           flex-direction: column;
+
           justify-content: center;
           align-items: center;
           gap: 20px;
+
+          .tableBlock {
+            margin-right: 10px; // Adjust the spacing between tableBlocks as needed
+            margin-bottom: 10px; // Adjust the spacing between rows as needed
+          }
 
           h4 {
             color: #0a2507;

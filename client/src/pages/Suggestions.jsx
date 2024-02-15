@@ -6,6 +6,7 @@ import Edit from "../img/edit.png";
 import Delete from "../img/delete.png";
 import axios from "axios";
 import LoadingSpinner from "../components/LoadingSpinner.js";
+import CurrentSuggestions from "../components/CurrentSuggestions.jsx";
 
 const Suggestions = () => {
   const root = localStorage.getItem("PollarUserRoot");
@@ -120,6 +121,7 @@ const Suggestions = () => {
             </Link>
             {isLoading ? <LoadingSpinner state={"Please wait ..."} /> : ""}
           </div>
+          <CurrentSuggestions password={password} uid={id} />
         </div>
       );
     } else {
@@ -150,6 +152,7 @@ const Suggestions = () => {
           ) : (
             ""
           )}
+          <CurrentSuggestions password={password} uid={id} />
         </div>
       );
     }
