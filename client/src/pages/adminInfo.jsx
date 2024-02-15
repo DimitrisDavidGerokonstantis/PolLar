@@ -33,7 +33,7 @@ const HomeAdminInfo = () => {
     const fetchStatus = async () => {
       try {
         const res = await axios.post(
-          "https://pollar-api-rxlv.onrender.com/api/admin/pollStatus",
+          "https://pollar-api-rxlv.onrender.com/api/common/pollStatus",
           {
             password,
           }

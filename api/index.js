@@ -1,6 +1,7 @@
 import express from "express";
 import participantRoutes from "./routes/participant.js";
 import adminRoutes from "./routes/admin.js";
+import commonRoutes from "./routes/common.js";
 import cors from "cors";
 
 //import cookieParser from "cookie-parser";
@@ -21,6 +22,7 @@ app.use(express.json());
 
 app.use("/api/participant", participantRoutes);
 app.use("/api/admin", adminRoutes);
+app.use("/api/common", commonRoutes);
 
 app.listen(5000, () => {
   console.log("Connected!");

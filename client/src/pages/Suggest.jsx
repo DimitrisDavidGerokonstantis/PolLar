@@ -4,6 +4,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import LoadingSpinner from "../components/LoadingSpinner.js";
+import CurrentSuggestions from "../components/CurrentSuggestions.jsx";
 
 const Suggest = () => {
   const sugperus = localStorage.getItem("PollarSugPerUser");
@@ -132,6 +133,7 @@ const Suggest = () => {
         <div className="error">{nullEr}</div>
         <button onClick={handleSubmit}>OK</button>
         {isLoading ? <LoadingSpinner state={"Saving suggestions ..."} /> : ""}
+        <CurrentSuggestions password={password} uid={uid} />
       </div>
     );
   } else {

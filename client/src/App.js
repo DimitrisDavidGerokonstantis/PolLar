@@ -14,6 +14,7 @@ import ParticipantResults from "./pages/participantResults";
 import AdminResults from "./pages/adminResults";
 import HomeAdminCheck from "./pages/adminCheck";
 import HomeAdminInfo from "./pages/adminInfo";
+
 import "./style.scss";
 
 const router = createBrowserRouter([
@@ -53,6 +54,7 @@ const router = createBrowserRouter([
       <React.Fragment>
         <Navbar />
         <Suggest />
+
         <Footer />
       </React.Fragment>
     ),
