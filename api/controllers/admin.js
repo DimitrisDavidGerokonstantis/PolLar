@@ -19,7 +19,7 @@ export const addRanks = (req, res) => {
 export const createPoll = (req, res) => {
   // var UsersIds = [];
   const q2 =
-    "INSERT INTO polls(`password`,`uid`,`sugperus`,`numofusers`,`phase`,`adminName`,`checkboxAllow`) VALUES (?, ?, ?, ?, 1, ?, ?)";
+    "INSERT INTO polls(`password`,`uid`,`sugperus`,`numofusers`,`phase`,`adminName`,`checkboxAllow`,`title`) VALUES (?, ?, ?, ?, 1, ?, ?,?)";
   const q1 = "INSERT INTO users(`username`) VALUES (?)";
 
   console.log("userName to insert", req.body.userName);
@@ -38,6 +38,7 @@ export const createPoll = (req, res) => {
         req.body.numOfPart,
         req.body.username,
         req.body.checkboxAllow,
+        req.body.title,
       ],
       (err, data) => {
         console.log(req.body);

@@ -9,7 +9,7 @@ import emailjs from "emailjs-com";
 const HomeAdmin = () => {
   const [pollCreated, setPollCreated] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
+  const [titleError, setTitleError] = useState("");
   const [Userror, setUsError] = useState("");
   const [Usernameserror, setUsernamesError] = useState("");
   const [Parterror, setParterror] = useState("");
@@ -24,6 +24,7 @@ const HomeAdmin = () => {
   const [rank1points, setRank1Points] = useState(0);
   const [rank2points, setRank2Points] = useState(0);
   const [rank3points, setRank3Points] = useState(0);
+  const [title, setTitle] = useState("");
   const [checkboxAllow, setCheckboxAllow] = useState(0);
   const [checkboxError, setCheckboxError] = useState("");
   const [invited, setInvited] = useState(Array(numOfPart).fill(false));
@@ -37,12 +38,12 @@ const HomeAdmin = () => {
 
   const [userNames, setUserNames] = useState([...ar]);
 
-  console.log("UU", userNames);
+  console.log("POLL CREATED", pollCreated);
 
   useEffect(() => {
     const buttonStyle = {
       backgroundColor: "orange",
-      // Add more styles as needed
+      color: "red",
     };
     var myUsers = [];
     if (pollCreated) {
@@ -74,6 +75,13 @@ const HomeAdmin = () => {
               id={i + 2 * numOfPart}
               value={password}
               name="password"
+            />
+            <input
+              hidden
+              type="text"
+              id={i + 3 * numOfPart}
+              value={title}
+              name="title"
             />
             {!invited[i] ? (
               <button type="submit">Send Invitation</button>
@@ -118,6 +126,11 @@ const HomeAdmin = () => {
 
   const navigate = useNavigate();
 
+  const handleTitle = (e) => {
+    setTitle(e.target.value);
+    if (e.target.value.length > 70) setTitleError("Too long title!");
+    else setTitleError("");
+  };
   const handleName = (e) => {
     setUsername(e.target.value);
     if (e.target.value.length > 10) setUsError("Too long username!");
@@ -242,7 +255,7 @@ const HomeAdmin = () => {
     const usernames = userNames.map((user) => {
       usernamesString += `${user}\n`;
     });
-    const contents = `Password: ${password}\nAdmin's Username: ${username}\nRank1 Points: ${rank1points}\nRank2 Points: ${rank2points}\nRank3 Points: ${rank3points}\nSuggestions per user: ${numOfSug}\nNumber of participants: ${numOfPart}\n\nParticipants' usernames:\n${usernamesString}\n`;
+    const contents = `Title: ${title}\nPassword: ${password}\nAdmin's Username: ${username}\nRank1 Points: ${rank1points}\nRank2 Points: ${rank2points}\nRank3 Points: ${rank3points}\nSuggestions per user: ${numOfSug}\nNumber of participants: ${numOfPart}\n\nParticipants' usernames:\n${usernamesString}\n`;
     const element = document.createElement("a");
     const file = new Blob([contents], { type: "text/plain" });
     element.href = URL.createObjectURL(file);
@@ -296,6 +309,7 @@ const HomeAdmin = () => {
 
     if (
       username == "" ||
+      title == "" ||
       numOfSug == "" ||
       numOfPart == "" ||
       rank1points == "" ||
@@ -314,6 +328,7 @@ const HomeAdmin = () => {
     if (
       (
         Userror ||
+        titleError ||
         Usernameserror ||
         Parterror ||
         sugError ||
@@ -323,6 +338,7 @@ const HomeAdmin = () => {
       ).length == 0 &&
       !(
         username == "" ||
+        title == "" ||
         numOfSug == "" ||
         numOfPart == "" ||
         rank1points == "" ||
@@ -349,6 +365,7 @@ const HomeAdmin = () => {
               rank3points,
               userName: userNames[i],
               checkboxAllow,
+              title,
             }
           );
 
@@ -395,6 +412,20 @@ const HomeAdmin = () => {
         )}
         <div className="fields">
           <div className="fieldsBlock">
+            <div className="field">
+              {" "}
+              <p>Define the title of the poll : </p>{" "}
+              <input
+                required
+                type="text"
+                // value={name}
+                placeholder="title"
+                onChange={handleTitle}
+              />
+            </div>
+            <div className="error">
+              {titleError ? `Title Error : ${titleError}` : ""}{" "}
+            </div>
             <div className="field">
               {" "}
               <p>
