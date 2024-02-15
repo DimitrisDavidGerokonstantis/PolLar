@@ -3,7 +3,6 @@ import {
   createPoll,
   addRanks,
   login,
-  pollStatus,
   getResults,
   upgradePhase,
 } from "../controllers/admin.js";

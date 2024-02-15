@@ -62,7 +62,7 @@ const CurrentSuggestions = ({ password, uid }) => {
   }
   console.log("Sug", currentSuggestions, uid);
   return (
-    <div className="adminInfo">
+    <div className="generalInfo">
       <div className="column">
         <div className="participantsState">
           <h4>

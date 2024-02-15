@@ -477,6 +477,94 @@
         }
       }
     }
+
+    .generalInfo {
+      img {
+        width: 20px;
+        position: fixed;
+        top: 10%;
+        left: 2%;
+        cursor: pointer;
+      }
+      margin-top: 15%;
+      margin-bottom: 80%;
+
+      button {
+        padding: 12px;
+        border: none;
+        background-color: rgb(23, 59, 26);
+        cursor: pointer;
+        color: white;
+
+        &:hover {
+          padding: 11px;
+          border: 1px solid white;
+          background-color: rgb(132, 175, 143);
+          color: black;
+        }
+      }
+      display: flex;
+      width: 90%;
+
+      .column {
+        .spinner {
+          position: fixed;
+          left: 30px;
+          top: 15%;
+        }
+        table {
+          border-collapse: collapse;
+          width: 50%;
+        }
+
+        th,
+        td {
+          text-align: center;
+          padding: 8px;
+        }
+
+        tr:nth-child(even) {
+          background-color: #b1d4b8;
+        }
+        tr:nth-child(odd) {
+          background-color: #7ca77a;
+        }
+
+        th {
+          background-color: #2e6129;
+          color: white;
+        }
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-left: 25%;
+
+        gap: 45px;
+        .phase {
+          h4 {
+            margin-top: 5%;
+            color: #0a2507;
+          }
+        }
+
+        .participantsState {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 20px;
+
+          h4 {
+            color: #0a2507;
+          }
+          p {
+            color: #0a2507;
+          }
+        }
+      }
+    }
+
     .adminInfo {
       img {
         width: 20px;
