@@ -12,6 +12,7 @@ const Suggest = () => {
   const password = useLocation().pathname.split("/")[3];
   const root = localStorage.getItem("PollarUserRoot");
   const [phase, setPhase] = useState("");
+  const [title, setTitle] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const [suggestions, setSuggestions] = useState(Array(sugperus).fill(null));
@@ -25,6 +26,15 @@ const Suggest = () => {
         );
         //   console.log(res.data[0].phase);
         setPhase(res.data[0].phase);
+      } catch (error) {
+        console.log(error);
+      }
+      try {
+        const res = await axios.get(
+          `https://pollar-api-rxlv.onrender.com/api/participant/getPollTitle/${password}`
+        );
+        console.log(res.data[0].title);
+        setTitle(res.data[0].title);
       } catch (error) {
         console.log(error);
       }

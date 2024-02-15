@@ -43,7 +43,7 @@ const HomeAdmin = () => {
   useEffect(() => {
     const buttonStyle = {
       backgroundColor: "orange",
-      color: "red",
+      color: "purple",
     };
     var myUsers = [];
     if (pollCreated) {

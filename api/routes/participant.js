@@ -11,6 +11,7 @@ import {
   deleteVotes,
   getResults,
   getPollPhase,
+  getPollTitle,
 } from "../controllers/participant.js";
 
 const router = express.Router();
@@ -26,4 +27,5 @@ router.get("/getVotes/:uid/:pwd", getVotes);
 router.delete("/deleteVotes/:uid", deleteVotes);
 router.get("/getResults/:uid/:pwd/", getResults);
 router.get("/getPollPhase/:pwd/", getPollPhase);
+router.get("/getPollTitle/:pwd/", getPollTitle);
 export default router;

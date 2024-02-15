@@ -278,3 +278,11 @@ export const getPollPhase = (req, res) => {
     return res.status(200).json(data);
   });
 };
+
+export const getPollTitle = (req, res) => {
+  const q = "SELECT title FROM polls WHERE password=?";
+  db.query(q, [req.params.pwd], (err, data) => {
+    if (err) return res.status(500).json(err);
+    return res.status(200).json(data);
+  });
+};
