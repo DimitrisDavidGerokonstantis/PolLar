@@ -31,6 +31,7 @@ CREATE TABLE `polls` (
   `adminName` varchar(45) NOT NULL,
   `checkboxAllow` int NOT NULL,
   `title` varchar(100) NOT NULL,
+  `checkboxAllow2` int NOT NULL,
   PRIMARY KEY (`password`,`uid`),
   KEY `uid_idx` (`uid`),
   CONSTRAINT `uid` FOREIGN KEY (`uid`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
