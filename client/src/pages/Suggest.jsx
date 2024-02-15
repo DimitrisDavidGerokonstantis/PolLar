@@ -120,6 +120,13 @@ const Suggest = () => {
     }
     return (
       <div className="parthome">
+        {title ? (
+          <p style={{ color: "darkslategrey", padding: "15px" }}>
+            Title: {title}
+          </p>
+        ) : (
+          ""
+        )}
         <p>Make {sugperus} suggestions</p>
         {inputs}
         <div className="error">{nullEr}</div>
