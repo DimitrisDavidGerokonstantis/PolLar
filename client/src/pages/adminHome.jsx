@@ -299,7 +299,9 @@ const HomeAdmin = () => {
     const usernames = userNames.map((user) => {
       usernamesString += `${user}\n`;
     });
-    const contents = `Title: ${title}\nPassword: ${password}\nAdmin's Username: ${username}\nRank1 Points: ${rank1points}\nRank2 Points: ${rank2points}\nRank3 Points: ${rank3points}\nSuggestions per user: ${numOfSug}\nNumber of participants: ${numOfPart}\n\nParticipants' usernames:\n${usernamesString}\n`;
+    const allow1 = checkboxAllow ? "Yes" : "No";
+    const allow2 = checkboxAllow2 ? "Yes" : "No";
+    const contents = `Title: ${title}\nPassword: ${password}\nAdmin's Username: ${username}\nRank1 Points: ${rank1points}\nRank2 Points: ${rank2points}\nRank3 Points: ${rank3points}\nSuggestions per user: ${numOfSug}\nNumber of participants: ${numOfPart}\n\nParticipants' usernames:\n${usernamesString}\nAllow participants to vote again for the \nsame participant in different rank: ${allow1}\nAllow participants to see other participants' suggestions \nduring the suggestions' phase: ${allow2} \n`;
     const element = document.createElement("a");
     const file = new Blob([contents], { type: "text/plain" });
     element.href = URL.createObjectURL(file);
