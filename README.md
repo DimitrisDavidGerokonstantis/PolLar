@@ -75,9 +75,17 @@ From the admin's page, the admin can see how many participants have already vote
 
 ![Screenshot from 2024-02-16 21-28-24](https://github.com/DimitrisDavidGerokonstantis/PolLar/assets/106912404/771aabbf-21af-460d-a82e-b2d020333f33)
 
+After this, the admin and all the participants (when visiting their pages) can see the results of the poll. The points of each suggestion have been computed according to the points that were defined by the admin when he created the poll. 
+![Screenshot from 2024-02-16 21-41-00](https://github.com/DimitrisDavidGerokonstantis/PolLar/assets/106912404/c368f239-dc68-41a9-8f66-d2ec2c117359)
+
+![Screenshot from 2024-02-16 21-41-16](https://github.com/DimitrisDavidGerokonstantis/PolLar/assets/106912404/00c68087-f991-48d7-9ada-5364317b1750)
+
+## What's next
+An idea is to use the results of the poll and make some statistics and plots. 
+
+Feel free to give feedback (pollar.app2024@gmail.com) in order to report errors/problems and suggest improvements and additions.
 
 
 
 
 
-**-- To be updated --**
