@@ -43,6 +43,11 @@ Then we can join this poll and make suggestions using a participants' username a
 
 ![Screenshot from 2024-02-16 21-06-09](https://github.com/DimitrisDavidGerokonstantis/PolLar/assets/106912404/7f58aede-996e-436d-9d9a-4b0a87e0b857)
 
+Then, a participant can make his suggestions and see the current suggestions of other participants.
+
+![Screenshot from 2024-02-16 21-09-34](https://github.com/DimitrisDavidGerokonstantis/PolLar/assets/106912404/5e0f3bf5-a8ba-45c2-b010-755df63d273b)
+
+
 
 
 **-- To be updated --**
