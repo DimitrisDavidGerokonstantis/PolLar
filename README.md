@@ -55,8 +55,10 @@ At the same time, the admin of the poll can see the status of the poll when he c
 
 ![Screenshot from 2024-02-16 21-14-07](https://github.com/DimitrisDavidGerokonstantis/PolLar/assets/106912404/f41f4bab-5039-4873-b419-d57da8bcfadd)
 
-The admin sees that only 1 participant has made suggestions, so he cannot pass the poll into next (voting) phase.
+The admin sees that only 1 participant has made suggestions, thus he cannot pass the poll into next (voting) phase. He can also refresh this page in order to see the latest suggestions made by participants.
 
+When all participants have made suggestions, admin can start the voting phase.
 
+![Screenshot from 2024-02-16 21-19-02](https://github.com/DimitrisDavidGerokonstantis/PolLar/assets/106912404/6ef339ac-7b4d-43a9-b996-df52e2b44ab8)
 
 **-- To be updated --**
