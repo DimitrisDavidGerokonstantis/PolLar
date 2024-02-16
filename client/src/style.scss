@@ -489,7 +489,7 @@
       .column {
         table {
           border-collapse: collapse;
-          width: 50%;
+          width: 100%;
         }
 
         th,
@@ -525,6 +525,10 @@
           gap: 20px;
 
           .tableBlock {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             margin-right: 10px; // Adjust the spacing between tableBlocks as needed
             margin-bottom: 10px; // Adjust the spacing between rows as needed
           }
@@ -621,6 +625,429 @@
           }
           p {
             color: #0a2507;
+          }
+        }
+      }
+    }
+  }
+}
+
+.mobile-view {
+  .app {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: rgb(216, 233, 233);
+    height: auto;
+    overflow: auto;
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      // Home Page
+      .home {
+        height: 100vh; // Adjusted height for mobile
+        gap: 5%; // Reduced gap for better mobile layout
+        align-items: center;
+
+        button {
+          margin-top: 0px; // Adjusted margin for mobile
+          padding: 8px; // Reduced padding for mobile
+
+          &:hover {
+            padding: 7px;
+          }
+        }
+      }
+
+      .totresults {
+        margin-top: 10%; // Adjusted margin for mobile
+        margin-bottom: 20%; // Adjusted margin for mobile
+        gap: 15px;
+
+        .results {
+          button {
+            padding: 10px; // Reduced padding for mobile
+
+            &:hover {
+              padding: 9px;
+            }
+          }
+        }
+      }
+
+      // Navbar
+      .navbar {
+        .container {
+          gap: 10px; // Adjusted gap for mobile
+          p {
+            gap: 20px; // Adjusted gap for mobile
+            img {
+              width: 15px; // Adjusted image size for mobile
+            }
+          }
+          .logo {
+            margin-left: 0; // Adjusted margin for mobile
+            img {
+              width: 80px; // Adjusted image size for mobile
+            }
+          }
+        }
+      }
+
+      // Footer
+      footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+
+        padding: 5px; // Add padding or any other styling as needed
+        z-index: 1000;
+
+        background-color: rgb(166, 187, 166);
+        display: flex;
+        align-items: center;
+        gap: 10%;
+        font-style: 12px;
+        img {
+          height: 20px;
+        }
+        b {
+          font-size: xx-small;
+        }
+      }
+
+      // Admin Home
+      .adminhomeAll {
+        display: flex;
+
+        flex-direction: column;
+        height: auto;
+        align-items: center;
+        justify-content: center;
+
+        .adminhome {
+          margin-top: 100px;
+          margin-bottom: 30%;
+          .adminhome2 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            input {
+              width: 200px;
+              padding: 5px;
+              border: 1px solid lightgray;
+              background-color: rgb(246, 245, 247);
+
+              &:hover {
+                width: 200px;
+                border: 1px solid white;
+                background-color: rgb(212, 230, 214);
+                color: rgb(20, 54, 17);
+              }
+            }
+            .field {
+              display: flex;
+              padding: 10px;
+              gap: 10px;
+            }
+          }
+          .password {
+            display: flex;
+            margin-top: 0%;
+            gap: 1%;
+
+            p {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              width: 120%;
+              p {
+                color: #336663;
+              }
+            }
+          }
+          display: flex;
+          flex-direction: column;
+          gap: 30px;
+          align-items: center;
+          justify-content: center;
+          .error {
+            font-size: small;
+            color: rgb(209, 71, 71);
+          }
+          button {
+            padding: 10px;
+            border: none;
+
+            background-color: rgb(23, 59, 26);
+            cursor: pointer;
+            color: white;
+
+            &:hover {
+              padding: 11px;
+              border: 1px solid white;
+              background-color: rgb(132, 175, 143);
+              color: black;
+            }
+          }
+          .fields {
+            margin-bottom: 0px;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            gap: 40px;
+
+            .fieldsBlock {
+              gap: 10px;
+              flex: 1;
+              box-sizing: border-box;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              .error {
+                font-size: small;
+                color: rgb(209, 71, 71);
+              }
+            }
+
+            .field {
+              display: flex;
+              flex-direction: row;
+              gap: 20px;
+              justify-content: center;
+
+              p {
+                font-size: smaller;
+                margin-top: 10px;
+                max-width: 40%;
+              }
+            }
+
+            p {
+              font-size: 15px;
+              font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+                sans-serif;
+            }
+
+            input {
+              padding: 10px;
+              border: 1px solid lightgray;
+              background-color: rgb(246, 245, 247);
+              width: fit-content;
+
+              &:hover {
+                width: fit-content;
+                border: 1px solid white;
+                background-color: rgb(212, 230, 214);
+                color: rgb(20, 54, 17);
+              }
+            }
+          }
+        }
+      }
+
+      // Parthome
+      .parthome {
+        img {
+          width: 15px; // Adjusted image size for mobile
+        }
+        margin-top: 170px;
+        margin-bottom: 70%; // Adjusted margin for mobile
+        gap: 10px; // Adjusted gap for mobile
+        padding: 20px; // Adjusted padding for mobile
+
+        p {
+          font-size: 16px; // Adjusted font size for mobile
+        }
+
+        button {
+          padding: 10px; // Reduced padding for mobile
+
+          &:hover {
+            padding: 9px;
+          }
+        }
+      }
+
+      // Suggestions
+      .suggestions {
+        margin-top: 200px; // Adjusted margin for mobile
+        margin-bottom: 70%; // Adjusted margin for mobile
+        gap: 10px; // Adjusted gap for mobile
+        padding: 20px; // Adjusted padding for mobile
+
+        button {
+          padding: 10px; // Reduced padding for mobile
+
+          &:hover {
+            padding: 9px;
+          }
+        }
+
+        input {
+          width: 80%; // Adjusted width for mobile
+        }
+      }
+
+      // General Info
+      .generalInfo {
+        margin-top: 30px;
+        margin-bottom: 0%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .column {
+          table {
+            border-collapse: collapse;
+            width: 100%;
+          }
+
+          th,
+          td {
+            text-align: center;
+            padding: 8px;
+          }
+
+          tr:nth-child(even) {
+            background-color: #b1d4b8;
+          }
+          tr:nth-child(odd) {
+            background-color: #7ca77a;
+          }
+
+          th {
+            background-color: #2e6129;
+            color: white;
+          }
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 45px;
+
+          .participantsState {
+            display: flex;
+            flex-direction: column;
+
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+
+            .tableBlock {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              margin-right: 10px; // Adjust the spacing between tableBlocks as needed
+              margin-bottom: 10px; // Adjust the spacing between rows as needed
+            }
+
+            h4 {
+              color: #0a2507;
+            }
+            p {
+              color: #0a2507;
+            }
+          }
+        }
+      }
+
+      // Admin Info
+      .adminInfo {
+        img {
+          width: 20px;
+          position: fixed;
+          top: 10%;
+          left: 2%;
+          cursor: pointer;
+        }
+        margin-top: 120px;
+        margin-bottom: 80%;
+
+        button {
+          padding: 12px;
+          border: none;
+          background-color: rgb(23, 59, 26);
+          cursor: pointer;
+          color: white;
+
+          &:hover {
+            padding: 11px;
+            border: 1px solid white;
+            background-color: rgb(132, 175, 143);
+            color: black;
+          }
+        }
+        display: flex;
+        width: 100%;
+
+        .column {
+          .spinner {
+            position: fixed;
+            right: -170px;
+            top: 12%;
+          }
+          table {
+            border-collapse: collapse;
+            width: 100%;
+          }
+
+          th,
+          td {
+            text-align: center;
+            padding: 8px;
+          }
+
+          tr:nth-child(even) {
+            background-color: #b1d4b8;
+          }
+          tr:nth-child(odd) {
+            background-color: #7ca77a;
+          }
+
+          th {
+            background-color: #2e6129;
+            color: white;
+          }
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          margin-left: 10%;
+
+          gap: 45px;
+          .phase {
+            h4 {
+              font-size: small;
+              margin-top: 5%;
+              color: #0a2507;
+            }
+          }
+
+          .participantsState {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+
+            h4 {
+              font-size: small;
+              color: #0a2507;
+            }
+            p {
+              font-size: small;
+              color: #0a2507;
+            }
           }
         }
       }

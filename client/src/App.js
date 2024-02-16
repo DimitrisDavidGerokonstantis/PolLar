@@ -143,6 +143,25 @@ const router = createBrowserRouter([
 
 class App extends Component {
   render() {
+    function handleResize() {
+      const body = document.body;
+      const isMobile = window.innerWidth <= 767;
+
+      // Add or remove the 'mobile-view' class on the body based on whether it's a mobile screen
+      if (isMobile) {
+        console.log("MOBILE");
+        body.classList.add("mobile-view");
+      } else {
+        console.log("NOT MOBILE");
+        body.classList.remove("mobile-view");
+      }
+    }
+
+    // Attach the event listener to the window resize event
+    window.addEventListener("resize", handleResize);
+
+    // Initial call to set the initial state based on the window width
+    handleResize();
     // window.onbeforeunload = function () {
     //   localStorage.clear();
     // };
