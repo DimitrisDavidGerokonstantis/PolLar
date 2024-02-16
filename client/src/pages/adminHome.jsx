@@ -575,7 +575,7 @@ const HomeAdmin = () => {
             <div className="field">
               {" "}
               <p>
-                Allow participants to see other participant's suggestions during
+                Allow participants to see other participants' suggestions during
                 the suggestions' phase
               </p>{" "}
               <input
