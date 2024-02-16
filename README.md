@@ -5,7 +5,8 @@ This is a web application for creating polls. Its functionality is described bel
 The main purpose of creating this platform is the integration of the main stages of collective decision making : 
   1. Submission of suggestions by the members of the poll
   2. Vote on these suggestions (specifically, each participant votes for 3 suggestions, ranking them in order of preference)
-  3. Results 
+  3. Results
+     
 PoLlar polls go through these 3 phases.
 
 ## Roles
