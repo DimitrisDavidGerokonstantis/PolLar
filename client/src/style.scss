@@ -162,6 +162,9 @@
         margin-top: 13%;
         margin-bottom: 30%;
         .adminhome2 {
+          p {
+            font-size: smaller;
+          }
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -763,6 +766,7 @@
 
             p {
               display: flex;
+
               flex-direction: column;
               justify-content: center;
               align-items: center;
@@ -790,10 +794,23 @@
             color: white;
 
             &:hover {
-              padding: 11px;
+              padding: 9px;
               border: 1px solid white;
               background-color: rgb(132, 175, 143);
               color: black;
+            }
+          }
+          form {
+            display: flex;
+            flex-direction: column;
+            gap: 200px;
+            justify-content: center;
+            margin-bottom: 30px;
+
+            p {
+              font-size: smaller;
+              margin-top: 10px;
+              max-width: 40%;
             }
           }
           .fields {
