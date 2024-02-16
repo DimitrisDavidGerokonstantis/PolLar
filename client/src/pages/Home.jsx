@@ -24,7 +24,7 @@ const Home = () => {
       <b>
         Note : Your first request (for example, an attempt to join a poll) may
         lead to a delay up to 1 minute due to technical reasons associated with
-        the deployement made via render.com. After this first delay, the web app
+        the deployment made via render.com. After this first delay, the web app
         will have reasonal response times!
       </b>
     </div>
