@@ -557,6 +557,11 @@ const HomeAdmin = () => {
                 onChange={handle3Rank}
               />
             </div>
+            <div className="error">
+              {rank1Error || rank2Error || rank3Error
+                ? `Error : Must be a NUMBER`
+                : ""}{" "}
+            </div>
             <br></br>
             <div className="field">
               {" "}
@@ -585,11 +590,6 @@ const HomeAdmin = () => {
                 onChange={handleCheckbox2}
                 // value={name}
               />
-            </div>
-            <div className="error">
-              {rank1Error || rank2Error || rank3Error
-                ? `Error : Must be a NUMBER`
-                : ""}{" "}
             </div>
           </div>
         </div>
