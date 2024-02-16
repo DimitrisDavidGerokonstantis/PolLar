@@ -7,7 +7,7 @@ The main purpose of creating this platform is the integration of the main stages
   2. Vote on these suggestions (specifically, each participant votes for 3 suggestions, ranking them in order of preference)
   3. Results
      
-PoLlar polls go through these 3 phases.
+PolLar polls go through these 3 phases.
 
 ## Roles
 There are 2 roles in each PolLar poll :
