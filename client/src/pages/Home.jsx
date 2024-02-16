@@ -25,7 +25,8 @@ const Home = () => {
         Note : Your first request (for example, an attempt to join a poll) may
         lead to a delay up to 1 minute due to technical reasons associated with
         the deployment made via render.com. After this first delay, the web app
-        will have reasonal response times!
+        will have reasonal response times! We also note that the app is
+        available in both desktop and mobile mode.
       </b>
     </div>
   );
