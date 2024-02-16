@@ -47,6 +47,15 @@ Then, a participant can make his suggestions and see the current suggestions of 
 
 ![Screenshot from 2024-02-16 21-09-34](https://github.com/DimitrisDavidGerokonstantis/PolLar/assets/106912404/5e0f3bf5-a8ba-45c2-b010-755df63d273b)
 
+After this, a participant can modify his suggestions. Every time he joins this poll, this participant will be forwarded into this page. 
+
+![Screenshot from 2024-02-16 21-11-28](https://github.com/DimitrisDavidGerokonstantis/PolLar/assets/106912404/5bf188f9-3844-41b4-937e-925e0e45b901)
+
+At the same time, the admin of the poll can see the status of the poll when he chooses the "Check your poll's status" button. 
+
+![Screenshot from 2024-02-16 21-14-07](https://github.com/DimitrisDavidGerokonstantis/PolLar/assets/106912404/f41f4bab-5039-4873-b419-d57da8bcfadd)
+
+The admin sees that only 1 participant has made suggestions, so he cannot pass the poll into next (voting) phase.
 
 
 
