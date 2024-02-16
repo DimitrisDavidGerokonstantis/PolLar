@@ -6,7 +6,7 @@ const Footer = () => {
     <footer>
       <img src={Logo}></img>
       <span>
-        <b>Deployed using render.com</b>
+        <b>Publicly available via render.com</b>
       </span>
       <span>
         <b>Contact us here: pollar.app2024@gmail.com</b>
