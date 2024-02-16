@@ -125,6 +125,11 @@ const Votes = () => {
             </Link>
           </div>
           {isLoading ? <LoadingSpinner state={"Please wait ..."} /> : ""}
+          <h6>
+            Note : You can modify your votes only during the voting phase. If
+            you have already made your final votes, you have to wait for the
+            poll's admin to pass the poll into the final (results) phase
+          </h6>
         </div>
       );
     } else {

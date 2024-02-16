@@ -113,14 +113,23 @@ const Suggestions = () => {
       }
       return (
         <div className="suggestions">
+          <br></br>
+
           <p>You have made the suggestions below</p>
           {output}
+
           <div className="modifysug">
             <Link to={`/participant/suggestions/${password}?edit=1`}>
               <img src={Edit} />
             </Link>
             {isLoading ? <LoadingSpinner state={"Please wait ..."} /> : ""}
           </div>
+          <h6>
+            Note : You can modify your suggestions only during the suggestions'
+            phase. If you have already made your final suggestions, you have to
+            wait for the poll's admin to pass the poll into the next (voting)
+            phase
+          </h6>
           <CurrentSuggestions password={password} uid={id} />
         </div>
       );
