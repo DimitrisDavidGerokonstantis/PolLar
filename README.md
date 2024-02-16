@@ -32,7 +32,7 @@ After these steps, we create the poll.
 ![Screenshot from 2024-02-16 20-52-01](https://github.com/DimitrisDavidGerokonstantis/PolLar/assets/106912404/5c3711d6-e872-4749-adb5-d833c19c69d6)
 
 We can notice 2 useful features:
-  * You can download a .txt file containing information about the poll (all the parameters defined by the creator plus the participants' usernames)
+  * You can download a .txt file containing information about the poll (all the parameters defined by the creator plus the participants' usernames and the poll's password)
     
 ![Screenshot from 2024-02-16 20-56-27](https://github.com/DimitrisDavidGerokonstantis/PolLar/assets/106912404/fc4dd285-06a6-4202-960b-74f55d83b4bc)
   * You can send (and resend) invitations via email (use of emailjs package) for each username that was produced (usernames cannot be changed anymore, these fields are read only). These emails have the format that you can see below.
