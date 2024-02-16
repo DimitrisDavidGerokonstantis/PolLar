@@ -152,12 +152,12 @@ const HomeParticipant = () => {
   // <img onClick={handleReload} src={Reload}></img>
   return (
     <div className="parthome">
-      <p>Enter your name and the poll's password</p>
+      <p>Enter your username and the poll's password</p>
       <input
         required
         type="text"
         value={name}
-        placeholder="name"
+        placeholder="username"
         onChange={handleName}
       />
       <input
