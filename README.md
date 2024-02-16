@@ -87,6 +87,9 @@ One idea is to use the results of the poll and make some statistics and plots.
 Feel free to give feedback (pollar.app2024@gmail.com) in order to report errors/problems and suggest improvements and additions.
 
 
+**To be updated in order to explain some non functional requirements that were implemented (for example, in order to ensure that only valid participants of a poll can join it)**
+
+
 
 
 
