@@ -82,7 +82,7 @@ After this, the admin and all the participants (when visiting their pages) can s
 ![Screenshot from 2024-02-16 21-41-16](https://github.com/DimitrisDavidGerokonstantis/PolLar/assets/106912404/00c68087-f991-48d7-9ada-5364317b1750)
 
 
->**To be updated in order to explain some non functional requirements that were satisfied (for example, in order to ensure that only valid participants of a poll can join it)**
+>**To be updated in order to explain some non functional requirements that were met (for example, in order to ensure that only valid participants of a poll can join it)**
 
 ## What's next
 One idea is to use the results of the poll and make some statistics and plots. 
