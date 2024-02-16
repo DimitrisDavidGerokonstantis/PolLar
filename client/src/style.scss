@@ -13,26 +13,37 @@
     justify-content: center;
 
     // Home Page
-    .home {
-      height: 95vh;
-      display: flex;
-      justify-content: center;
-      gap: 10%;
-      align-items: center;
+    .homeAll {
+      b {
+        position: fixed;
+        bottom: 150px;
+        left: 0;
+        margin-left: 200px;
+        margin-right: 170px;
+        font-size: smaller;
+      }
 
-      button {
-        margin-top: 100px;
+      .home {
+        height: 95vh;
+        display: flex;
+        justify-content: center;
+        gap: 10%;
+        align-items: center;
 
-        padding: 20px;
-        border: none;
-        background-color: rgb(23, 59, 26);
-        cursor: pointer;
-        color: white;
-        &:hover {
-          padding: 19px;
-          border: 1px solid white;
-          background-color: rgb(132, 175, 143);
-          color: black;
+        button {
+          margin-top: 100px;
+
+          padding: 20px;
+          border: none;
+          background-color: rgb(23, 59, 26);
+          cursor: pointer;
+          color: white;
+          &:hover {
+            padding: 19px;
+            border: 1px solid white;
+            background-color: rgb(132, 175, 143);
+            color: black;
+          }
         }
       }
     }
@@ -649,19 +660,29 @@
       flex-direction: column;
       justify-content: center;
 
-      // Home Page
-      .home {
+      .homeAll {
+        display: flex;
+        flex-direction: column;
         height: 100vh; // Adjusted height for mobile
-        gap: 5%; // Reduced gap for better mobile layout
+        // Reduced gap for better mobile layout
         align-items: center;
+        .home {
+          button {
+            margin-top: 0px; // Adjusted margin for mobile
+            padding: 8px; // Reduced padding for mobile
 
-        button {
-          margin-top: 0px; // Adjusted margin for mobile
-          padding: 8px; // Reduced padding for mobile
-
-          &:hover {
-            padding: 7px;
+            &:hover {
+              padding: 7px;
+            }
           }
+        }
+
+        b {
+          color: rgb(47, 70, 36);
+          margin-top: -200px;
+          font-size: smaller;
+          margin-left: 20px;
+          margin-right: 20px;
         }
       }
 
