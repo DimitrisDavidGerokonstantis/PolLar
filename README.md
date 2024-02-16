@@ -21,7 +21,7 @@ The main page of PolLar is the one below.
 
 There are 3 sections, one for joining a poll, one for creating a poll and one for checking the status of a poll (for admins). 
 
-### A complete use case : Poll Creation
+### Poll Creation
 Firstly, one can create a poll defining the parameters of it. An example is shown below.
 ![Screenshot from 2024-02-16 20-38-39](https://github.com/DimitrisDavidGerokonstantis/-PolarDeploy/assets/106912404/6b6a1439-1540-4868-a2a8-369e24182049)
 
@@ -37,6 +37,12 @@ We can notice 2 useful features:
   * You can send (and resend) invitations via email (use of emailjs package) for each username that was produced (usernames cannot be changed anymore, these fields are read only). These emails have the format that you can see below.
     
 ![Screenshot from 2024-02-16 20-59-52](https://github.com/DimitrisDavidGerokonstantis/PolLar/assets/106912404/083272ab-7e2b-4c39-8798-19c94f614425)
+
+### Make suggestions
+Then we can join this poll and make suggestions using a participants' username and the poll's password. We can also define a nickname. Usernames are not public to everyone (the reason is obvious), so when we see information about other participants (such as their current suggestions) we will only see their nicknames and not their usernames. 
+
+![Screenshot from 2024-02-16 21-06-09](https://github.com/DimitrisDavidGerokonstantis/PolLar/assets/106912404/7f58aede-996e-436d-9d9a-4b0a87e0b857)
+
 
 
 **-- To be updated --**
