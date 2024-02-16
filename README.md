@@ -61,4 +61,23 @@ When all participants have made suggestions, admin can start the voting phase.
 
 ![Screenshot from 2024-02-16 21-19-02](https://github.com/DimitrisDavidGerokonstantis/PolLar/assets/106912404/6ef339ac-7b4d-43a9-b996-df52e2b44ab8)
 
+### Voting Phase
+At this point, each participant can vote his 3 best movies in preference order. Of course, he cannot vote for his own suggestions. 
+
+![Screenshot from 2024-02-16 21-21-24](https://github.com/DimitrisDavidGerokonstantis/PolLar/assets/106912404/021665d6-788d-4c00-ac80-59c86a0b0da6)
+![Screenshot from 2024-02-16 21-23-00](https://github.com/DimitrisDavidGerokonstantis/PolLar/assets/106912404/26186925-8acb-46fc-a790-bcc30cf85416)
+
+During the voting phase, each participant can modify his votes. Also, every time he joins the poll, he will be navigated to this page. 
+
+![Screenshot from 2024-02-16 21-23-49](https://github.com/DimitrisDavidGerokonstantis/PolLar/assets/106912404/e3b6f163-a1cb-4e21-afbb-e96cad74a971)
+
+From the admin's page, the admin can see how many participants have already voted. When all participants have voted, the admin can finish the poll. 
+
+![Screenshot from 2024-02-16 21-28-24](https://github.com/DimitrisDavidGerokonstantis/PolLar/assets/106912404/771aabbf-21af-460d-a82e-b2d020333f33)
+
+
+
+
+
+
 **-- To be updated --**
