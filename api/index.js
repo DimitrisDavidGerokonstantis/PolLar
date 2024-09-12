@@ -10,7 +10,7 @@ import multer from "multer";
 const app = express();
 
 const corsOptions = {
-  origin: ["https://pollar-app.onrender.com", "http://localhost:3000", "http://localhost:4200", "*"],
+  origin: "*",
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
