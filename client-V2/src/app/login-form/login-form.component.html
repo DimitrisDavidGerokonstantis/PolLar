@@ -1,0 +1,47 @@
+<form
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+  [style.height]="type() === 'participant' ? '500px' : '410px'"
+>
+  <h2>{{ type() === "participant" ? "Join A Poll" : "Access your Poll" }}</h2>
+  <div class="control-row">
+    <div class="control no-margin">
+      <label for="username">Username</label>
+      <input id="username" type="text" formControlName="username" />
+    </div>
+    @if (form.controls.username.touched && form.controls.username.dirty &&
+    form.controls.username.invalid) {
+    <p class="control-error">Must contain up to 30 characters</p>
+    }
+  </div>
+  <div class="control-row">
+    <div class="control no-margin">
+      <label for="password">Password</label>
+      <input id="password" type="password" formControlName="password" />
+    </div>
+    @if (form.controls.password.touched && form.controls.password.dirty &&
+    form.controls.password.invalid) {
+    <p class="control-error">Must contain 8 characters</p>
+    }
+  </div>
+  @if (type()==='participant') {
+  <div class="control-row">
+    <div class="control no-margin">
+      <label for="nickname">Nickname</label>
+      <input id="nickname" type="text" formControlName="nickname" />
+    </div>
+    @if (form.controls.nickname.touched && form.controls.nickname.dirty &&
+    form.controls.nickname.invalid) {
+    <p class="control-error">Must contain 3-15 characters</p>
+    }
+  </div>
+  }
+  <button class="button">Join</button>
+  @if(isLoading()){
+  <app-loading-spinner />
+  } @else if(error() || navError()){
+  <app-error [errorMsg]="error() || navError()" />
+  } @else {
+  <p>Fill in the fields of the form to continue</p>
+  }
+</form>

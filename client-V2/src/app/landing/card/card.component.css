@@ -1,0 +1,103 @@
+/* Ensure the card container is set up to center the card */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns */
+  gap: 20px; /* Space between cards */
+  width: 80%; /* Adjust width as needed */
+  max-width: 1200px; /* Maximum width of the grid container */
+}
+
+/* Custom card styling */
+.custom-card {
+  background-color: #fff; /* White background */
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  overflow: hidden; /* Hide overflow to maintain clean edges */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+  padding: 20px; /* Added padding inside the card */
+  max-width: 40%; /* Half the width of the container */
+  margin: 20px; /* Margin around the card to ensure spacing */
+  border: 1px solid #ddd; /* Light border */
+  overflow: auto;
+  width: 500px;
+}
+
+.about-card {
+  background-color: #dde9e3; /* White background */
+}
+
+/* Hover effects */
+.custom-card:hover {
+  transform: translateY(-5px); /* Slight lift effect on hover */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+}
+
+/* Card header (title and subtitle) */
+mat-card-header {
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee; /* Subtle border under header */
+}
+
+mat-card-title {
+  font-size: 24px; /* Larger font size for the title */
+  font-weight: 600; /* Semi-bold */
+  color: #333; /* Darker text for better readability */
+  margin: 0;
+}
+
+mat-card-subtitle {
+  font-size: 16px; /* Smaller font for the subtitle */
+  color: #666; /* Subtle color for the subtitle */
+  margin-top: 15px; /* Space between title and subtitle */
+}
+
+.actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically (optional) */
+}
+
+/* Custom button styling */
+.custom-button {
+  background-color: #216435; /* Primary blue color */
+  color: white;
+  padding: 8px 16px;
+  font-family: "Courier New", Courier, monospace;
+  border-radius: 5px; /* Rounded button */
+  text-transform: uppercase; /* Uppercase text */
+  font-weight: 600; /* Bold text */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+}
+
+.custom-button:hover {
+  background-color: #4a9568; /* Darker blue on hover */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Add subtle shadow on hover */
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .custom-card {
+    max-width: 60%; /* Make card almost full-width on small screens */
+  }
+
+  mat-card-title {
+    font-size: 20px; /* Smaller title font on smaller screens */
+  }
+
+  mat-card-subtitle {
+    font-size: 14px; /* Adjust subtitle size */
+  }
+}
+
+@media (min-width: 600px) {
+  .custom-card {
+    max-width: 100%; /* Make card almost full-width on small screens */
+  }
+}
+
+@media (min-width: 1000px) {
+  .custom-card {
+    transform: scale(0.9);
+  }
+}

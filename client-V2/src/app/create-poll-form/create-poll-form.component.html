@@ -1,0 +1,251 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <h2>Set up your Poll</h2>
+
+  <div class="control-row">
+    <div class="control" [class.submitted]="isSubmitted()">
+      <label for="title">Title of the Poll</label>
+      <input
+        id="title"
+        type="text"
+        name="title"
+        formControlName="title"
+        [class.submitted]="isSubmitted()"
+      />
+    </div>
+
+    <div class="control" [class.submitted]="isSubmitted()">
+      <label for="username">Your username</label>
+      <input
+        id="username"
+        type="text"
+        name="username"
+        formControlName="username"
+        [class.submitted]="isSubmitted()"
+      />
+    </div>
+  </div>
+  @if (isSubmitted()&&form.controls.title.invalid) {
+  <app-error errorMsg="Title must contain 1-70 characters" />
+  } @if (isSubmitted() && form.controls.username.invalid) {
+  <app-error errorMsg="Username must contain 1-10 characters" />
+
+  }
+
+  <hr />
+
+  <div>
+    <fieldset
+      formGroupName="participantsConfig"
+      [class.submitted]="isSubmitted()"
+    >
+      <legend>Participants & Suggestions</legend>
+
+      <div class="control-row">
+        <div class="control" [class.submitted]="isSubmitted()">
+          <label for="participants">Number of participants</label>
+          <input
+            type="number"
+            id="participants"
+            name="participants"
+            formControlName="numOfParticipants"
+            [class.submitted]="isSubmitted()"
+            (change)="generateUsernames()"
+            (keypress)="generateUsernames()"
+          />
+        </div>
+
+        <div class="control" [class.submitted]="isSubmitted()">
+          <label for="suggestions">Suggestions per participant</label>
+          <input
+            type="number"
+            id="suggestions"
+            name="suggestions"
+            [class.submitted]="isSubmitted()"
+            formControlName="suggestionsPerParticipant"
+          />
+        </div>
+      </div>
+
+      <div class="control-row">
+        <div class="control" [class.submitted]="isSubmitted()">
+          <label for="same-participant">
+            <input
+              type="checkbox"
+              id="same-participant"
+              name="same-participant"
+              [class.submitted]="isSubmitted()"
+              formControlName="checkbox1"
+            />
+            Allow participants to vote for the same participant in different
+            rank
+          </label>
+        </div>
+      </div>
+      <div class="control-row">
+        <div class="control" [class.submitted]="isSubmitted()">
+          <label for="other-suggestions">
+            <input
+              type="checkbox"
+              id="other-suggestions"
+              name="other-suggestions"
+              [class.submitted]="isSubmitted()"
+              formControlName="checkbox2"
+            />
+            Allow participants to see other participants' suggestions during the
+            suggestions phase
+          </label>
+        </div>
+      </div>
+      @if (isSubmitted()&&form.controls.participantsConfig.invalid) { @if
+      (form.controls.participantsConfig.errors &&
+      form.controls.participantsConfig.errors['validNumberOfParticipants']===false)
+      {
+      <app-error
+        errorMsg="Participants must be at least 4 when the first option is not selected"
+      />
+      } @if(isSubmitted()&&form.controls.participantsConfig.errors &&
+      form.controls.participantsConfig.errors['validRelationOfParticipantsAndSuggestions']===false)
+      {
+      <app-error errorMsg="Be sure you satisfy this formula:">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <mfenced>
+            (<mi>#participants</mi>
+            <mo>-</mo>
+            <mn>1</mn>)
+          </mfenced>
+          <mo>&times;</mo>
+          <mfenced>
+            (<mi>#suggestions</mi>
+            <mo>per</mo>
+            <mi>participant</mi>)
+          </mfenced>
+          <mo>&ge;</mo>
+          <mn>3</mn>
+        </math>
+      </app-error>
+
+      } }
+    </fieldset>
+  </div>
+
+  <hr />
+
+  <div>
+    <fieldset>
+      <legend>Points - Ranking matching</legend>
+
+      <div class="control-row" formGroupName="matchingConfig">
+        <div class="control" [class.submitted]="isSubmitted()">
+          <label for="rankign1">#1 ranking</label>
+          <select id="rankign1" name="rankign1" formControlName="ranking1">
+            @for (item of [5,7,8,10,12,20,30,40,50,60,70,80,90,100]; track item)
+            {
+            <option [value]="item">{{ item }}</option>
+            }
+          </select>
+        </div>
+        <div class="control" [class.submitted]="isSubmitted()">
+          <label for="rankign2">#2 ranking</label>
+          <select id="rankign2" name="rankign2" formControlName="ranking2">
+            @for (item of [5,7,8,10,12,20,30,40,50,60,70,80,90,100]; track item)
+            {
+            <option [value]="item">{{ item }}</option>
+            }
+          </select>
+        </div>
+        <div class="control" [class.submitted]="isSubmitted()">
+          <label for="rankign3">#3 ranking</label>
+          <select id="rankign3" name="rankign3" formControlName="ranking3">
+            @for (item of [5,7,8,10,12,20,30,40,50,60,70,80,90,100]; track item)
+            {
+            <option [value]="item">{{ item }}</option>
+            }
+          </select>
+        </div>
+      </div>
+      @if (isSubmitted()&&form.controls.matchingConfig.invalid ) {
+      <app-error errorMsg="Make sure you fill in all the ranking values" />
+      }
+    </fieldset>
+  </div>
+
+  <div>
+    @if (isPollCreated()) {
+    <app-dialog
+      type="classic"
+      [manualVisibility]="true"
+      title="Send Invitations"
+      buttonText="Send Invitations"
+    >
+      <!-- <hr /> -->
+      <br />
+
+      <fieldset formArrayName="usernames" class="usernames-fieldset">
+        <legend>Generated participants</legend>
+
+        @for (username of usernames(); track username) {
+        <div class="control-row">
+          <div class="control" [class.submitted]="isSubmitted()">
+            <label [for]="username">Username</label>
+            <input
+              [value]="username"
+              type="text"
+              [id]="username"
+              [name]="username"
+              disabled
+              [class.submitted]="isSubmitted()"
+            />
+          </div>
+
+          <div class="control" [class.submitted]="isSubmitted()">
+            <label [for]="$index">Email</label>
+            <input
+              type="email"
+              [id]="$index"
+              [name]="$index"
+              [class.submitted]="isSubmitted()"
+              [formControlName]="$index"
+            />
+          </div>
+          <button
+            (click)="onSendInvitation($event, $index, username)"
+            class="send-button"
+            [disabled]="
+              !!form.controls.usernames.controls[$index].errors ||
+              form.controls.usernames.value[$index] === 'email@example.com'
+            "
+          >
+            {{
+              invitationsSent()[$index]
+                ? "Resend Invitation"
+                : "Send Invitation"
+            }}
+          </button>
+        </div>
+        @if (!$last) {
+        <hr />
+        } }
+      </fieldset>
+    </app-dialog>
+    }
+  </div>
+
+  <p class="form-actions">
+    <!-- <button type="reset" (click)="onReset()" class="button button-flat">Reset</button> -->
+    @if (!isPollCreated()) {
+    <button type="submit" class="button">Create</button>
+    }
+  </p>
+  <div class="loading-section">
+    @if (isLoading()) {
+    <app-loading-spinner />
+    } @else if((isSubmitted() && form.invalid) || (!form.invalid &&
+    createPollError()==="Invalid or missingvalues!")){
+    <app-error [errorMsg]="createPollError()" />
+    } @else if(!isPollCreated()){
+    <p class="tip">Fill in all the fields so as to configure your poll !</p>
+    } @if (isPollCreated()) {
+    <app-download-info [info]="pollInfo()" />
+    }
+  </div>
+</form>

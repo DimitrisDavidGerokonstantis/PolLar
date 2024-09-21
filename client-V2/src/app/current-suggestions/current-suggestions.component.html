@@ -1,0 +1,15 @@
+@defer(on viewport){
+<div class="current-suggestions">
+  @for (userSuggestions of currentSuggestionsPerUser(); track $index) { @if
+  (!excludedUsers() || !excludedUsers().includes(userSuggestions.user)) {
+  <app-user-suggestions
+    [userSuggestions]="userSuggestions"
+    [suggestionsPerParticipant]="+suggestionsPerParticipant()"
+  />
+  } }@empty {
+  <p>No suggestions available!</p>
+  }
+</div>
+} @placeholder {
+<app-loading-spinner text="Fetching data..." />
+}

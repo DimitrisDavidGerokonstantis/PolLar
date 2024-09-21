@@ -1,0 +1,45 @@
+<div class="card-container">
+  <app-card [inputs]="{
+      title: 'Join a Poll',
+      subtitle:
+        'Make sure you know the password of the poll and your username. Otherwise, contact the administrator of the poll !',
+      button_text: 'Join',
+      button_link: '/participant/login',
+      type: 'classic'
+    }" />
+  <app-card [inputs]="{
+      title: 'Create a Poll',
+      subtitle:
+        'Create a new poll that you can share with other users. Make sure you fill in all the required fields.',
+      button_text: 'Start',
+      button_link: '/create',
+      type: 'classic'
+    }" />
+</div>
+<div class="card-container">
+  <app-card [inputs]="{
+      title: 'Check your poll',
+      subtitle:
+        'Check the status of your poll (stage, current suggestions, voting status etc)',
+      button_text: 'Check',
+      button_link: '/admin/login',
+      type: 'classic'
+    }" />
+  <app-card [inputs]="{
+      title: 'About',
+      subtitle: 'Read the about page in order to see how this website works!',
+      button_text: 'Read',
+      button_link: 'about',
+      type: 'about'
+    }" />
+</div>
+
+@if (auth()==="true") {
+<app-dialog type="error" [manualVisibility]="false" title="Authentication Error">
+  <p>You are not allowed to access this content</p>
+</app-dialog>
+}@else if (phaseInvalid()==="true") {
+<app-dialog type="error" [manualVisibility]="false" title="Not allowed in the current phase">
+  <p>You are not allowed to access this content during the current phase of the poll</p>
+</app-dialog>
+}

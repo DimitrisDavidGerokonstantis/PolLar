@@ -1,0 +1,28 @@
+@if(errorMessage()){
+<app-error errorMsg="Could not load current suggestions!" />
+} @else if(isLoading()){
+<app-loading-spinner text="Loading data..." />
+} @else if(shared_phase()===1 && allowToWatchOtherSuggestions()){
+<app-dialog
+  [manualVisibility]="true"
+  title="Current Suggestions"
+  type="classic"
+  buttonText="Watch current suggestions"
+  ><app-current-suggestions
+    [suggestionsPerParticipant]="suggestionsPerParticipant()"
+    [currentSuggestions]="currentSuggestions()"
+    [excludedUsers]="excludedUsers()"
+/></app-dialog>
+} @else if (shared_phase()===2) {
+<app-dialog
+  buttonText="Current Votes"
+  type="classic"
+  title="Current Votes"
+  [manualVisibility]="true"
+>
+  <app-current-votes [currentVotes]="currentVotes()" />
+</app-dialog>
+} @else {
+<app-error errorMsg="Please try again" />
+
+}

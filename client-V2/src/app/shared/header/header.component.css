@@ -1,0 +1,83 @@
+/* Toolbar container */
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Space between elements */
+  background-color: hsl(120, 6%, 75%); /* Primary blue color */
+  color: white;
+  padding: 0 50px; /* Increased padding on left and right */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  height: 64px; /* Set toolbar height */
+  box-sizing: border-box; /* Ensure padding doesn't affect layout */
+}
+
+/* Toolbar title */
+.app-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: rgb(12, 46, 18);
+  margin: 0 auto; /* Auto margin to help with centering */
+}
+
+/* Spacer to push right-side content */
+.example-spacer {
+  flex: 1;
+}
+
+/* Icon button (menu icon) */
+.example-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 50%; /* Rounded icon button */
+  margin-right: 2px; /* Right margin to move away from edge */
+}
+
+.example-icon img {
+  width: 32px;
+  height: 32px;
+}
+
+/* Username button styling */
+.username-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: rgb(22, 54, 40);
+  transition: background-color 0.3s ease;
+  border-radius: 5px;
+}
+
+.username-button:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Light hover effect */
+}
+
+/* Username text */
+.username-text {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  color: rgb(56, 88, 46);
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .app-title {
+    font-size: 20px; /* Smaller title font on smaller screens */
+  }
+
+  .toolbar {
+    padding: 0 20px; /* Reduced padding on smaller screens */
+  }
+}
