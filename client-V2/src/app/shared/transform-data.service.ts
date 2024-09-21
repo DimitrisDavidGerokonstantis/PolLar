@@ -3,6 +3,10 @@ import {
   SuggestionsData,
   UserSuggestions,
 } from '../models/poll-status-results.model';
+import {
+  SuggestionsToVoteData,
+  transformedSuggestionsToVoteData,
+} from '../models/votingData.model';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +15,7 @@ export class TransformDataService {
   transformCurrentSuggestionsData(
     currentSuggestions: SuggestionsData[],
     suggestionsPerParticipant: number
-  ) : UserSuggestions[] {
+  ): UserSuggestions[] {
     let suggestionsPerUser: UserSuggestions[] = [];
 
     for (
@@ -36,9 +40,26 @@ export class TransformDataService {
       suggestionsPerUser.push({
         user: current_user,
         suggestions: currentUserSuggestions,
-        name: current_user_name
+        name: current_user_name,
       });
     }
     return suggestionsPerUser;
+  }
+
+  transformVotingData(
+    data: SuggestionsToVoteData[]
+  ): transformedSuggestionsToVoteData {
+    let transformedData: transformedSuggestionsToVoteData = {};
+    data.forEach((suggestion) => {
+      if (!transformedData[suggestion.userNickname]) {
+        transformedData[suggestion.userNickname] = [];
+      }
+      transformedData[suggestion.userNickname].push({
+        suggestion: suggestion.suggestion,
+        sugID: suggestion.id,
+        sugUserID: suggestion.userid,
+      });
+    });
+    return transformedData;
   }
 }

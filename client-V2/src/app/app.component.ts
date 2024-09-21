@@ -7,6 +7,8 @@ import { SharedService } from './shared/shared.service';
 import { LocalStorageService } from './shared/local-storage.service';
 import { DialogComponent } from './dialog/dialog.component';
 import { ModalComponent } from './shared/health-check/modal/modal.component';
+import { DecideNavigationService } from './shared/decide-navigation.service';
+import { ErrorComponent } from './shared/error/error.component';
 
 @Component({
   selector: 'app-root',
@@ -18,14 +20,18 @@ import { ModalComponent } from './shared/health-check/modal/modal.component';
     LoadingSpinnerComponent,
     DialogComponent,
     ModalComponent,
+    ErrorComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent implements OnInit {
   private sharedService = inject(SharedService);
+  private navService = inject(DecideNavigationService);
   user = this.sharedService.publicUser;
   isOpenModal = signal(false);
+  generalError = this.navService.publicError;
+  generalError2 = this.sharedService.public_error;
 
   openHealthCheckModal() {
     this.isOpenModal.set(true);

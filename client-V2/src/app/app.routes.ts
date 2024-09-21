@@ -44,6 +44,7 @@ export const routes: Routes = [
           canMatchRoleSpecificPaths('participant'),
           canMatchPhaseSpecificPaths(2),
         ],
+        runGuardsAndResolvers: 'always',
         children: [
           {
             path: 'overview',

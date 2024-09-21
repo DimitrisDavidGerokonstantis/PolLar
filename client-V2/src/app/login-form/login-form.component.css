@@ -17,6 +17,11 @@ form p {
   font-size: larger;
 }
 
+.control input:disabled {
+  cursor: not-allowed;
+  background-color: #b7bab9;
+}
+
 h2 {
   color: #16655e;
 }

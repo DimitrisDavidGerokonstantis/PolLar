@@ -12,6 +12,7 @@ import {
 import { LoginResponse } from './models/participant-login-response.model';
 import { EnvService } from './shared/env.service';
 import { SharedService } from './shared/shared.service';
+import { VotingData } from './models/votingData.model';
 
 @Injectable({
   providedIn: 'root',
@@ -86,16 +87,21 @@ export class ParticipantService {
     suggestion_id: number,
     user_id: string
   ) {
-    console.log('SUGGESTION TO UPDATE',suggestion);
-    return this.httpClient.put(
-      this.envService.baseUrl + `/api/participant/updateSuggestion`,
-      {
+    console.log('SUGGESTION TO UPDATE', suggestion);
+    return this.httpClient
+      .put(this.envService.baseUrl + `/api/participant/updateSuggestion`, {
         password: password,
         suggestion: suggestion,
         sugid: suggestion_id,
         uid: user_id,
-      }
-    ).pipe(catchError(error=>{return throwError(new Error('Server error when trying to update your suggestions!'))}));
+      })
+      .pipe(
+        catchError((error) => {
+          return throwError(
+            new Error('Server error when trying to update your suggestions!')
+          );
+        })
+      );
   }
 
   setHasMadeSuggestions() {
@@ -104,5 +110,46 @@ export class ParticipantService {
 
   resetHasMadeSuggestions() {
     this.userHasMadeSuggestions.set(false);
+  }
+
+  takeSuggestionsToVote(
+    user_id: string,
+    password: string,
+    rank: '1' | '2' | '3'
+  ) {
+    return this.httpClient
+      .get<VotingData>(
+        this.envService.baseUrl +
+          `/api/participant/getSuggestionsVote/${user_id}/${password}/${rank}`
+      )
+      .pipe(
+        catchError((error) => {
+          return throwError(
+            () => new Error('Error when trying to fetch voting data!')
+          );
+        })
+      );
+  }
+
+  makeVote(
+    rank: number,
+    userID: number,
+    suggestionID: number,
+    votedUserID: number
+  ) {
+    return this.httpClient
+      .post(this.envService.baseUrl + '/api/participant/makeVote', {
+        rank: rank.toString(),
+        uid: userID.toString(),
+        vote: suggestionID.toString(),
+        voteduser: votedUserID.toString(),
+      })
+      .pipe(
+        catchError((error) => {
+          return throwError(
+            () => new Error('Server error when trying to submit your vote!')
+          );
+        })
+      );
   }
 }

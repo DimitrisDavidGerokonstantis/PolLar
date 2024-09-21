@@ -5,7 +5,12 @@
     (openHealthCheck)="openHealthCheckModal()"
   />
   <div class="content">
-    @if (!isOpenModal()) {
+    @if (generalError()) {
+    <app-error [errorMsg]="generalError()" />
+    }@else if(generalError2()){
+    <app-error [errorMsg]="generalError2()" />
+
+    } @else{ @if (!isOpenModal()) {
 
     <router-outlet />
 
@@ -17,7 +22,7 @@
       (close)="closeHealthCheckModal()"
       ><app-modal
     /></app-dialog>
-    }
+    } }
   </div>
   <!-- <app-card-container /> -->
   <app-header type="footer" text="pollar.app2024@gmail.com" />

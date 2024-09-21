@@ -1,1 +1,79 @@
-<p>vote-form works!</p>
+<h1>Choose your {{ rankDescription() }} best option</h1>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  @if (isLoading()) {
+  <app-loading-spinner text="Fetching data..." />
+  } @else if (errorMsg()) {
+  <app-error [errorMsg]="errorMsg()" />
+  }@else {
+  <div class="tables" formArrayName="options">
+    @for (user of usersToBeVoted(); track $index ; let id1=$index) {
+    <table>
+      <thead>
+        <th>{{ user }}</th>
+      </thead>
+      <tbody>
+        @for (suggestion of suggestionsToVotePerUser()[user]; track $index ; let
+        id2=$index) {
+
+        <tr>
+          <td>
+            <div
+              class="control"
+              (click)="
+                onSelectOption(
+                  id1 *
+                    (id1 >= 1
+                      ? suggestionsToVotePerUser()[usersToBeVoted()[id1 - 1]]
+                      : []
+                    ).length +
+                    id2,
+                  suggestion.sugID,
+                  suggestion.sugUserID
+                )
+              "
+            >
+              <label>
+                <input type="radio" />
+                <span class="custom-radio"
+                  ><img
+                    [style.opacity]="
+                      form.controls.options.value[
+                        id1 *
+                          (id1 >= 1
+                            ? suggestionsToVotePerUser()[
+                                usersToBeVoted()[id1 - 1]
+                              ]
+                            : []
+                          ).length +
+                          id2
+                      ]
+                        ? '100%'
+                        : '0%'
+                    "
+                    class="radio-image"
+                    src="tick.png"
+                    alt=""
+                /></span>
+                {{ suggestion.suggestion }}
+              </label>
+            </div>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+    }
+  </div>
+  <div class="form-actions">
+    @if (isLoadingSubmission()) {
+    <app-loading-spinner text="Uploading vote..." />
+    }@else if(submissionErrorMsg()){
+    <app-error [errorMsg]="submissionErrorMsg()" />
+    }@else{
+    <button [disabled]="form.invalid" type="submit" class="button">
+      Submit
+    </button>
+    }
+  </div>
+  }
+</form>

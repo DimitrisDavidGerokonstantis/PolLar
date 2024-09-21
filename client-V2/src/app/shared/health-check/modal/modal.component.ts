@@ -2,11 +2,12 @@ import { Component, OnInit, signal } from '@angular/core';
 import { SharedService } from '../../shared.service';
 import { sign } from 'crypto';
 import { ErrorComponent } from '../../error/error.component';
+import { LoadingSpinnerComponent } from '../../loading-spinner/loading-spinner.component';
 
 @Component({
   selector: 'app-modal',
   standalone: true,
-  imports: [],
+  imports: [LoadingSpinnerComponent],
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.css',
 })

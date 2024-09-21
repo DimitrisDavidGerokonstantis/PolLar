@@ -7,7 +7,13 @@ form {
   box-shadow: 0 0 16px 1px rgba(173, 181, 173, 0.5);
 }
 
-app-final-dialog{
+.end-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+app-final-dialog {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,8 +37,8 @@ fieldset {
   font-weight: bold;
 }
 
-.usernames-fieldset .control-row .control input{
-  width:85%
+.usernames-fieldset .control-row .control input {
+  width: 85%;
 }
 
 .button:disabled {
@@ -153,12 +159,12 @@ hr {
   background-color: rgb(185, 143, 66);
 }
 
-.send-button:disabled{
+.send-button:disabled {
   cursor: not-allowed;
   background-color: #819b9a;
 }
 
-.send-button:disabled:hover{
+.send-button:disabled:hover {
   cursor: not-allowed;
   background-color: #819b9a;
 }
@@ -194,8 +200,8 @@ hr {
   color: #581a0d;
 }
 
-.usernames-fieldset input.ng-invalid{
-    background-color: #fbdcd6;
+.usernames-fieldset input.ng-invalid {
+  background-color: #fbdcd6;
 }
 
 [formgroupname].submitted.ng-invalid input,

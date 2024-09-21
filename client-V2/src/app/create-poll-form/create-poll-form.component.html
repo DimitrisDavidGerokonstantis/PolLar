@@ -169,7 +169,7 @@
     </fieldset>
   </div>
 
-  <div>
+  <div class="end-info">
     @if (isPollCreated()) {
     <app-dialog
       type="classic"
@@ -240,7 +240,7 @@
     @if (isLoading()) {
     <app-loading-spinner />
     } @else if((isSubmitted() && form.invalid) || (!form.invalid &&
-    createPollError()==="Invalid or missingvalues!")){
+    createPollError()==="Invalid or missing values!")){
     <app-error [errorMsg]="createPollError()" />
     } @else if(!isPollCreated()){
     <p class="tip">Fill in all the fields so as to configure your poll !</p>

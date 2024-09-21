@@ -51,7 +51,7 @@ export class LoginFormComponent {
 
   form = new FormGroup({
     username: new FormControl('', {
-      validators: [Validators.required, Validators.maxLength(30)],
+      validators: [Validators.required, Validators.maxLength(40)],
     }),
     password: new FormControl('', {
       validators: [
@@ -72,8 +72,21 @@ export class LoginFormComponent {
     }),
   });
 
+  enableInputs() {
+    this.form.controls.username.enable();
+    this.form.controls.nickname.enable();
+    this.form.controls.password.enable();
+  }
+
+  disableInputs() {
+    this.form.controls.username.disable();
+    this.form.controls.nickname.disable();
+    this.form.controls.password.disable();
+  }
+
   onSubmit() {
     this.isLoading.set(true);
+    this.disableInputs();
     if (this.form.invalid) {
       this.error.set('Invalid fields!');
       this.isLoading.set(false);
@@ -119,12 +132,16 @@ export class LoginFormComponent {
                       this.isLoading.set(false);
                     });
                   },
-                  error: (error) => console.log(error),
+                  error: (error) => {
+                    console.log(error);
+                    this.enableInputs();
+                  },
                 });
             },
             error: (error) => {
               this.error.set('Server error. Please try again later!');
               this.isLoading.set(false);
+              this.enableInputs();
             },
           });
       else if (this.type() === 'admin' && username && password)
@@ -160,11 +177,13 @@ export class LoginFormComponent {
             error: (error) => {
               this.error.set(error);
               this.isLoading.set(false);
+              this.enableInputs();
             },
           });
       else {
         this.error.set('Invalid Request');
         this.isLoading.set(false);
+        this.enableInputs();
       }
     }
   }

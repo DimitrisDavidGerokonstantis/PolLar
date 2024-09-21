@@ -4,6 +4,7 @@ import { catchError, map, of, tap, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { EnvService } from './env.service';
 import { PollStatusResponse } from '../models/poll-status-results.model';
+import { error } from 'console';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +21,8 @@ export class SharedService {
   public_user_id = this.user_id.asReadonly();
   private currentPhase = signal(0);
   current_phase_public = this.currentPhase.asReadonly();
+  errorMsg = signal('');
+  public_error = this.errorMsg.asReadonly();
 
   setPhase(phase: number) {
     this.currentPhase.set(phase);
@@ -78,8 +81,8 @@ export class SharedService {
         tap((res) => {
           this.setPhase(res.phase);
         }),
-
         catchError((error) => {
+          this.errorMsg.set('Server error. Please try again!');
           return throwError(
             () =>
               new Error(
