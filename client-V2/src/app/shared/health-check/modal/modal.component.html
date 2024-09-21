@@ -1,0 +1,8 @@
+<div class="container">
+  <p>{{ status() }}</p>
+  @if (errorMsg()) {
+  <p class="error">{{ errorMsg() }}</p>
+  } @else if(successMsg()) {
+  <p class="success">{{ successMsg() }}</p>
+  }
+</div>

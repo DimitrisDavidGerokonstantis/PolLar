@@ -1,0 +1,15 @@
+<div class="user-suggestions">
+  <p>{{ userSuggestions().name }}</p>
+  <table>
+    <thead>
+      <th>Suggestions</th>
+    </thead>
+    <tbody>
+      @for (_ of [].constructor(suggestionsPerParticipant()); track $index) {
+      <tr>
+        <td>{{ userSuggestions().suggestions[$index] }}</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>

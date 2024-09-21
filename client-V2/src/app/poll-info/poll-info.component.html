@@ -1,0 +1,80 @@
+<table>
+  <tbody>
+    <tr>
+      <td>Title</td>
+      <td>{{ pollInfo().title() }}</td>
+      <td class="transparent"></td>
+    </tr>
+    <tr>
+      <td>Password</td>
+      <td class="password">
+        {{ password()
+        }}<img
+          [style.opacity]="!copied() ? '100%' : '40%'"
+          src="copy.png"
+          alt="Hero avatar"
+          (click)="onCopyPassword()"
+        />
+      </td>
+      <td class="transparent">{{ copied() ? "Copied to clipboard!" : "" }}</td>
+    </tr>
+    <tr>
+      <td>Number of participants</td>
+      <td>{{ pollInfo().numOfUsers() }}</td>
+      <td class="transparent"></td>
+    </tr>
+    @if (current_phase()===1) {
+    <tr>
+      <td>Number of suggestions per participant</td>
+      <td>{{ pollInfo().sugperus() }}</td>
+      <td class="transparent"></td>
+    </tr>
+    }
+    <tr>
+      <td>Participants that have already attended the current phase</td>
+      <td>
+        <p>
+          {{
+            current_phase() === 1
+              ? pollInfo().usersSuggested()
+              : pollInfo().usersVoted()
+          }}{{ pollInfo().numOfUsers() }}
+        </p>
+      </td>
+      <td>
+        @defer (on viewport){<app-others-suggestions
+          [password]="password()"
+          (infoEmitter)="onGetInfo($event)"
+        />}@placeholder {
+        <p></p>
+        }
+      </td>
+    </tr>
+    <tr>
+      <td>Phase</td>
+      <td>
+        {{ current_phase() === 0 ? "" : current_phase() + " : " }}
+        {{ phases_description()[0] }}
+      </td>
+      <td class="next">
+        @if (isLoadingPhaseUpdate()) {
+        <app-loading-spinner />
+        } @else if (phaseUpgradeErrorMsg()) {
+        <app-error [errorMsg]="phaseUpgradeErrorMsg()" />
+        }@else{<button
+          (click)="onUpgradePhase()"
+          class="open-dialog"
+          [disabled]="
+            current_phase() === 1
+              ? pollInfo().numOfUsers() + '/' !== pollInfo().usersSuggested()
+              : pollInfo().totalVotes() !== +pollInfo().numOfUsers() * 3
+          "
+        >
+          <img src="arrow-right.png" alt="" />
+          <p class="small">Next phase : {{ phases_description()[1] }}</p>
+        </button>
+        }
+      </td>
+    </tr>
+  </tbody>
+</table>

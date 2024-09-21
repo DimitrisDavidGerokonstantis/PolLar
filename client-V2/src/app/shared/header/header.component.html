@@ -1,0 +1,20 @@
+<mat-toolbar class="toolbar" [style]="style()">
+  <a routerLink="/">
+    <button
+      mat-icon-button
+      class="example-icon"
+      aria-label="Example icon-button with menu icon"
+    >
+      <img src="favicon.ico" alt="polLar" />
+    </button>
+  </a>
+  <a routerLink="/"><span class="app-title">PolLar</span></a>
+  <span class="example-spacer"></span>
+  @if (type()==='header') {
+  <app-health-check (open)="onOpenHealthCheck()" />
+  }
+
+  <button class="username-button" aria-label="Username">
+    <p class="username-text">{{ text() }}</p>
+  </button>
+</mat-toolbar>

@@ -1,0 +1,33 @@
+@if (manualVisibility()) {
+<button class="open-dialog" (click)="openDialog($event)">
+  <p>{{ buttonText() }}</p>
+  <!-- <img src="visible.png" alt="" /> -->
+</button>
+} @if (isVisible() || !manualVisibility()) {
+<div
+  class="dialog-backdrop"
+  [style.background-color]="
+    type() === 'error'
+      ? ' rgba(240, 181, 181, 0.5)'
+      : 'rgba(237, 246, 243, 0.5)'
+  "
+>
+  <div class="dialog-container">
+    <div class="dialog-header" [style.background-color]="buttonStyle">
+      <h2>{{ title() }}</h2>
+    </div>
+    <div class="dialog-body">
+      <ng-content />
+    </div>
+    <div class="dialog-footer">
+      <button
+        [style.background-color]="buttonStyle"
+        class="primary-btn"
+        (click)="closeDialog($event)"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+</div>
+}

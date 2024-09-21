@@ -1,0 +1,24 @@
+<div class="app">
+  <app-header
+    type="header"
+    [text]="user()"
+    (openHealthCheck)="openHealthCheckModal()"
+  />
+  <div class="content">
+    @if (!isOpenModal()) {
+
+    <router-outlet />
+
+    }@else {
+    <app-dialog
+      [manualVisibility]="false"
+      title="Healthcheck"
+      type="healthcheck"
+      (close)="closeHealthCheckModal()"
+      ><app-modal
+    /></app-dialog>
+    }
+  </div>
+  <!-- <app-card-container /> -->
+  <app-header type="footer" text="pollar.app2024@gmail.com" />
+</div>

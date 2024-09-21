@@ -1,0 +1,17 @@
+<table>
+  <tbody>
+    @if (currentVotes().length>0) {
+    <tr>
+      <td class="header-data">Username</td>
+      <td class="header-data"># Votes</td>
+    </tr>
+    } @for (voteData of currentVotes(); track $index) {
+    <tr>
+      <td>{{ voteData.userName }}</td>
+      <td>{{ voteData.numOfVotes }}</td>
+    </tr>
+    }@empty {
+    <p>No votes available!</p>
+    }
+  </tbody>
+</table>
