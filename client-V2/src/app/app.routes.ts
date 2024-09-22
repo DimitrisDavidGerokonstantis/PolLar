@@ -7,6 +7,7 @@ import {
   canLeaveCreatePollPage,
   canMatchPhaseSpecificPaths,
   canMatchRoleSpecificPaths,
+  canVoteForSpecificRank,
 } from './route-guards';
 import { LoadingPageComponent } from './shared/loading-page/loading-page.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
@@ -43,6 +44,7 @@ export const routes: Routes = [
         canMatch: [
           canMatchRoleSpecificPaths('participant'),
           canMatchPhaseSpecificPaths(2),
+          canVoteForSpecificRank,
         ],
         runGuardsAndResolvers: 'always',
         children: [

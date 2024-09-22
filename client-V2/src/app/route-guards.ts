@@ -8,6 +8,7 @@ import { CreatePollFormComponent } from './create-poll-form/create-poll-form.com
 import { inject } from '@angular/core';
 import { SharedService } from './shared/shared.service';
 import { map, take } from 'rxjs';
+import { DecideNavigationService } from './shared/decide-navigation.service';
 
 // export const canMatchParticipantPaths: CanMatchFn = (route, segments) => {
 //   const router = inject(Router);
@@ -50,6 +51,26 @@ import { map, take } from 'rxjs';
 //     })
 //   );
 // };
+
+export const canVoteForSpecificRank: CanMatchFn = (route, segments) => {
+  let sharedService = inject(SharedService);
+  let navService = inject(DecideNavigationService);
+  let router = inject(Router);
+  let currentRank = +segments[2].path;
+  return navService
+    .getNumberOfUserVotes(segments[1].path, +sharedService.public_user_id())
+    .pipe(
+      take(1),
+      map((numberOfVotes) => {
+        if (segments[2].path === 'overview')
+          return numberOfVotes === 3
+            ? true
+            : new RedirectCommand(router.parseUrl('?phaseInvalid=true'));
+        if (numberOfVotes === currentRank - 1) return true;
+        return new RedirectCommand(router.parseUrl('?phaseInvalid=true'));
+      })
+    );
+};
 
 export const canMatchRoleSpecificPaths = (role: 'participant' | 'admin') => {
   const canMatchFN: CanMatchFn = (route, segments) => {

@@ -117,6 +117,15 @@ export class VoteFormComponent implements OnInit {
       });
   }
 
+  computeInputID(id1: number, id2: number) {
+    let numOfPreviousOptions = 0;
+    for (let i = 0; i < id1; i++) {
+      numOfPreviousOptions +=
+        this.suggestionsToVotePerUser()[this.usersToBeVoted()[i]].length;
+    }
+    return numOfPreviousOptions + id2;
+  }
+
   onSelectOption(
     index: number,
     suggestion_id: number,
@@ -132,6 +141,7 @@ export class VoteFormComponent implements OnInit {
       id: suggestion_id,
       userID: suggestion_UserId,
     });
+    console.log(index, this.selectedSuggestion());
   }
 
   onSubmit() {

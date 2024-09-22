@@ -242,6 +242,9 @@
     } @else if((isSubmitted() && form.invalid) || (!form.invalid &&
     createPollError()==="Invalid or missing values!")){
     <app-error [errorMsg]="createPollError()" />
+
+    }@else if(createPollError()){
+    <app-error [errorMsg]="createPollError()" />
     } @else if(!isPollCreated()){
     <p class="tip">Fill in all the fields so as to configure your poll !</p>
     } @if (isPollCreated()) {
