@@ -33,15 +33,13 @@ export const pollStatusGeneral = (req, res) => {
         db.query(q3, [req.body.password], (err, data) => {
           if (err) return res.status(500).json(err);
           suggestionsUserIds = [...data];
-          return res
-            .status(200)
-            .json({
-              suggestionsUserIds,
-              suggestionsData,
-              numofusers,
-              phase,
-              checkbox,
-            });
+          return res.status(200).json({
+            suggestionsUserIds,
+            suggestionsData,
+            numofusers,
+            phase,
+            checkbox,
+          });
         });
       });
     } else {
@@ -56,4 +54,8 @@ export const pollStatusGeneral = (req, res) => {
       });
     }
   });
+};
+
+export const test = (req, res) => {
+  return res.status(200).json({ message: "API is working!" });
 };

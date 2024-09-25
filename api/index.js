@@ -3,6 +3,7 @@ import participantRoutes from "./routes/participant.js";
 import adminRoutes from "./routes/admin.js";
 import commonRoutes from "./routes/common.js";
 import cors from "cors";
+import axios from "axios";
 
 //import cookieParser from "cookie-parser";
 import multer from "multer";
@@ -26,4 +27,12 @@ app.use("/api/common", commonRoutes);
 
 app.listen(5000, () => {
   console.log("Connected!");
+  setInterval(async () => {
+    try {
+      await axios.get("https://pollar-api-rxlv.onrender.com/api/common/test");
+      console.log("TEST!");
+    } catch (error) {
+      console.error("TEST failed", error.message);
+    }
+  }, 30000);
 });
