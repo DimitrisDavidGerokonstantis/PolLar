@@ -90,6 +90,21 @@ export const canMatchRoleSpecificPaths = (role: 'participant' | 'admin') => {
   return canMatchFN;
 };
 
+export const canMatchAuthenticatedPaths: CanMatchFn = (route, segments) => {
+  const router = inject(Router);
+  const sharedService = inject(SharedService);
+  console.log(segments);
+  return sharedService.checkAndInitializeUser().pipe(
+    take(1),
+    map((result) => {
+      if (result === 'participant' || result === 'admin') return true;
+      if (result === 'loading')
+        return new RedirectCommand(router.parseUrl('/loading'));
+      return new RedirectCommand(router.parseUrl('?auth=true'));
+    })
+  );
+};
+
 export const canMatchPhaseSpecificPaths = (phase: 1 | 2 | 3) => {
   const canMatchPhase1Paths: CanMatchFn = (route, segments) => {
     const router = inject(Router);

@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { EnvService } from './env.service';
 import { PollStatusResponse } from '../models/poll-status-results.model';
 import { error } from 'console';
+import { Analytics, PollResults } from '../models/results.model';
 
 @Injectable({
   providedIn: 'root',
@@ -105,6 +106,28 @@ export class SharedService {
               new Error(
                 'Server error when trying to get the title of the poll!'
               )
+          );
+        })
+      );
+  }
+
+  getPollResults(password: string) {
+    return this.httpClient
+      .get<PollResults>(
+        this.envService.baseUrl + `/api/admin/getResults/${password}`
+      )
+      .pipe(
+        // map((res) => {
+        //   let arrayAnalytics: Analytics[] = [];
+        //   for (let object of res.analytics) {
+        //     arrayAnalytics.push(object);
+        //   }
+        //   return { ...res, analytics: arrayAnalytics };
+        // }),
+        catchError((error) => {
+          return throwError(
+            () =>
+              new Error('Error while trying to fetch the results of this poll')
           );
         })
       );

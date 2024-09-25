@@ -24,6 +24,13 @@ form {
   gap: 25px;
 }
 
+/* .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+} */
+
 /* Table */
 table {
   width: 100%;

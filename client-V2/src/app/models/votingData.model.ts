@@ -15,3 +15,15 @@ export interface VotingData {
   mydata: SuggestionsToVoteData[];
   phase: number;
 }
+
+export interface myVotesData {
+  nickname: string;
+  username: string;
+  user: number;
+  sugid: number;
+  rank: number;
+  suggestion: string;
+  password: string;
+  phase: number;
+  sugUser: number;
+}

@@ -16,6 +16,10 @@ table {
   cursor: pointer;
 }
 
+.header-data:hover {
+  background-color: #3bafaf; /* Accent color for the title cells */
+}
+
 /* Table Layout */
 tbody {
   display: grid;

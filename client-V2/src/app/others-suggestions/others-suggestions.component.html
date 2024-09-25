@@ -22,6 +22,27 @@
 >
   <app-current-votes [currentVotes]="currentVotes()" />
 </app-dialog>
+}@else if (shared_phase()===3) {
+<app-dialog
+  buttonText="Results"
+  type="classic"
+  title="Results"
+  [manualVisibility]="true"
+>
+  <p>
+    You can also see the results
+    <a
+      (click)="onNavToResults()"
+      class="results-link"
+      [routerLink]="['../../..', 'common', 'results', password()]"
+      >Here</a
+    >
+  </p>
+  @if (loadingNavToResults()) {
+  <app-loading-spinner text="Forwarding to results ..." />
+  }@else{ <app-results [password]="password()" />
+  }
+</app-dialog>
 } @else {
 <app-error errorMsg="Please try again" />
 

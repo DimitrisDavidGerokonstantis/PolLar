@@ -7,6 +7,7 @@ import {
   SuggestionsToVoteData,
   transformedSuggestionsToVoteData,
 } from '../models/votingData.model';
+import { Analytics } from '../models/results.model';
 
 @Injectable({
   providedIn: 'root',
@@ -61,5 +62,32 @@ export class TransformDataService {
       });
     });
     return transformedData;
+  }
+
+  transformObjectToArray(obj: { [key: number]: object }) {
+    let result = new Array(Object.keys(obj).length);
+    for (let key in obj) {
+      result[key] = obj[key];
+    }
+    return result;
+  }
+
+  transformAnalytics(analytics: Analytics[]){
+    let objectResult : {[key: number]: {ranking: number,voter:string ,suggestion: string, suggester: string}[]} = {}
+    analytics.forEach((voteInfo=>{
+      if(!objectResult[voteInfo.voterId]) objectResult[voteInfo.voterId]=[]
+      objectResult[voteInfo.voterId].push({
+        ranking: voteInfo.ranking,
+        suggestion: voteInfo.suggestionVoted,
+        suggester: voteInfo.userSuggestedNickname,
+        voter: voteInfo.voterNickname
+      })
+    }))
+    let arrayResult = []
+    for(let voter in objectResult){
+      objectResult[voter].sort((vote1, vote2) => vote1.ranking-vote2.ranking)
+      arrayResult.push(objectResult[voter])
+    }
+    return arrayResult
   }
 }

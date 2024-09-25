@@ -3,6 +3,7 @@ import {
   DestroyRef,
   inject,
   input,
+  OnInit,
   output,
   signal,
 } from '@angular/core';
@@ -31,7 +32,7 @@ import { LocalStorageService } from '../shared/local-storage.service';
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.css',
 })
-export class LoginFormComponent {
+export class LoginFormComponent implements OnInit {
   type = signal('');
   error = signal('');
   // private snackbarService = inject(SnackbarService)
@@ -43,6 +44,8 @@ export class LoginFormComponent {
   private router = inject(Router);
   navError = this.navigationService.publicError;
   isLoading = signal(false);
+  usr = input<string>('');
+  pwd = input<string>('');
 
   constructor() {
     this.type.set(this.router.url.split('/')[1]);
@@ -71,6 +74,11 @@ export class LoginFormComponent {
           : [],
     }),
   });
+
+  ngOnInit(): void {
+    this.form.controls.username.setValue(this.usr());
+    this.form.controls.password.setValue(this.pwd());
+  }
 
   enableInputs() {
     this.form.controls.username.enable();

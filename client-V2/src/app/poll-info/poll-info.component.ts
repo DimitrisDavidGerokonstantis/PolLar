@@ -14,6 +14,7 @@ import { LoadingPageComponent } from '../shared/loading-page/loading-page.compon
 import { SharedService } from '../shared/shared.service';
 import { AdminService } from '../admin.service';
 import { ErrorComponent } from '../shared/error/error.component';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-poll-info',
   standalone: true,
@@ -32,6 +33,7 @@ export class PollInfoComponent implements OnInit {
   private clipboard = inject(Clipboard);
   private sharedService = inject(SharedService);
   private adminService = inject(AdminService);
+  private router = inject(Router);
   current_phase = this.sharedService.current_phase_public;
   phases_description = this.sharedService.phasesDescription;
   password = input.required<string>();
@@ -74,7 +76,9 @@ export class PollInfoComponent implements OnInit {
       .upgradePhase(this.password(), +this.pollInfo().phase())
       .subscribe({
         next: (res) => {
-          this.isLoadingPhaseUpdate.set(false);
+          if (this.pollInfo().phase() === '2') {
+            this.router.navigate(['common', 'results', this.password()]);
+          } else this.isLoadingPhaseUpdate.set(false);
         },
         error: (error) => {
           this.isLoadingPhaseUpdate.set(false);

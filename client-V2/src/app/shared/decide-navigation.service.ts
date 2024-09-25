@@ -97,6 +97,8 @@ export class DecideNavigationService {
       user_status === 'Suggestions and voting has been made. Poll phase = 2'
     ) {
       return ['participant', 'vote', `${password}`, 'overview'];
+    } else if (poll_phase === 3) {
+      return ['common', 'results', `${password}`];
     }
     return ['check'];
   }

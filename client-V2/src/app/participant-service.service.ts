@@ -12,7 +12,7 @@ import {
 import { LoginResponse } from './models/participant-login-response.model';
 import { EnvService } from './shared/env.service';
 import { SharedService } from './shared/shared.service';
-import { VotingData } from './models/votingData.model';
+import { myVotesData, VotingData } from './models/votingData.model';
 
 @Injectable({
   providedIn: 'root',
@@ -148,6 +148,35 @@ export class ParticipantService {
         catchError((error) => {
           return throwError(
             () => new Error('Server error when trying to submit your vote!')
+          );
+        })
+      );
+  }
+
+  takeParticipantVotes(userID: string, password: string) {
+    return this.httpClient
+      .get<myVotesData[]>(
+        this.envService.baseUrl +
+          `/api/participant/getVotes/${userID}/${password}`
+      )
+      .pipe(
+        catchError((error) => {
+          return throwError(
+            () => new Error('Server error when trying to retrieve your votes!')
+          );
+        })
+      );
+  }
+
+  deleteParticipantVotes(userID: string) {
+    return this.httpClient
+      .delete(
+        this.envService.baseUrl + `/api/participant/deleteVotes/${userID}`
+      )
+      .pipe(
+        catchError((error) => {
+          return throwError(
+            () => new Error('Server error when trying to delete your votes!')
           );
         })
       );

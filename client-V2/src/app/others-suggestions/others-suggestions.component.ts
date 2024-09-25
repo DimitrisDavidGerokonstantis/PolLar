@@ -19,6 +19,8 @@ import { ErrorComponent } from '../shared/error/error.component';
 import { LocalStorageService } from '../shared/local-storage.service';
 import { EventEmitter } from '@angular/core';
 import { CurrentVotesComponent } from '../current-votes/current-votes.component';
+import { ResultsComponent } from '../shared/results/results.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-others-suggestions',
@@ -29,6 +31,8 @@ import { CurrentVotesComponent } from '../current-votes/current-votes.component'
     LoadingSpinnerComponent,
     ErrorComponent,
     CurrentVotesComponent,
+    ResultsComponent,
+    RouterLink,
   ],
   templateUrl: './others-suggestions.component.html',
   styleUrl: './others-suggestions.component.css',
@@ -62,6 +66,11 @@ export class OthersSuggestionsComponent implements OnInit {
     totalVotes: number;
     usersVoted: number;
   }>();
+  loadingNavToResults = signal(false);
+
+  onNavToResults() {
+    this.loadingNavToResults.set(true);
+  }
 
   ngOnInit(): void {
     this.isLoading.set(true);

@@ -1,0 +1,48 @@
+@if (errorMsg()) {
+<app-error [errorMsg]="errorMsg()" />
+}@else if(isLoadingResults()){
+<app-loading-page />
+}@else {
+
+<div class="card">
+  <p-tabView styleClass="tab-view">
+    <p-tabPanel header="Total" headerStyleClass="header">
+      <table>
+        <tbody>
+          <tr>
+            <td class="header-data">Suggestion</td>
+            <td class="header-data">Total Points</td>
+          </tr>
+          @for (result of pollBriefResults(); track $index) {
+          <tr>
+            <td [class.winning]="$index === 0">{{ result.suggestionVoted }}</td>
+            <td [class.winning]="$index === 0">{{ result.totalRank }}</td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </p-tabPanel>
+    <p-tabPanel header="Analytics" headerStyleClass="header">
+      @for (user of pollAnalyticResults(); track $index ;) {
+      <table class="analytics">
+        <p class="voter">{{ user[0].voter }}</p>
+
+        <tbody>
+          <tr>
+            <td class="header-data">Rank</td>
+            <td class="header-data">Suggestion</td>
+          </tr>
+
+          @for (vote of user; track $index) {
+          <tr>
+            <td>{{ vote.ranking }}</td>
+            <td>{{ vote.suggestion }}</td>
+          </tr>
+          }
+        </tbody>
+      </table>
+      }
+    </p-tabPanel>
+  </p-tabView>
+</div>
+}

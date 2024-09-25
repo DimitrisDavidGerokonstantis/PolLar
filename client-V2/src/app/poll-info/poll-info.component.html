@@ -31,8 +31,15 @@
     </tr>
     }
     <tr>
-      <td>Participants that have already attended the current phase</td>
       <td>
+        {{
+          phases_description()[0] !== "Results"
+            ? "Participants that have already attended the current phase"
+            : "Results"
+        }}
+      </td>
+      <td>
+        @if (phases_description()[0]!=="Results") {
         <p>
           {{
             current_phase() === 1
@@ -40,6 +47,7 @@
               : pollInfo().usersVoted()
           }}{{ pollInfo().numOfUsers() }}
         </p>
+        }
       </td>
       <td>
         @defer (on viewport){<app-others-suggestions
@@ -61,7 +69,7 @@
         <app-loading-spinner />
         } @else if (phaseUpgradeErrorMsg()) {
         <app-error [errorMsg]="phaseUpgradeErrorMsg()" />
-        }@else{<button
+        }@else if(phases_description()[0]!=='Results'){<button
           (click)="onUpgradePhase()"
           class="open-dialog"
           [disabled]="
@@ -73,6 +81,8 @@
           <img src="arrow-right.png" alt="" />
           <p class="small">Next phase : {{ phases_description()[1] }}</p>
         </button>
+        }@else {
+        <img src="favicon.ico" alt="" />
         }
       </td>
     </tr>

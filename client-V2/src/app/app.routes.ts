@@ -5,6 +5,7 @@ import { CreatePollFormComponent } from './create-poll-form/create-poll-form.com
 import { MakeSuggestionsFormComponent } from './make-suggestions-form/make-suggestions-form.component';
 import {
   canLeaveCreatePollPage,
+  canMatchAuthenticatedPaths,
   canMatchPhaseSpecificPaths,
   canMatchRoleSpecificPaths,
   canVoteForSpecificRank,
@@ -13,6 +14,8 @@ import { LoadingPageComponent } from './shared/loading-page/loading-page.compone
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { VoteFormComponent } from './vote-form/vote-form.component';
 import { VotesOverviewComponent } from './votes-overview/votes-overview.component';
+import { ResultsComponent } from './shared/results/results.component';
+import { AboutPageComponent } from './shared/about-page/about-page.component';
 
 export const routes: Routes = [
   {
@@ -51,6 +54,9 @@ export const routes: Routes = [
           {
             path: 'overview',
             component: VotesOverviewComponent,
+            data: {
+              updateAble: true,
+            },
           },
           {
             path: ':rank',
@@ -75,6 +81,16 @@ export const routes: Routes = [
     ],
   },
   {
+    path: 'common',
+    children: [
+      {
+        path: 'results/:password',
+        component: ResultsComponent,
+        canMatch: [canMatchPhaseSpecificPaths(3), canMatchAuthenticatedPaths],
+      },
+    ],
+  },
+  {
     path: 'create',
     component: CreatePollFormComponent,
     canDeactivate: [canLeaveCreatePollPage],
@@ -82,5 +98,9 @@ export const routes: Routes = [
   {
     path: 'loading',
     component: LoadingPageComponent,
+  },
+  {
+    path: 'main/about',
+    component: AboutPageComponent,
   },
 ];
