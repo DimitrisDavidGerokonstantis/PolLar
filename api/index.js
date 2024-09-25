@@ -11,7 +11,11 @@ import multer from "multer";
 const app = express();
 
 const corsOptions = {
-  origin: ["https://pollar-app.onrender.com", "http://localhost:4200", "https://pollar-app2024.web.app"],
+  origin: [
+    "https://pollar-app.onrender.com",
+    "http://localhost:4200",
+    "https://pollar-app2024.web.app",
+  ],
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
@@ -34,5 +38,5 @@ app.listen(5000, () => {
     } catch (error) {
       console.error("TEST failed", error.message);
     }
-  }, 30000);
+  }, 200000);
 });
