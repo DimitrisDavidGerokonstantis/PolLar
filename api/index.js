@@ -38,5 +38,5 @@ app.listen(5000, () => {
     } catch (error) {
       console.error("TEST failed", error.message);
     }
-  }, 300000);
+  }, 250000);
 });
