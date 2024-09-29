@@ -40,7 +40,8 @@ We can notice 2 useful features:
 ![Screenshot from 2024-02-16 20-56-27](https://github.com/DimitrisDavidGerokonstantis/PolLar/assets/106912404/fc4dd285-06a6-4202-960b-74f55d83b4bc)
   * You can send (and resend) invitations via email (use of emailjs package) for each username that was produced (usernames cannot be changed anymore, these fields are read only). These emails have the format that you can see below.
     
-![Screenshot from 2024-02-16 20-59-52](https://github.com/DimitrisDavidGerokonstantis/PolLar/assets/106912404/083272ab-7e2b-4c39-8798-19c94f614425)
+![Screenshot from 2024-09-29 21-56-07](https://github.com/user-attachments/assets/c3d1ac6a-0ca8-45c7-ba92-75b8e6017e41)
+
 
 ### Make suggestions
 Then we can join this poll and make suggestions using a participants' username and the poll's password. We can also define a nickname. Usernames are not public to everyone (the reason is obvious), so when we see information about other participants (such as their current suggestions) we will only see their nicknames and not their usernames. 
