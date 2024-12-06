@@ -35,7 +35,6 @@ app.listen(5000, () => {
     try {
       await axios.get("https://pollar-api-rxlv.onrender.com/api/common/test");
       console.log("TEST!");
-      }
     } catch (error) {
       console.error("TEST failed", error.message);
     }
