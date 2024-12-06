@@ -33,13 +33,8 @@ app.listen(5000, () => {
   console.log("Connected!");
   setInterval(async () => {
     try {
-      const now =  new Date().getHours();
-      if(now < 1 || now>=8){
-        await axios.get("https://pollar-api-rxlv.onrender.com/api/common/test");
-        console.log("TEST!");
-      }
-      else{
-        console.log('Inactive between 1AM and 8AM');
+      await axios.get("https://pollar-api-rxlv.onrender.com/api/common/test");
+      console.log("TEST!");
       }
     } catch (error) {
       console.error("TEST failed", error.message);
