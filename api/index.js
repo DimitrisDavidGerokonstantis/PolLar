@@ -15,6 +15,7 @@ const corsOptions = {
     "https://pollar-app.onrender.com",
     "http://localhost:4200",
     "https://pollar-app2024.web.app",
+    "https://pollar-server.onrender.com"
   ],
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
