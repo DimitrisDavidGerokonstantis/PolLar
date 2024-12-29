@@ -5,7 +5,6 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:ssr": "ng build --prod && ng run my-angular-ssr-app:server",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:pollar-app": "node dist/pollar-app/server/server.mjs"
