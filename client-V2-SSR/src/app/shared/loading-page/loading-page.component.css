@@ -1,0 +1,11 @@
+app-loading-spinner {
+  position: fixed;
+  bottom: 50%;
+  left: 45%;
+}
+
+@media (max-width: 600px) {
+  app-loading-spinner {
+    left: 33%;
+  }
+}

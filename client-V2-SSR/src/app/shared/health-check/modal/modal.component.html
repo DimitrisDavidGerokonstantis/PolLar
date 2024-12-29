@@ -1,0 +1,10 @@
+<div class="container">
+  <p>{{ status() }}</p>
+  @if (status()==="Testing server's health...") {
+  <app-loading-spinner text="Please wait..." />
+  } @if (errorMsg()) {
+  <p class="error">{{ errorMsg() }}</p>
+  } @else if(successMsg()) {
+  <p class="success">{{ successMsg() }}</p>
+  }
+</div>

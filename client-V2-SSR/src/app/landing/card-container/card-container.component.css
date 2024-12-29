@@ -1,0 +1,22 @@
+/* Container for card elements */
+.card-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center; /* Center items horizontally */
+  align-items: center; /* Center items vertically */
+}
+
+/* Styling for each card */
+app-card {
+  display: flex;
+  justify-content: center; /* Center content horizontally inside the card */
+  font-size: 16px; /* Font size for card content */
+  color: #d4e4d5; /* Text color */
+  text-align: center; /* Center text inside the card */
+}
+
+@media (max-width: 1000px) {
+  .card-container {
+    flex-direction: column;
+  }
+}

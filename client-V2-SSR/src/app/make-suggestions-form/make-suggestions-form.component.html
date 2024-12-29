@@ -1,0 +1,63 @@
+@if (isLoading()) {
+<app-loading-page />
+}@else {
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <h2>{{ hasMadeSuggestions() ? "Your suggestions" : "Make suggestions" }}</h2>
+  <h3>{{ title() }}</h3>
+  <div formArrayName="suggestions">
+    @for (_ of [].constructor(suggestionsPerParticipant()); track $index) {
+    <div class="control-row">
+      <div class="control no-margin">
+        <label [for]="'input' + $index">Suggestion {{ $index + 1 }}</label>
+        <div class="input-block">
+          <input
+            [disabled]="hasMadeSuggestions()"
+            [id]="'input' + $index"
+            type="text"
+            [formControlName]="$index"
+            (keydown.enter)="$event.preventDefault()"
+          />
+          @if (hasMadeSuggestions()){
+          @if(form.controls.suggestions.at($index).disabled) {
+          <button
+            [disabled]="isLoadingSubmission() || disabledEdit()"
+            (click)="onEditSuggestion($index, $event)"
+            class="button-edit"
+          >
+            <img src="edit_button.png" alt="" />
+          </button>
+          } @else if(hasMadeSuggestions()){
+
+          <button
+            [disabled]="isTheSameSuggestion($index) || form.invalid"
+            (click)="onFinishEdit($index, $event)"
+            class="button-edit tick-image"
+          >
+            <img src="tick.png" alt="" />
+          </button>
+
+          <button
+            (click)="onFinishEditWithoutSubmit($index, $event)"
+            class="button-edit cross-image"
+          >
+            <img src="cross.png" alt="" /></button
+          >}}
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+  @if(errorMessage()){
+  <app-error [errorMsg]="errorMessage()"></app-error>
+  } @else if(form.invalid && form.dirty && form.touched){
+  <app-error errorMsg="Suggestions must have 1-42 characters!"></app-error>
+  } @else{ @if(!hasMadeSuggestions()){
+  <button type="submit" class="button">Submit</button>
+  } @if(isLoadingSubmission()){
+  <app-loading-spinner text="Uploading suggestions..." />
+  } @else {<app-others-suggestions
+    [password]="password()"
+    [excludedUsers]="[+me()]"
+  />} }
+</form>
+}

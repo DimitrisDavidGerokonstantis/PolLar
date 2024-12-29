@@ -1,0 +1,39 @@
+@if (isLoadingVotes()) {
+<app-loading-page />
+}@else if(fetchingVotesError()){
+<app-error [errorMsg]="fetchingVotesError()" />
+}@else {
+<table>
+  <thead>
+    <th>Rank</th>
+    <th>Suggestion</th>
+    <th>User</th>
+  </thead>
+  <tbody [class.loading]="isLoadingVotes()">
+    <tr>
+      <td>{{ myVotes()[0].rank }}</td>
+      <td class="suggestion">{{ myVotes()[0].suggestion }}</td>
+      <td>{{ myVotes()[0].nickname }}</td>
+    </tr>
+    <tr>
+      <td>{{ myVotes()[1].rank }}</td>
+      <td class="suggestion">{{ myVotes()[1].suggestion }}</td>
+      <td>{{ myVotes()[1].nickname }}</td>
+    </tr>
+    <tr>
+      <td>{{ myVotes()[2].rank }}</td>
+      <td class="suggestion">{{ myVotes()[2].suggestion }}</td>
+      <td>{{ myVotes()[2].nickname }}</td>
+    </tr>
+  </tbody>
+</table>
+@if (updateAble()) { @if (deleteVotesError()) {
+<app-error [errorMsg]="deleteVotesError()" />
+}@else if (isLoadingDeleteVotes()) {
+<app-loading-spinner text="Please wait ..." />
+}@else if(votesWereDelete()){
+<app-loading-spinner text="Preparing voting ..." />
+} @else {
+<img src="edit_button.png" alt="" (click)="onEdit()" />
+
+} }}

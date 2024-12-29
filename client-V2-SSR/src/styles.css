@@ -1,0 +1,93 @@
+
+@import "primeng/resources/themes/lara-light-teal/theme.css";
+
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+a {
+  color: #007bff; /* Default link color */
+  text-decoration: none; /* Remove underline */
+  font-weight: bold; /* Bold text */
+  transition: color 0.3s ease, background-color 0.3s ease; /* Smooth transitions */
+}
+
+/* Hover state */
+a:hover {
+  color: #0056b3; /* Darker color on hover */
+  text-decoration: underline; /* Add underline on hover */
+}
+
+/* Active state (when link is being clicked) */
+a:active {
+  color: #0056b3; /* Same color as hover state */
+  text-decoration: underline; /* Same underline as hover state */
+}
+
+a {
+  color: #ffffff; /* Default link color */
+  text-decoration: none; /* Remove underline */
+  font-weight: bold; /* Bold text */
+  transition: color 0.3s ease, background-color 0.3s ease; /* Smooth transitions */
+}
+
+/* Hover state */
+a:hover {
+  color: #ffffff; /* Darker color on hover */
+  text-decoration: none; /* Add underline on hover */
+}
+
+/* Active state (when link is being clicked) */
+a:active {
+  color: #ffffff; /* Same color as hover state */
+  text-decoration: none; /* Same underline as hover state */
+}
+
+/* Visited state */
+a:visited {
+  color: #ffffff; /* Color for visited links */
+}
+
+/* Custom green-themed snackbar */
+.my-snackbar {
+  --mdc-snackbar-container-color: #efc4ba; /* Green background */
+  --mdc-snackbar-supporting-text-color: #ff0000; /* White text */
+  --mat-mdc-snack-bar-button-color: #cca291; /* Golden color for button text */
+  --mdc-snackbar-container-shape-radius: 10px; /* Rounded corners */
+  padding: 16px; /* Add padding inside the snackbar */
+}
+
+.my-snackbar .mat-simple-snackbar-action {
+  color: #ce925d !important; /* Golden button action text */
+  font-weight: bold; /* Bold the button text */
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+/* Hover effect for action button */
+.my-snackbar .mat-simple-snackbar-action:hover {
+  color: #dec1b4 !important; /* Change button text color to white on hover */
+}
+
+
+.control-row {
+  align-items: flex-end;
+}
+
+.control {
+  flex: 1;
+}
+
+button {
+  padding: 0.6rem 1.75rem;
+}
+
+
+

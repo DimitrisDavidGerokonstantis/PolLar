@@ -1,0 +1,16 @@
+<mat-card
+  [class]="{ 'custom-card': true, 'about-card': inputs().type === 'about' }"
+  appearance="outlined"
+>
+  <mat-card-header>
+    <mat-card-title> {{ inputs().title }} </mat-card-title>
+    <mat-card-subtitle> {{ inputs().subtitle }} </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-actions class="actions">
+    <a [routerLink]="inputs().button_link.split('/')"
+      ><button mat-button class="custom-button">
+        {{ inputs().button_text }}
+      </button></a
+    >
+  </mat-card-actions>
+</mat-card>

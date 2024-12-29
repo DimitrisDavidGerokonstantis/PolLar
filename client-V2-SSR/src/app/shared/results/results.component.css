@@ -1,0 +1,233 @@
+/* Table Container */
+
+.card {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  /* Soft shadow for modern look */
+  padding-top: 30px;
+  width: 500px;
+}
+
+.header a {
+  color: rgb(40, 133, 128);
+  background-color: rgb(237, 248, 248);
+}
+
+.header {
+  width: 180px;
+  text-align: center;
+  align-items: center;
+}
+
+.tab-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+table {
+  transform: scale(0.8);
+  width: 100%;
+  max-width: 900px;
+  background-color: #f6fffb;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  /* Soft shadow for modern look */
+  overflow: hidden;
+  /* Ensures table has rounded corners */
+  border-collapse: collapse;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+table .voter {
+  font-size: larger;
+  font-weight: bold;
+}
+
+.password img {
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+}
+
+/* Table Layout */
+tbody {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  /* First column narrower, second column wider */
+  gap: 10px;
+  /* Space between items */
+  padding: 20px;
+}
+
+.analytics tbody {
+  grid-template-columns: 1fr 4fr;
+}
+
+.open-dialog {
+  background-color: #e5f7f4;
+  /* Light gray for cells */
+  color: rgb(75, 94, 71);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: larger;
+}
+
+.open-dialog:disabled {
+  cursor: not-allowed;
+  opacity: 50%;
+}
+
+/* Table Rows */
+tr {
+  display: contents;
+  /* Make rows flow inline */
+}
+
+/* Table Cells */
+td {
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #333;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f5f5f5;
+  /* Light gray for cells */
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  /* Subtle shadow */
+  transition: background-color 0.3s ease;
+  /* Smooth hover effect */
+  text-align: left;
+}
+
+.transparent {
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0.05);
+  /* Subtle shadow */
+  background: #d9dbdb;
+}
+
+.transparent:hover {
+  background: #d9dbdb;
+}
+
+.small {
+  font-size: small;
+  font-family: "Courier New", Courier, monospace;
+  margin-top: -5%;
+}
+
+/* First Column (Titles) */
+td:first-child {
+  background-color: #e7f4f4;
+  /* Accent color for the title cells */
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+tr .winning {
+  background-color: #dbcdfc;
+}
+
+tr .winning:hover {
+  background-color: #cfbdfa;
+}
+
+/* First Column (Titles) */
+.header-data:first-child {
+  background-color: #3bafaf;
+  /* Accent color for the title cells */
+  letter-spacing: 0.5px;
+}
+
+.header-data {
+  font-weight: bold;
+  background-color: #3bafaf;
+  /* Accent color for the title cells */
+  letter-spacing: 0.5px;
+}
+
+/* Cell Hover Effect */
+td:hover {
+  background-color: #e8f6eb;
+  /* Light teal hover effect */
+}
+
+.next img {
+  height: 40px;
+  width: 40px;
+}
+
+.next img:hover {
+  transform: scale(1.2);
+}
+
+.next:hover {
+  background-color: #e5f7f4;
+  /* Light gray for cells */
+}
+
+.next {
+  background-color: #e5f7f4;
+  /* Light gray for cells */
+}
+
+.header-data:hover {
+  background-color: #3bafaf;
+  /* Accent color for the title cells */
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+  table {
+    overflow-x: scroll;
+  }
+
+  td {
+    text-align: center;
+    /* Center align text on mobile for better readability */
+    padding: 15px;
+  }
+}
+
+.tab-content {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  /* Soft shadow for modern look */
+}
+
+.redText {
+  color: #3bafaf;
+}
+
+@media (max-width: 500px) {
+  .card {
+    width: 400px;
+  }
+}
+
+/*@media (max-width: 500px) {
+  .card {
+    width: 400px;
+  }
+}
+
+@media (max-width: 800px) {
+  .card {
+    width: 700px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .card {
+    width: 900px;
+  }
+} */
